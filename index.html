@@ -31,7 +31,7 @@
   <!-- Hero-иллюстрация «пионерки» — тематическая картинка с CDN Тильды (работает и на GitHub Pages, и внутри Tilda) -->
   <link rel="preload" as="image" href="https://static.tildacdn.com/tild3861-3863-4130-a636-343338326634/image_2025-08-05_19-.png" fetchpriority="high" />
 
-  <link rel="stylesheet" href="styles.css?v=camp-B" />
+  <link rel="stylesheet" href="styles.css?v=camp-C" />
 </head>
 <body>
 
@@ -175,22 +175,26 @@
           <div class="hero__image-badges">
             <div class="hero__stat-tile">
               <span class="hero__stat-icon" aria-hidden="true">
-                <!-- свисток вожатого -->
-                <svg viewBox="0 0 24 24" width="30" height="30" fill="none" stroke="#CE2C01" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M13.6 8.2h6.6a1.4 1.4 0 0 1 1.4 1.4v3.2a5.6 5.6 0 1 1-8.9-4.5"/>
-                  <circle cx="8.1" cy="13.6" r="2.1"/>
-                  <path d="M12.6 5.2 15.4 3M15.6 6.2l3.3-1.1"/>
+                <!-- группа людей (три вожатых) -->
+                <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="12" cy="7.6" r="3.2"/>
+                  <path d="M6.6 19.4v-1.2a5.4 5.4 0 0 1 10.8 0v1.2"/>
+                  <circle cx="4.6" cy="11.4" r="2.2"/>
+                  <path d="M2.2 19.4v-1a3.4 3.4 0 0 1 2.4-3.2"/>
+                  <circle cx="19.4" cy="11.4" r="2.2"/>
+                  <path d="M21.8 19.4v-1a3.4 3.4 0 0 0-2.4-3.2"/>
                 </svg>
               </span>
               <span>Три новых вожатых в&nbsp;смене</span>
             </div>
             <div class="hero__stat-tile">
               <span class="hero__stat-icon" aria-hidden="true">
-                <!-- календарь с молнией -->
-                <svg viewBox="0 0 24 24" width="30" height="30" fill="none" stroke="#CE2C01" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
-                  <rect x="3.2" y="5.2" width="17.6" height="15.6" rx="2.4"/>
-                  <path d="M3.2 10h17.6M8 2.8v4.4M16 2.8v4.4"/>
-                  <path d="M12.8 12.4 10.4 15.8h3.2L11.2 19"/>
+                <!-- календарь -->
+                <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="3.2" y="5.2" width="17.6" height="15.4" rx="2.4"/>
+                  <path d="M3.2 10.4h17.6"/>
+                  <path d="M8.4 3v4.4M15.6 3v4.4"/>
+                  <path d="M8 15h.01M12 15h.01M16 15h.01"/>
                 </svg>
               </span>
               <span>Новая тренировка каждый день</span>
@@ -198,9 +202,9 @@
             <div class="hero__stat-tile">
               <span class="hero__stat-icon" aria-hidden="true">
                 <!-- часы -->
-                <svg viewBox="0 0 24 24" width="30" height="30" fill="none" stroke="#CE2C01" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
-                  <circle cx="12" cy="12.6" r="8.4"/>
-                  <path d="M12 7.8v4.8l3.2 2M9 1.6h6"/>
+                <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="12" cy="12" r="8.6"/>
+                  <path d="M12 6.8V12l3.8 2.4"/>
                 </svg>
               </span>
               <span>Всего 15−25&nbsp;минут в&nbsp;день</span>
@@ -310,27 +314,33 @@
     <ul class="conditions">
       <li class="conditions__item">
         <span class="conditions__icon" aria-hidden="true">
-          <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="#CE2C01" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
+          <!-- глобус -->
+          <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
             <circle cx="12" cy="12" r="8.6"/>
-            <path d="M3.4 12h17.2M12 3.4c2.2 2.4 3.4 5.4 3.4 8.6S14.2 18.2 12 20.6c-2.2-2.4-3.4-5.4-3.4-8.6S9.8 5.8 12 3.4Z"/>
+            <path d="M3.4 12h17.2"/>
+            <path d="M12 3.4a10 10 0 0 1 0 17.2"/>
+            <path d="M12 3.4a10 10 0 0 0 0 17.2"/>
           </svg>
         </span>
         <span>Любой город, без привязки к&nbsp;часовому поясу</span>
       </li>
       <li class="conditions__item">
         <span class="conditions__icon" aria-hidden="true">
-          <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="#CE2C01" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
-            <circle cx="12" cy="12.6" r="8.4"/>
-            <path d="M12 7.8v4.8l3.2 2M9 1.6h6"/>
+          <!-- часы -->
+          <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="8.6"/>
+            <path d="M12 6.8V12l3.8 2.4"/>
           </svg>
         </span>
         <span>Всего 15−25&nbsp;минут в&nbsp;день</span>
       </li>
       <li class="conditions__item">
         <span class="conditions__icon" aria-hidden="true">
-          <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="#CE2C01" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
-            <rect x="6.4" y="2.6" width="11.2" height="18.8" rx="2.6"/>
-            <path d="M10.4 5.6h3.2M12 18.2h.01"/>
+          <!-- смартфон -->
+          <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="6.6" y="3" width="10.8" height="18" rx="2.6"/>
+            <path d="M10.4 6h3.2"/>
+            <path d="M12 18.2h.01"/>
           </svg>
         </span>
         <span>Нужен только смартфон и&nbsp;кроссовки (или&nbsp;носочки)</span>
@@ -340,12 +350,13 @@
     <div class="inside__grid">
       <article class="inside-card">
         <span class="inside-card__icon" aria-hidden="true">
-          <!-- диско-шар -->
-          <svg viewBox="0 0 24 24" width="44" height="44" fill="none" stroke="#CE2C01" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M12 1.8v3.4"/>
-            <circle cx="12" cy="13.6" r="8"/>
-            <path d="M4.3 11.2h15.4M4.3 16h15.4M12 5.6v16"/>
-            <path d="M8.2 6.6c-1.5 1.9-2.3 4.3-2.3 7s.8 5.1 2.3 7M15.8 6.6c1.5 1.9 2.3 4.3 2.3 7s-.8 5.1-2.3 7"/>
+          <!-- гантель -->
+          <svg viewBox="0 0 24 24" width="32" height="32" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M3 9v6"/>
+            <path d="M6.6 4.8v14.4"/>
+            <path d="M17.4 4.8v14.4"/>
+            <path d="M21 9v6"/>
+            <path d="M6.6 12h10.8"/>
           </svg>
         </span>
         <h3>Спортивный зал и&nbsp;дискотека</h3>
@@ -355,8 +366,8 @@
       <article class="inside-card">
         <span class="inside-card__icon" aria-hidden="true">
           <!-- сердце -->
-          <svg viewBox="0 0 24 24" width="44" height="44" fill="none" stroke="#CE2C01" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M12 20.4s-6.2-4-8.6-7.4c-1.8-2.6-1.3-5.5 1-6.8 1.9-1 4-.5 5.2.9L12 9.5l2.4-2.4c1.2-1.4 3.3-1.9 5.2-.9 2.3 1.3 2.8 4.2 1 6.8-2.4 3.4-8.6 7.4-8.6 7.4Z"/>
+          <svg viewBox="0 0 24 24" width="32" height="32" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 19.8L4.6 12.4A4.7 4.7 0 0 1 4.6 5.8 4.7 4.7 0 0 1 11.2 5.8L12 6.6 12.8 5.8A4.7 4.7 0 0 1 19.4 5.8 4.7 4.7 0 0 1 19.4 12.4Z"/>
           </svg>
         </span>
         <h3>Забота о&nbsp;себе</h3>
@@ -366,11 +377,11 @@
       <article class="inside-card">
         <span class="inside-card__icon" aria-hidden="true">
           <!-- вилка и ложка -->
-          <svg viewBox="0 0 24 24" width="44" height="44" fill="none" stroke="#CE2C01" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M6.6 2.8v4.6M9.2 2.8v4.6M11.8 2.8v4.6"/>
-            <path d="M6.2 7.6h6c0 1.8-1 2.9-2.1 3.2v10.4"/>
-            <ellipse cx="17.4" cy="7" rx="2.7" ry="4.2"/>
-            <path d="M17.4 11.2v10"/>
+          <svg viewBox="0 0 24 24" width="32" height="32" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M8 3.2v17.6"/>
+            <path d="M5 3.2v4.8h6V3.2"/>
+            <ellipse cx="16" cy="7" rx="3" ry="3.8"/>
+            <path d="M16 10.8v10"/>
           </svg>
         </span>
         <h3>Столовая</h3>
@@ -380,9 +391,9 @@
       <article class="inside-card">
         <span class="inside-card__icon" aria-hidden="true">
           <!-- раскрытая книга -->
-          <svg viewBox="0 0 24 24" width="44" height="44" fill="none" stroke="#CE2C01" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M12 6.6C10.4 5.2 8.4 4.6 5.6 4.6H3.4v13h2.2c2.8 0 4.8.6 6.4 1.9 1.6-1.3 3.6-1.9 6.4-1.9h2.2v-13h-2.2c-2.8 0-4.8.6-6.4 2Z"/>
-            <path d="M12 6.6v12.9"/>
+          <svg viewBox="0 0 24 24" width="32" height="32" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M3 4.6h5.2c2.1 0 3.8 1.3 3.8 2.8v12.4c0-1.5-1.7-2.8-3.8-2.8H3Z"/>
+            <path d="M21 4.6h-5.2c-2.1 0-3.8 1.3-3.8 2.8v12.4c0-1.5 1.7-2.8 3.8-2.8H21Z"/>
           </svg>
         </span>
         <h3>Кинозал и&nbsp;библиотека</h3>
@@ -391,10 +402,10 @@
 
       <article class="inside-card">
         <span class="inside-card__icon" aria-hidden="true">
-          <!-- чат -->
-          <svg viewBox="0 0 24 24" width="44" height="44" fill="none" stroke="#CE2C01" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M20.6 12c0 4-3.9 7.2-8.6 7.2-1 0-2-.15-2.9-.42L3.6 20.6l1.6-3.5C4 15.8 3.4 14 3.4 12c0-4 3.9-7.2 8.6-7.2s8.6 3.2 8.6 7.2Z"/>
-            <path d="M8.6 11.8h.01M12 11.8h.01M15.4 11.8h.01"/>
+          <!-- облачко сообщения -->
+          <svg viewBox="0 0 24 24" width="32" height="32" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M20.8 15.2a2.4 2.4 0 0 1-2.4 2.4H7.6l-4 3.4V5.4a2.4 2.4 0 0 1 2.4-2.4h12.4a2.4 2.4 0 0 1 2.4 2.4Z"/>
+            <path d="M8 10.2h.01M12 10.2h.01M16 10.2h.01"/>
           </svg>
         </span>
         <h3>Отрядный чат</h3>
@@ -404,10 +415,12 @@
       <article class="inside-card">
         <span class="inside-card__icon" aria-hidden="true">
           <!-- подарок -->
-          <svg viewBox="0 0 24 24" width="44" height="44" fill="none" stroke="#CE2C01" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-            <rect x="3.4" y="9.6" width="17.2" height="11" rx="2.2"/>
-            <path d="M3.4 13.6h17.2M12 9.6v11"/>
-            <path d="M12 9.6C10.6 7.1 9.4 5.5 8 5.5a2.05 2.05 0 0 0 0 4.1h4ZM12 9.6c1.4-2.5 2.6-4.1 4-4.1a2.05 2.05 0 0 1 0 4.1h-4Z"/>
+          <svg viewBox="0 0 24 24" width="32" height="32" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="7.4" width="18" height="4.8" rx="1"/>
+            <path d="M4.8 12.2v6.8a2 2 0 0 0 2 2h10.4a2 2 0 0 0 2-2v-6.8"/>
+            <path d="M12 7.4v13.6"/>
+            <path d="M12 7.4H7.6a2.2 2.2 0 0 1 0-4.4c3.4 0 4.4 4.4 4.4 4.4Z"/>
+            <path d="M12 7.4h4.4a2.2 2.2 0 0 0 0-4.4C13 3 12 7.4 12 7.4Z"/>
           </svg>
         </span>
         <h3>Секретные бонусы</h3>
@@ -469,11 +482,11 @@
       <!-- 3 месяца -->
       <article class="rate-card">
         <span class="rate-card__badge-top">Старт</span>
-        <h3 class="rate-card__title">Лагерь + клуб на&nbsp;3&nbsp;месяца</h3>
+        <h3 class="rate-card__title">Лагерь + клуб на&nbsp;2&nbsp;месяца</h3>
         <div class="rate-card__price">
-          <span class="rate-card__new">3&nbsp;790&nbsp;₽</span>
+          <span class="rate-card__new">2&nbsp;890&nbsp;₽</span>
           <!-- TODO: рассрочка N платежей по X ₽ + зачёркнутая старая цена -->
-          <span class="rate-card__hint">Полный доступ на&nbsp;3&nbsp;месяца</span>
+          <span class="rate-card__hint">Полный доступ на&nbsp;2&nbsp;месяца</span>
         </div>
         <ul class="rate-card__features">
           <li class="rate-card__features-hero"><strong>Интенсив «Летний лагерь»</strong></li>
@@ -482,14 +495,13 @@
           <li>Доступ ко&nbsp;всем активностям лагеря, новым тренировкам и&nbsp;зарядкам!</li>
           <li>Вебинары специалистов про здоровье и&nbsp;заботу о&nbsp;себе</li>
         </ul>
-        <a href="https://walk-walk.ru/summer_camp2/tarif_1" class="btn btn--primary btn--block" data-metrika-goal="camp-rate-3m-click">Еду в летний лагерь!</a>
-        <a href="https://my.walk-walk.ru/summer_camp2" class="rate-card__alt-link" target="_blank" rel="noopener" data-metrika-goal="camp-have-subscription-3m">У меня уже есть абонемент</a>
+        <a href="https://walk-walk.ru/summer_camp2/tarif_1" class="btn btn--primary btn--block" data-metrika-goal="camp-rate-2m-click">Еду в летний лагерь!</a>
+        <a href="https://my.walk-walk.ru/summer_camp2" class="rate-card__alt-link" target="_blank" rel="noopener" data-metrika-goal="camp-have-subscription-2m">У меня уже есть абонемент</a>
       </article>
 
       <!-- 6 месяцев — featured -->
       <article class="rate-card rate-card--featured">
         <span class="rate-card__badge-top">Хит продаж</span>
-        <span class="rate-card__discount">Выгодно</span>
         <h3 class="rate-card__title">Лагерь + клуб на&nbsp;6&nbsp;месяцев</h3>
         <div class="rate-card__price">
           <span class="rate-card__new">4&nbsp;790&nbsp;₽</span>
@@ -626,6 +638,6 @@
 
 <button class="back-to-top" id="backToTop" type="button" aria-label="Наверх">↑</button>
 
-<script src="script.js?v=camp-B"></script>
+<script src="script.js?v=camp-C"></script>
 </body>
 </html>
