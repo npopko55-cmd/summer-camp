@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="format-detection" content="telephone=no" />
+
+  <title>Летний лагерь — интенсив от клуба Шагай Дома</title>
+  <meta name="description" content="Неделя спортивного приключения в стиле пионерлагеря: бодрые зарядки, шагательные дискотеки, новые вожатые, летнее меню и отрядный чат. Виртуальный лагерь клуба Шагай Дома. Старт летней смены 12 августа." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://walk-walk.ru/summer_camp2" />
+  <meta property="og:title" content="Летний лагерь — интенсив от клуба Шагай Дома" />
+  <meta property="og:description" content="Неделя в стиле пионерлагеря: зарядки, шагательные дискотеки, новые вожатые и незабываемая атмосфера бесконечного лета. Старт 12 августа." />
+  <link rel="canonical" href="https://walk-walk.ru/summer_camp2" />
+
+  <link rel="icon" type="image/png" sizes="32x32" href="https://static.tildacdn.com/tild3062-6234-4366-b031-623462313965/Frame_76.png" />
+  <link rel="apple-touch-icon" href="https://static.tildacdn.com/tild6330-6138-4737-b163-386235663363/Frame_76.png" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="preconnect" href="https://static.tildacdn.com" crossorigin />
+
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="https://fonts.gstatic.com/s/unbounded/v12/Yq6W-LOTXCb04q32xlpwv8ZfvRIkSYZH.woff2" />
+  <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;600&family=Inter:wght@400;500;600&display=swap&subset=latin,cyrillic" rel="stylesheet" />
+
+  <!-- Hero-иллюстрация «пионерки» — тематическая картинка с CDN Тильды (работает и на GitHub Pages, и внутри Tilda) -->
+  <link rel="preload" as="image" href="https://static.tildacdn.com/tild3861-3863-4130-a636-343338326634/image_2025-08-05_19-.png" fetchpriority="high" />
+
+  <link rel="stylesheet" href="styles.css?v=camp-A" />
+</head>
+<body>
+
+<!-- ============================================================ -->
+<!-- ЗАКРЕПЛЁННЫЙ ТОПБАР С ТАЙМЕРОМ (старт смены 12 августа)      -->
+<!-- ============================================================ -->
+<div class="topbar" id="topbar">
+  <div class="container topbar__inner">
+    <span class="topbar__text">Старт летней смены <strong>12&nbsp;августа</strong></span>
+    <div class="topbar__timer" id="topTimer" aria-label="До старта летней смены">
+      <span class="topbar__unit"><b id="tbD">00</b><i>дн</i></span>
+      <span class="topbar__sep" aria-hidden="true">:</span>
+      <span class="topbar__unit"><b id="tbH">00</b><i>ч</i></span>
+      <span class="topbar__sep" aria-hidden="true">:</span>
+      <span class="topbar__unit"><b id="tbM">00</b><i>м</i></span>
+      <span class="topbar__sep" aria-hidden="true">:</span>
+      <span class="topbar__unit"><b id="tbS">00</b><i>с</i></span>
+    </div>
+    <a href="#rates" class="topbar__cta" data-metrika-goal="camp-topbar-cta">Еду в летний лагерь!</a>
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<!-- HEADER (шапка скроллится, топбар остаётся закреплён)          -->
+<!-- ============================================================ -->
+<header class="header" id="header">
+  <div class="container header__inner">
+    <a href="/" class="header__logo" aria-label="Шагай Дома">
+      <svg viewBox="0 0 106.01 49.13" fill="none" aria-hidden="true">
+        <path d="M27.36 36.85L22.19 37.4V20.22L14.26 20.6V38.26L8.68 38.86V20.87L0 21.28V45.81L34.6 41.41V19.62L27.36 19.97V36.85Z" fill="#CF2C02"/>
+        <path d="M45.94 19.08L37.8 41.01L44.66 40.14L45.69 36.55L52.88 35.73L53.87 38.97L60.11 38.17L52.84 18.75L45.94 19.08ZM47.1 31.89L49.36 24.26L51.6 31.46L47.1 31.89Z" fill="#CF2C02"/>
+        <path d="M76.12 17.63L62.29 18.29V37.9L67.87 37.19V22.73L76.12 22.18V17.63Z" fill="#CF2C02"/>
+        <path d="M87 34.76L91.75 34.15L86.22 17.15L81.01 17.4L74.91 36.29L80.05 35.64L80.83 32.55L86.25 31.93L87 34.76ZM81.88 28.52L83.58 21.92L85.28 28.19L81.88 28.52Z" fill="#CF2C02"/>
+        <path d="M102.2 23.79V32.82L105.92 32.35V16.2L102.22 16.38L97.21 25.93V16.62L93.16 16.81V33.97L97.21 33.46L102.2 23.79Z" fill="#CF2C02"/>
+        <path d="M99.07 18.22L103.82 6.75L100.67 6.76L101.32 0L96.48 11.33L99.58 11.26L99.07 18.22Z" fill="#CF2C02"/>
+      </svg>
+    </a>
+
+    <div class="header__actions">
+      <a href="#rates" class="btn btn--primary btn--sm" data-metrika-goal="camp-header-cta">Еду в летний лагерь!</a>
+      <button class="header__burger" id="burgerBtn" type="button" aria-label="Открыть меню" aria-controls="overlayNav" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- MOBILE / OVERLAY NAV -->
+<div class="overlay-nav" id="overlayNav" aria-hidden="true">
+  <button class="overlay-nav__close" id="closeNavBtn" aria-label="Закрыть меню">×</button>
+  <nav class="overlay-nav__list" aria-label="Меню">
+    <a href="#counselors">Новые вожатые</a>
+    <a href="#workouts">Тренировки</a>
+    <a href="#inside">Что внутри</a>
+    <a href="#results">Результаты</a>
+    <a href="#rates">Тарифы</a>
+    <a href="#contacts">Контакты</a>
+  </nav>
+  <div class="overlay-nav__socials">
+    <a href="https://vk.com/walk_is_love" target="_blank" rel="noopener" aria-label="ВКонтакте">
+      <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true"><path d="M12.785 16.241s.288-.032.435-.193c.135-.148.13-.426.13-.426s-.018-1.298.582-1.49c.591-.188 1.35 1.254 2.155 1.808.609.42 1.072.328 1.072.328l2.155-.031s1.127-.07.593-.96c-.044-.073-.311-.659-1.604-1.864-1.354-1.262-1.172-1.058.458-3.249.993-1.334 1.39-2.149 1.266-2.498-.118-.332-.853-.244-.853-.244l-2.446.015s-.181-.025-.315.056c-.131.08-.215.265-.215.265s-.385.99-.9 1.831c-1.083 1.775-1.516 1.869-1.693 1.755-.412-.266-.31-1.075-.31-1.65 0-1.795.272-2.543-.531-2.738-.266-.064-.462-.107-1.143-.114-.874-.009-1.613.003-2.032.208-.279.136-.494.439-.363.456.162.022.529.099.724.365.252.342.243 1.113.243 1.113s.144 2.116-.337 2.378c-.331.18-.785-.187-1.751-1.852-.495-.852-.869-1.794-.869-1.794s-.072-.176-.201-.27c-.156-.114-.374-.15-.374-.15l-2.325.015s-.349.01-.477.161c-.114.135-.009.413-.009.413s1.821 4.259 3.884 6.406c1.892 1.967 4.04 1.838 4.04 1.838h.973z"/></svg>
+    </a>
+    <a href="https://dzen.ru/walkislove" target="_blank" rel="noopener" aria-label="Дзен">
+      <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm0 4.5c1.244 5.376 2.124 6.256 7.5 7.5-5.376 1.244-6.256 2.124-7.5 7.5-1.244-5.376-2.124-6.256-7.5-7.5 5.376-1.244 6.256-2.124 7.5-7.5z"/></svg>
+    </a>
+    <a href="https://ok.ru/group/70000006886921" target="_blank" rel="noopener" aria-label="Одноклассники">
+      <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true"><path d="M12 3.6c-2.04 0-3.696 1.66-3.696 3.7 0 2.04 1.656 3.696 3.696 3.696S15.696 9.34 15.696 7.3C15.696 5.26 14.04 3.6 12 3.6zm0 5.16c-.804 0-1.464-.66-1.464-1.46 0-.804.66-1.464 1.464-1.464.804 0 1.464.66 1.464 1.464 0 .8-.66 1.46-1.464 1.46zm5.236 5.04c-.276-.564-.984-1.036-2.072-.16-1.476 1.176-3.852 1.176-3.852 1.176s-2.376 0-3.852-1.176c-1.088-.876-1.796-.404-2.072.16-.48.984.09 1.452.708 1.984.528.456 2.508 1.224 4.36 1.392l-1.548 1.548c-.612.612-.224 1.572.604 1.572.512 0 1.024-.512 1.024-.512l1.776-1.776 1.776 1.776s.512.512 1.024.512c.828 0 1.216-.96.604-1.572l-1.548-1.548c1.852-.168 3.832-.936 4.36-1.392.618-.532 1.188-1 .708-1.984z"/></svg>
+    </a>
+    <a href="https://wa.me/905510983369" target="_blank" rel="noopener" aria-label="WhatsApp">
+      <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/></svg>
+    </a>
+  </div>
+  <div class="overlay-nav__cta">
+    <a href="#rates" class="btn btn--white btn--block" data-metrika-goal="camp-menu-cta">Еду в летний лагерь!</a>
+  </div>
+</div>
+<div class="overlay-nav__backdrop" id="overlayBackdrop"></div>
+
+<!-- ============================================================ -->
+<!-- 1. HERO                                                      -->
+<!-- Слева — красная карта с оффером, справа — тематическая        -->
+<!-- иллюстрация «пионерки» с CDN Тильды + 3 плитки-сноски.        -->
+<!-- ============================================================ -->
+<section class="hero" id="top">
+  <div class="container">
+    <div class="hero__grid">
+      <div class="hero__card">
+        <div class="hero__chip">
+          <span class="hero__chip-dot" aria-hidden="true"></span>Новинка!
+        </div>
+
+        <h1 class="hero__title">
+          Интенсив <span class="hero__title-boltword">«Летний лагерь»<svg class="hero__title-boltline" viewBox="0 0 240 20" preserveAspectRatio="none" aria-hidden="true"><polyline points="2,14 38,4 58,14 96,4 116,14 154,4 174,14 212,4 238,12" fill="none" stroke="#FFB600" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>, где уходят килограммы, а&nbsp;не&nbsp;детство!
+        </h1>
+
+        <p class="hero__lead">Неделя спортивного приключения в&nbsp;стиле пионерлагеря: бодрые зарядки, новые тренеры, шагательные тренировки и&nbsp;незабываемая атмосфера дружбы и&nbsp;бесконечного лета!</p>
+
+        <div class="hero__startbadge">
+          <span class="hero__startbadge-dot" aria-hidden="true"></span>
+          Старт летней смены <strong>12&nbsp;августа</strong>
+        </div>
+
+        <a href="#rates" class="btn btn--lg btn--block hero__cta" data-metrika-goal="camp-hero-cta">
+          <span>Еду в летний лагерь!</span>
+          <span class="hero__cta-arrow" aria-hidden="true">
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="13 6 19 12 13 18"/></svg>
+          </span>
+        </a>
+
+        <div class="hero__social-proof">
+          <div class="hero__avatars hero__avatars--strip">
+            <img src="https://optim.tildacdn.com/tild3533-3164-4761-b161-656464363663/-/resize/280x/-/format/webp/2.png.webp" alt="Фотографии участниц клуба" width="280" height="40" />
+          </div>
+          <div class="hero__social-text">
+            <strong>30&nbsp;000+ женщин</strong> уже занимаются<br/>с&nbsp;командой Шагай&nbsp;Дома
+          </div>
+        </div>
+      </div>
+
+      <!-- ПРАВАЯ КОЛОНКА. Вертикальная иллюстрация 1024x1536 (пионерки салютуют).
+           На десктопе слот тянется по высоте красной карты — aspect-ratio при этом
+           не применяется (width и height оба определены), кадр режется снизу,
+           поэтому object-position: center top — головы и салют всегда в кадре.
+           На ≤900px высота строки становится неопределённой, форму держит
+           aspect-ratio 3/4 (близко к пропорции исходника 2/3 — крой минимальный). -->
+      <div class="hero__image-wrap">
+        <div class="hero__image">
+          <img class="hero__image-photo"
+               src="https://static.tildacdn.com/tild3861-3863-4130-a636-343338326634/image_2025-08-05_19-.png"
+               alt="Три вожатые в белых блузках, красных галстуках и пилотках салютуют"
+               width="1024" height="1536" fetchpriority="high" />
+          <div class="hero__image-badges">
+            <div class="hero__stat-tile">
+              <span class="hero__stat-icon" aria-hidden="true">
+                <!-- свисток вожатого -->
+                <svg viewBox="0 0 24 24" width="30" height="30" fill="none" stroke="#CE2C01" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M13.6 8.2h6.6a1.4 1.4 0 0 1 1.4 1.4v3.2a5.6 5.6 0 1 1-8.9-4.5"/>
+                  <circle cx="8.1" cy="13.6" r="2.1"/>
+                  <path d="M12.6 5.2 15.4 3M15.6 6.2l3.3-1.1"/>
+                </svg>
+              </span>
+              <span>Три новых вожатых в&nbsp;смене</span>
+            </div>
+            <div class="hero__stat-tile">
+              <span class="hero__stat-icon" aria-hidden="true">
+                <!-- календарь с молнией -->
+                <svg viewBox="0 0 24 24" width="30" height="30" fill="none" stroke="#CE2C01" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="3.2" y="5.2" width="17.6" height="15.6" rx="2.4"/>
+                  <path d="M3.2 10h17.6M8 2.8v4.4M16 2.8v4.4"/>
+                  <path d="M12.8 12.4 10.4 15.8h3.2L11.2 19"/>
+                </svg>
+              </span>
+              <span>Новая тренировка каждый день</span>
+            </div>
+            <div class="hero__stat-tile">
+              <span class="hero__stat-icon" aria-hidden="true">
+                <!-- часы -->
+                <svg viewBox="0 0 24 24" width="30" height="30" fill="none" stroke="#CE2C01" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="12" cy="12.6" r="8.4"/>
+                  <path d="M12 7.8v4.8l3.2 2M9 1.6h6"/>
+                </svg>
+              </span>
+              <span>Всего 15−25&nbsp;минут в&nbsp;день</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- 2. НОВЫЕ ВОЖАТЫЕ — 3 карточки                                -->
+<!-- Фото пока нет: слоты-плейсхолдеры (бежевый фон + подпись).    -->
+<!-- Чтобы вставить фото — добавить в div.counselor-card__photo    -->
+<!-- style="background-image:url('assets/counselors/ИМЯ.webp')"    -->
+<!-- и убрать <span>фото</span>.                                   -->
+<!-- ============================================================ -->
+<section class="section counselors" id="counselors">
+  <div class="container">
+    <img class="tie-mark" src="https://static.tildacdn.com/tild3964-3537-4665-a637-323334363363/61161_2-Photoroom.png" alt="" width="400" height="400" loading="lazy" />
+    <h2 class="section__title">Новые вожатые!</h2>
+    <p class="section__lead">В&nbsp;этой смене вас встречает обновлённая команда&nbsp;— и&nbsp;у&nbsp;каждого своя программа тренировок.</p>
+
+    <div class="counselors__grid">
+
+      <article class="counselor-card">
+        <!-- TODO: фото Кости — style="background-image:url('assets/counselors/kostya.webp')" -->
+        <div class="counselor-card__photo" role="img" aria-label="Фото вожатого Кости — скоро"><span>фото</span></div>
+        <div class="counselor-card__body">
+          <h3 class="counselor-card__name">Костя</h3>
+          <p class="counselor-card__role">Новый вожатый</p>
+          <p class="counselor-card__text">Крутит самые большие и&nbsp;весёлые хороводы в&nbsp;лагере. Способен буквально вскружить голову.</p>
+          <p class="counselor-card__program"><span class="counselor-card__program-label">Его программа</span>«Шагай и&nbsp;Бодрей с&nbsp;Костей»</p>
+        </div>
+      </article>
+
+      <article class="counselor-card">
+        <!-- TODO: фото Даши — style="background-image:url('assets/counselors/dasha.webp')" -->
+        <div class="counselor-card__photo" role="img" aria-label="Фото вожатой Даши — скоро"><span>фото</span></div>
+        <div class="counselor-card__body">
+          <h3 class="counselor-card__name">Даша</h3>
+          <p class="counselor-card__role">Новая вожатая</p>
+          <p class="counselor-card__text">Покажет секретные шагательные движения, с&nbsp;помощью которых откроется магический портал в&nbsp;стройную жизнь.</p>
+          <p class="counselor-card__program"><span class="counselor-card__program-label">Её программа</span>«Шагай и&nbsp;Веселей с&nbsp;Дашей»</p>
+        </div>
+      </article>
+
+      <article class="counselor-card">
+        <!-- TODO: фото Насти — style="background-image:url('assets/counselors/nastya.webp')" -->
+        <div class="counselor-card__photo" role="img" aria-label="Фото вожатой Насти — скоро"><span>фото</span></div>
+        <div class="counselor-card__body">
+          <h3 class="counselor-card__name">Настя</h3>
+          <p class="counselor-card__role">Вожатая смены</p>
+          <p class="counselor-card__text">Откроет для&nbsp;вас мир творчества, радости и&nbsp;уединения с&nbsp;собой.</p>
+          <p class="counselor-card__program"><span class="counselor-card__program-label">Её программа</span>«Шагай и&nbsp;стройней с&nbsp;Настей»</p>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- 3. ТРЕНИРОВКИ — «пластинки» с программами вожатых             -->
+<!-- ============================================================ -->
+<section class="section workouts" id="workouts">
+  <div class="container">
+    <h2 class="section__title">Знакомые, а&nbsp;также совсем новые хиты уже ждут вас!</h2>
+
+    <div class="records">
+      <article class="record-card">
+        <div class="record" aria-hidden="true"><span class="record__label">01</span></div>
+        <h3 class="record-card__title">«Шагай и&nbsp;Бодрей с&nbsp;Костей»</h3>
+        <p class="record-card__author">Программа Кости</p>
+      </article>
+
+      <article class="record-card">
+        <div class="record" aria-hidden="true"><span class="record__label">02</span></div>
+        <h3 class="record-card__title">«Шагай и&nbsp;Веселей с&nbsp;Дашей»</h3>
+        <p class="record-card__author">Программа Даши</p>
+      </article>
+
+      <article class="record-card">
+        <div class="record" aria-hidden="true"><span class="record__label">03</span></div>
+        <h3 class="record-card__title">«Шагай и&nbsp;стройней с&nbsp;Настей»</h3>
+        <p class="record-card__author">Программа Насти</p>
+      </article>
+    </div>
+
+    <div class="workouts__note">
+      <img class="tie-mark tie-mark--sm" src="https://static.tildacdn.com/tild3964-3537-4665-a637-323334363363/61161_2-Photoroom.png" alt="" width="400" height="400" loading="lazy" />
+      <h3>Тренировки с&nbsp;новыми вожатыми</h3>
+      <p>Новая тренировка каждый день! Дай себе возможность стать активной и&nbsp;радующейся этой жизни.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- 4. ЧТО ВНУТРИ — условия + 6 карточек программы лагеря         -->
+<!-- ============================================================ -->
+<section class="section inside" id="inside">
+  <div class="container">
+    <h2 class="section__title">Что вас ждёт в&nbsp;лагере</h2>
+    <p class="section__lead">Виртуальная смена: заниматься можно из&nbsp;дома, дачи или отпуска&nbsp;— лагерь всегда в&nbsp;телефоне.</p>
+
+    <ul class="conditions">
+      <li class="conditions__item">
+        <span class="conditions__icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="#CE2C01" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="8.6"/>
+            <path d="M3.4 12h17.2M12 3.4c2.2 2.4 3.4 5.4 3.4 8.6S14.2 18.2 12 20.6c-2.2-2.4-3.4-5.4-3.4-8.6S9.8 5.8 12 3.4Z"/>
+          </svg>
+        </span>
+        <span>Любой город, без привязки к&nbsp;часовому поясу</span>
+      </li>
+      <li class="conditions__item">
+        <span class="conditions__icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="#CE2C01" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12.6" r="8.4"/>
+            <path d="M12 7.8v4.8l3.2 2M9 1.6h6"/>
+          </svg>
+        </span>
+        <span>Всего 15−25&nbsp;минут в&nbsp;день</span>
+      </li>
+      <li class="conditions__item">
+        <span class="conditions__icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="#CE2C01" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="6.4" y="2.6" width="11.2" height="18.8" rx="2.6"/>
+            <path d="M10.4 5.6h3.2M12 18.2h.01"/>
+          </svg>
+        </span>
+        <span>Нужен только смартфон и&nbsp;кроссовки (или&nbsp;носочки)</span>
+      </li>
+    </ul>
+
+    <div class="inside__grid">
+      <article class="inside-card">
+        <span class="inside-card__icon" aria-hidden="true">
+          <!-- диско-шар -->
+          <svg viewBox="0 0 24 24" width="44" height="44" fill="none" stroke="#CE2C01" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 1.8v3.4"/>
+            <circle cx="12" cy="13.6" r="8"/>
+            <path d="M4.3 11.2h15.4M4.3 16h15.4M12 5.6v16"/>
+            <path d="M8.2 6.6c-1.5 1.9-2.3 4.3-2.3 7s.8 5.1 2.3 7M15.8 6.6c1.5 1.9 2.3 4.3 2.3 7s-.8 5.1-2.3 7"/>
+          </svg>
+        </span>
+        <h3>Спортивный зал и&nbsp;дискотека</h3>
+        <p>Бодрящие утренние зарядки и&nbsp;шагательные дискотеки под летние хиты.</p>
+      </article>
+
+      <article class="inside-card">
+        <span class="inside-card__icon" aria-hidden="true">
+          <!-- сердце -->
+          <svg viewBox="0 0 24 24" width="44" height="44" fill="none" stroke="#CE2C01" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 20.4s-6.2-4-8.6-7.4c-1.8-2.6-1.3-5.5 1-6.8 1.9-1 4-.5 5.2.9L12 9.5l2.4-2.4c1.2-1.4 3.3-1.9 5.2-.9 2.3 1.3 2.8 4.2 1 6.8-2.4 3.4-8.6 7.4-8.6 7.4Z"/>
+          </svg>
+        </span>
+        <h3>Забота о&nbsp;себе</h3>
+        <p>Уроки фейс-фитнеса, творческий вебинар и&nbsp;задания «Для себя любимой».</p>
+      </article>
+
+      <article class="inside-card">
+        <span class="inside-card__icon" aria-hidden="true">
+          <!-- вилка и ложка -->
+          <svg viewBox="0 0 24 24" width="44" height="44" fill="none" stroke="#CE2C01" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M6.6 2.8v4.6M9.2 2.8v4.6M11.8 2.8v4.6"/>
+            <path d="M6.2 7.6h6c0 1.8-1 2.9-2.1 3.2v10.4"/>
+            <ellipse cx="17.4" cy="7" rx="2.7" ry="4.2"/>
+            <path d="M17.4 11.2v10"/>
+          </svg>
+        </span>
+        <h3>Столовая</h3>
+        <p>Вкусное летнее меню и&nbsp;160+ тематических рецептов&nbsp;— просто и&nbsp;без диет.</p>
+      </article>
+
+      <article class="inside-card">
+        <span class="inside-card__icon" aria-hidden="true">
+          <!-- раскрытая книга -->
+          <svg viewBox="0 0 24 24" width="44" height="44" fill="none" stroke="#CE2C01" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 6.6C10.4 5.2 8.4 4.6 5.6 4.6H3.4v13h2.2c2.8 0 4.8.6 6.4 1.9 1.6-1.3 3.6-1.9 6.4-1.9h2.2v-13h-2.2c-2.8 0-4.8.6-6.4 2Z"/>
+            <path d="M12 6.6v12.9"/>
+          </svg>
+        </span>
+        <h3>Кинозал и&nbsp;библиотека</h3>
+        <p>Уютные вечера за&nbsp;фильмами и&nbsp;историями у&nbsp;костра.</p>
+      </article>
+
+      <article class="inside-card">
+        <span class="inside-card__icon" aria-hidden="true">
+          <!-- чат -->
+          <svg viewBox="0 0 24 24" width="44" height="44" fill="none" stroke="#CE2C01" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M20.6 12c0 4-3.9 7.2-8.6 7.2-1 0-2-.15-2.9-.42L3.6 20.6l1.6-3.5C4 15.8 3.4 14 3.4 12c0-4 3.9-7.2 8.6-7.2s8.6 3.2 8.6 7.2Z"/>
+            <path d="M8.6 11.8h.01M12 11.8h.01M15.4 11.8h.01"/>
+          </svg>
+        </span>
+        <h3>Отрядный чат</h3>
+        <p>Место силы и&nbsp;поддержки: знакомства, общение и&nbsp;розыгрыши призов.</p>
+      </article>
+
+      <article class="inside-card">
+        <span class="inside-card__icon" aria-hidden="true">
+          <!-- подарок -->
+          <svg viewBox="0 0 24 24" width="44" height="44" fill="none" stroke="#CE2C01" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3.4" y="9.6" width="17.2" height="11" rx="2.2"/>
+            <path d="M3.4 13.6h17.2M12 9.6v11"/>
+            <path d="M12 9.6C10.6 7.1 9.4 5.5 8 5.5a2.05 2.05 0 0 0 0 4.1h4ZM12 9.6c1.4-2.5 2.6-4.1 4-4.1a2.05 2.05 0 0 1 0 4.1h-4Z"/>
+          </svg>
+        </span>
+        <h3>Секретные бонусы</h3>
+        <p>Сюрпризы, о&nbsp;которых мы&nbsp;пока молчим. Узнаете уже в&nbsp;смене!</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- 5. РЕЗУЛЬТАТЫ УЧАСТНИЦ                                        -->
+<!-- Фото пока нет: 4 слота-плейсхолдера. Чтобы вставить фото —    -->
+<!-- добавить в div.result-photo style="background-image:url(...)" -->
+<!-- и убрать <span>фото</span>.                                   -->
+<!-- ============================================================ -->
+<section class="section results" id="results">
+  <div class="container">
+    <h2 class="section__title">Они шагали с&nbsp;нами всего от&nbsp;20&nbsp;минут в&nbsp;день, и&nbsp;добились результата. У&nbsp;вас тоже получится!</h2>
+
+    <div class="results__grid">
+      <figure class="result-card">
+        <!-- TODO: фото Саши — style="background-image:url('assets/results/sasha.webp')" -->
+        <div class="result-photo" role="img" aria-label="Фото участницы Саши — скоро"><span>фото</span></div>
+        <figcaption class="result-card__name">Саша</figcaption>
+      </figure>
+      <figure class="result-card">
+        <!-- TODO: фото Марины — style="background-image:url('assets/results/marina.webp')" -->
+        <div class="result-photo" role="img" aria-label="Фото участницы Марины — скоро"><span>фото</span></div>
+        <figcaption class="result-card__name">Марина</figcaption>
+      </figure>
+      <figure class="result-card">
+        <!-- TODO: фото Иры — style="background-image:url('assets/results/ira.webp')" -->
+        <div class="result-photo" role="img" aria-label="Фото участницы Иры — скоро"><span>фото</span></div>
+        <figcaption class="result-card__name">Ира</figcaption>
+      </figure>
+      <figure class="result-card">
+        <!-- TODO: фото Лиды — style="background-image:url('assets/results/lida.webp')" -->
+        <div class="result-photo" role="img" aria-label="Фото участницы Лиды — скоро"><span>фото</span></div>
+        <figcaption class="result-card__name">Лида</figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- 6. ТАРИФЫ                                                    -->
+<!-- ============================================================ -->
+<section class="rates-banner">
+  <div class="container">
+    <h2>Записывайтесь в&nbsp;летнюю смену и&nbsp;получите <span class="accent">полный доступ ко&nbsp;всему клубу Шагай&nbsp;Дома!</span></h2>
+  </div>
+</section>
+
+<section class="section rates" id="rates">
+  <div class="container">
+    <div class="rates__grid">
+
+      <!-- 3 месяца -->
+      <article class="rate-card">
+        <span class="rate-card__badge-top">Старт</span>
+        <h3 class="rate-card__title">Лагерь + клуб на&nbsp;3&nbsp;месяца</h3>
+        <div class="rate-card__price">
+          <span class="rate-card__new">3&nbsp;790&nbsp;₽</span>
+          <!-- TODO: рассрочка N платежей по X ₽ + зачёркнутая старая цена -->
+          <span class="rate-card__hint">Полный доступ на&nbsp;3&nbsp;месяца</span>
+        </div>
+        <ul class="rate-card__features">
+          <li class="rate-card__features-hero"><strong>Интенсив «Летний лагерь»</strong></li>
+          <li><strong>400+</strong> тренировок</li>
+          <li>Новое меню + более 160&nbsp;тематических рецептов. Полное собрание!</li>
+          <li>Доступ ко&nbsp;всем активностям лагеря, новым тренировкам и&nbsp;зарядкам!</li>
+          <li>Вебинары специалистов про здоровье и&nbsp;заботу о&nbsp;себе</li>
+        </ul>
+        <a href="https://walk-walk.ru/summer_camp2/tarif_1" class="btn btn--primary btn--block" data-metrika-goal="camp-rate-3m-click">Еду в летний лагерь!</a>
+        <a href="https://my.walk-walk.ru/summer_camp2" class="rate-card__alt-link" target="_blank" rel="noopener" data-metrika-goal="camp-have-subscription-3m">У меня уже есть абонемент</a>
+      </article>
+
+      <!-- 6 месяцев — featured -->
+      <article class="rate-card rate-card--featured">
+        <span class="rate-card__badge-top">Хит продаж</span>
+        <span class="rate-card__discount">Выгодно</span>
+        <h3 class="rate-card__title">Лагерь + клуб на&nbsp;6&nbsp;месяцев</h3>
+        <div class="rate-card__price">
+          <span class="rate-card__new">4&nbsp;790&nbsp;₽</span>
+          <!-- TODO: рассрочка N платежей по X ₽ + зачёркнутая старая цена -->
+          <span class="rate-card__hint">Полный доступ на&nbsp;6&nbsp;месяцев</span>
+        </div>
+        <ul class="rate-card__features">
+          <li class="rate-card__features-hero"><strong>Интенсив «Летний лагерь»</strong></li>
+          <li><strong>400+</strong> тренировок</li>
+          <li>Новое меню + более 160&nbsp;тематических рецептов. Полное собрание!</li>
+          <li>Доступ ко&nbsp;всем активностям лагеря, новым тренировкам и&nbsp;зарядкам!</li>
+          <li>Вебинары специалистов про здоровье и&nbsp;заботу о&nbsp;себе</li>
+        </ul>
+        <a href="https://walk-walk.ru/summer_camp2/tarif_2" class="btn btn--white btn--block" data-metrika-goal="camp-rate-6m-click">Еду в летний лагерь!</a>
+        <a href="https://my.walk-walk.ru/summer_camp2" class="rate-card__alt-link rate-card__alt-link--on-red" target="_blank" rel="noopener" data-metrika-goal="camp-have-subscription-6m">У меня уже есть абонемент</a>
+      </article>
+
+      <!-- 1 год -->
+      <article class="rate-card">
+        <span class="rate-card__badge-top">По максимуму</span>
+        <h3 class="rate-card__title">Лагерь + клуб на&nbsp;1&nbsp;год</h3>
+        <div class="rate-card__price">
+          <span class="rate-card__new">5&nbsp;890&nbsp;₽</span>
+          <!-- TODO: рассрочка N платежей по X ₽ + зачёркнутая старая цена -->
+          <span class="rate-card__hint">Полный доступ на&nbsp;12&nbsp;месяцев</span>
+        </div>
+        <ul class="rate-card__features">
+          <li class="rate-card__features-hero"><strong>Интенсив «Летний лагерь»</strong></li>
+          <li><strong>400+</strong> тренировок</li>
+          <li>Новое меню + более 160&nbsp;тематических рецептов. Полное собрание!</li>
+          <li>Доступ ко&nbsp;всем активностям лагеря, новым тренировкам и&nbsp;зарядкам!</li>
+          <li>Вебинары специалистов про здоровье и&nbsp;заботу о&nbsp;себе</li>
+        </ul>
+        <a href="https://walk-walk.ru/summer_camp2/tarif_3" class="btn btn--primary btn--block" data-metrika-goal="camp-rate-1y-click">Еду в летний лагерь!</a>
+        <a href="https://my.walk-walk.ru/summer_camp2" class="rate-card__alt-link" target="_blank" rel="noopener" data-metrika-goal="camp-have-subscription-1y">У меня уже есть абонемент</a>
+      </article>
+
+    </div>
+    <p class="rates__note">Уже в&nbsp;клубе? Для участников&nbsp;— льготная цена, ссылку пришлём в&nbsp;чате и&nbsp;боте.</p>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- 7. ФИНАЛЬНЫЙ CTA                                              -->
+<!-- ============================================================ -->
+<section class="finale">
+  <div class="container">
+    <div class="finale__card">
+      <img class="tie-mark tie-mark--on-red" src="https://static.tildacdn.com/tild3964-3537-4665-a637-323334363363/61161_2-Photoroom.png" alt="" width="400" height="400" loading="lazy" />
+      <h2 class="finale__title">Готова провести это лето ярко и&nbsp;в&nbsp;отличной форме?</h2>
+      <p class="finale__lead">Записывайся в&nbsp;лагерь, присоединяйся к&nbsp;нашей летней команде!</p>
+
+      <ul class="finale__list">
+        <li>Онлайн, старт 12&nbsp;августа</li>
+        <li>Нужен только смартфон и&nbsp;носочки</li>
+        <li>В&nbsp;любое время</li>
+        <li>Без боли и&nbsp;преодоления</li>
+      </ul>
+
+      <p class="finale__cta-wrap">
+        <a href="#rates" class="btn btn--white btn--lg" data-metrika-goal="camp-result-cta">Еду в летний лагерь!</a>
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- 8. НУЖНА ПОМОЩЬ + ФУТЕР                                       -->
+<!-- ============================================================ -->
+<section class="section help" id="contacts">
+  <div class="container help__inner">
+    <h2 class="section__title">Нужна помощь?</h2>
+    <p class="help__sub">Напишите нам&nbsp;— поможем выбрать тариф и&nbsp;ответим на&nbsp;вопросы про летнюю смену.</p>
+    <div class="help__buttons">
+      <a class="btn btn--primary btn--lg" target="_blank" rel="noopener" href="https://vk.com/walk_is_love" data-metrika-goal="camp-help-vk">Написать в&nbsp;ВКонтакте</a>
+      <a class="btn btn--primary btn--lg" target="_blank" rel="noopener" href="https://t.me/loveiswalk" data-metrika-goal="camp-help-tg">Написать в&nbsp;Telegram</a>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container footer__grid">
+    <div class="footer__col footer__col--main">
+      <h2 class="footer__brand">Шагай Дома</h2>
+      <div class="footer__phones">
+        <p class="footer__phones-title">Телефоны наших менеджеров:</p>
+        <p><a href="tel:+79990668100">+7&nbsp;(999)&nbsp;066-81-00</a> — Отдел заботы о&nbsp;клиентах (Анна и&nbsp;Катя)</p>
+        <p><a href="tel:+905510983369">+90&nbsp;(551)&nbsp;098-33-69</a> — Отдел заботы о&nbsp;клиентах (Александра)</p>
+      </div>
+      <ul class="footer__links">
+        <li><a href="https://walk-walk.ru/privacy" target="_blank" rel="noopener">Политика конфиденциальности</a></li>
+        <li><a href="https://walk-walk.ru/offer" target="_blank" rel="noopener">Публичная оферта</a></li>
+        <li><a href="https://walk-walk.ru/ad" target="_blank" rel="noopener">Согласие на&nbsp;рекламную рассылку</a></li>
+        <li><a href="https://walk-walk.ru/approval" target="_blank" rel="noopener">Согласие на&nbsp;обработку персональных данных</a></li>
+        <li><a href="https://walk-walk.ru/safe" target="_blank" rel="noopener">Список противопоказаний</a></li>
+        <li><a href="https://walk-walk.ru/education" target="_blank" rel="noopener">Сведения об&nbsp;образовательной организации</a></li>
+        <li><a href="https://edu.gov.ru/" target="_blank" rel="noopener">Министерство просвещения РФ</a></li>
+      </ul>
+    </div>
+    <div class="footer__col footer__col--legal">
+      <p>ИП Кириченко Дмитрий Павлович</p>
+      <p>ОГРНИП: 316222500086383</p>
+      <p>ИНН: 222391942312</p>
+      <div class="footer__socials">
+        <a href="https://vk.com/walk_is_love" target="_blank" rel="noopener" aria-label="ВКонтакте">
+          <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor" aria-hidden="true"><path d="M12.785 16.241s.288-.032.435-.193c.135-.148.13-.426.13-.426s-.018-1.298.582-1.49c.591-.188 1.35 1.254 2.155 1.808.609.42 1.072.328 1.072.328l2.155-.031s1.127-.07.593-.96c-.044-.073-.311-.659-1.604-1.864-1.354-1.262-1.172-1.058.458-3.249.993-1.334 1.39-2.149 1.266-2.498-.118-.332-.853-.244-.853-.244l-2.446.015s-.181-.025-.315.056c-.131.08-.215.265-.215.265s-.385.99-.9 1.831c-1.083 1.775-1.516 1.869-1.693 1.755-.412-.266-.31-1.075-.31-1.65 0-1.795.272-2.543-.531-2.738-.266-.064-.462-.107-1.143-.114-.874-.009-1.613.003-2.032.208-.279.136-.494.439-.363.456.162.022.529.099.724.365.252.342.243 1.113.243 1.113s.144 2.116-.337 2.378c-.331.18-.785-.187-1.751-1.852-.495-.852-.869-1.794-.869-1.794s-.072-.176-.201-.27c-.156-.114-.374-.15-.374-.15l-2.325.015s-.349.01-.477.161c-.114.135-.009.413-.009.413s1.821 4.259 3.884 6.406c1.892 1.967 4.04 1.838 4.04 1.838h.973z"/></svg>
+        </a>
+        <a href="https://dzen.ru/walkislove" target="_blank" rel="noopener" aria-label="Дзен">
+          <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor" aria-hidden="true"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm0 4.5c1.244 5.376 2.124 6.256 7.5 7.5-5.376 1.244-6.256 2.124-7.5 7.5-1.244-5.376-2.124-6.256-7.5-7.5 5.376-1.244 6.256-2.124 7.5-7.5z"/></svg>
+        </a>
+        <a href="https://www.youtube.com/@walk_is_love" target="_blank" rel="noopener" aria-label="YouTube">
+          <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor" aria-hidden="true"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.546 15.568V8.432L15.818 12l-6.272 3.568z"/></svg>
+        </a>
+        <a href="https://ok.ru/group/70000006886921" target="_blank" rel="noopener" aria-label="Одноклассники">
+          <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor" aria-hidden="true"><path d="M12 1.5a4.5 4.5 0 1 0 0 9 4.5 4.5 0 0 0 0-9zm0 6a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm3.66 6.6a8.32 8.32 0 0 1-2.18.93l1.99 2a1.65 1.65 0 1 1-2.34 2.34L12 17.34l-2.12 2.13a1.65 1.65 0 0 1-2.34-2.34l1.99-2a8.32 8.32 0 0 1-2.19-.93 1.65 1.65 0 0 1 1.73-2.8c1.83 1.13 4.05 1.13 5.87 0a1.65 1.65 0 0 1 1.73 2.8z"/></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+  <div class="footer__bottom">
+    <div class="container footer__bottom-inner">
+      <span>© ИП Кириченко Д.П., <span id="footerYear">2026</span>&nbsp;· Шагай Дома</span>
+    </div>
+  </div>
+</footer>
+
+<!-- STICKY MOBILE CTA -->
+<div class="sticky-cta" id="stickyCTA">
+  <a href="#rates" class="sticky-cta__btn" data-metrika-goal="camp-sticky-cta">
+    <span class="sticky-cta__label">Еду в летний лагерь!</span>
+    <span class="sticky-cta__icon" aria-hidden="true">→</span>
+  </a>
+</div>
+
+<button class="back-to-top" id="backToTop" type="button" aria-label="Наверх">↑</button>
+
+<script src="script.js?v=camp-A"></script>
+</body>
+</html>
