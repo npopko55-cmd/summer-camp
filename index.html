@@ -20,13 +20,18 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link rel="preconnect" href="https://static.tildacdn.com" crossorigin />
 
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="https://fonts.gstatic.com/s/unbounded/v12/Yq6W-LOTXCb04q32xlpwv8ZfvRIkSYZH.woff2" />
-  <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;600&family=Inter:wght@400;500;600&display=swap&subset=latin,cyrillic" rel="stylesheet" />
+  <!-- РЕТРО-СЛОЙ: заголовки — плакатный узкий гротеск Oswald (кириллица есть),
+       вместо геометрического Unbounded. Body-текст остаётся Inter: читаемость
+       важнее стилизации. Preload — кириллический и латинский сабсеты Oswald
+       (в заголовках соседствуют «кавычки-ёлочки», цифры и кириллица). -->
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="https://fonts.gstatic.com/s/oswald/v57/TK3IWkUHHAIjg75cFRf3bXL8LICs1_Fv40pKlN4NNSeSASz7FmlSHYjMdZwlou4.woff2" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="https://fonts.gstatic.com/s/oswald/v57/TK3IWkUHHAIjg75cFRf3bXL8LICs1_Fv40pKlN4NNSeSASz7FmlWHYjMdZwl.woff2" />
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Inter:wght@400;500;600&display=swap&subset=latin,cyrillic" rel="stylesheet" />
 
   <!-- Hero-иллюстрация «пионерки» — тематическая картинка с CDN Тильды (работает и на GitHub Pages, и внутри Tilda) -->
   <link rel="preload" as="image" href="https://static.tildacdn.com/tild3861-3863-4130-a636-343338326634/image_2025-08-05_19-.png" fetchpriority="high" />
 
-  <link rel="stylesheet" href="styles.css?v=camp-A" />
+  <link rel="stylesheet" href="styles.css?v=camp-B" />
 </head>
 <body>
 
@@ -114,12 +119,20 @@
   <div class="container">
     <div class="hero__grid">
       <div class="hero__card">
+        <!-- Ретро-подписи «путёвки»: декоративные, вне смысловой структуры -->
+        <span class="ticket-tag ticket-tag--top" aria-hidden="true">Путёвка · смена 2026</span>
+        <span class="ticket-tag ticket-tag--bottom" aria-hidden="true">Форма №1</span>
+
         <div class="hero__chip">
           <span class="hero__chip-dot" aria-hidden="true"></span>Новинка!
         </div>
 
         <h1 class="hero__title">
-          Интенсив <span class="hero__title-boltword">«Летний лагерь»<svg class="hero__title-boltline" viewBox="0 0 240 20" preserveAspectRatio="none" aria-hidden="true"><polyline points="2,14 38,4 58,14 96,4 116,14 154,4 174,14 212,4 238,12" fill="none" stroke="#FFB600" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>, где уходят килограммы, а&nbsp;не&nbsp;детство!
+          <!-- Запятая ВНУТРИ .hero__title-boltword намеренно: span — atomic
+               inline-block, и браузер разрешает перенос сразу после него.
+               С запятой снаружи на 375px она отрывалась в начало следующей
+               строки. Рендер текста при этом не меняется ни на символ. -->
+          Интенсив <span class="hero__title-boltword">«Летний лагерь»,<svg class="hero__title-boltline" viewBox="0 0 240 20" preserveAspectRatio="none" aria-hidden="true"><polyline points="2,14 38,4 58,14 96,4 116,14 154,4 174,14 212,4 238,12" fill="none" stroke="#FFB600" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/></svg></span> где уходят килограммы, а&nbsp;не&nbsp;детство!
         </h1>
 
         <p class="hero__lead">Неделя спортивного приключения в&nbsp;стиле пионерлагеря: бодрые зарядки, новые тренеры, шагательные тренировки и&nbsp;незабываемая атмосфера дружбы и&nbsp;бесконечного лета!</p>
@@ -158,6 +171,7 @@
                src="https://static.tildacdn.com/tild3861-3863-4130-a636-343338326634/image_2025-08-05_19-.png"
                alt="Три вожатые в белых блузках, красных галстуках и пилотках салютуют"
                width="1024" height="1536" fetchpriority="high" />
+          <span class="stamp stamp--hero" aria-hidden="true">Смена 2026</span>
           <div class="hero__image-badges">
             <div class="hero__stat-tile">
               <span class="hero__stat-icon" aria-hidden="true">
@@ -444,6 +458,7 @@
 <section class="rates-banner">
   <div class="container">
     <h2>Записывайтесь в&nbsp;летнюю смену и&nbsp;получите <span class="accent">полный доступ ко&nbsp;всему клубу Шагай&nbsp;Дома!</span></h2>
+    <span class="stamp stamp--approved" aria-hidden="true">Утверждено</span>
   </div>
 </section>
 
@@ -611,6 +626,6 @@
 
 <button class="back-to-top" id="backToTop" type="button" aria-label="Наверх">↑</button>
 
-<script src="script.js?v=camp-A"></script>
+<script src="script.js?v=camp-B"></script>
 </body>
 </html>
