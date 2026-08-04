@@ -31,7 +31,7 @@
   <!-- Hero-фото: наши вожатые в настоящем пионерлагере (локальный ассет) -->
   <link rel="preload" as="image" href="assets/hero/hero-camp.webp" fetchpriority="high" />
 
-  <link rel="stylesheet" href="styles.css?v=camp-D" />
+  <link rel="stylesheet" href="styles.css?v=camp-E" />
 </head>
 <body>
 
@@ -132,8 +132,15 @@
                Запятая ВНУТРИ .hero__title-boltword намеренно: span — atomic
                inline-block, и браузер разрешает перенос сразу после него.
                С запятой снаружи на 375px она отрывалась в начало следующей
-               строки. Рендер текста при этом не меняется ни на символ. -->
-          Интенсив «Летний лагерь», где <span class="hero__title-boltword">уходят килограммы,<svg class="hero__title-boltline" viewBox="0 0 240 20" preserveAspectRatio="none" aria-hidden="true"><polyline points="2,14 38,4 58,14 96,4 116,14 154,4 174,14 212,4 238,12" fill="none" stroke="#FFB600" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/></svg></span> а&nbsp;не&nbsp;детство!
+               строки. Рендер текста при этом не меняется ни на символ.
+
+               Зубцов в polyline специально много (36 сегментов на 240 юнитов):
+               SVG растягивается на ВСЮ ширину фразы (см. .hero__title-boltline
+               в styles.css), а при preserveAspectRatio="none" вместе с шириной
+               тянется и шаг зубца. С прежними 8 сегментами на 447px ширины
+               линия превращалась в вяло гуляющую волну; 36 сегментов дают на
+               десктопе зубец ~24px — ту же плотность, что была задумана. -->
+          Интенсив «Летний лагерь», где <span class="hero__title-boltword">уходят килограммы,<svg class="hero__title-boltline" viewBox="0 0 240 20" preserveAspectRatio="none" aria-hidden="true"><polyline points="3,16.5 9.5,3.5 16,16.5 22.5,3.5 29,16.5 35.5,3.5 42,16.5 48.5,3.5 55,16.5 61.5,3.5 68,16.5 74.5,3.5 81,16.5 87.5,3.5 94,16.5 100.5,3.5 107,16.5 113.5,3.5 120,16.5 126.5,3.5 133,16.5 139.5,3.5 146,16.5 152.5,3.5 159,16.5 165.5,3.5 172,16.5 178.5,3.5 185,16.5 191.5,3.5 198,16.5 204.5,3.5 211,16.5 217.5,3.5 224,16.5 230.5,3.5 237,16.5" fill="none" stroke="#FFB600" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/></svg></span> а&nbsp;не&nbsp;детство!
         </h1>
 
         <p class="hero__lead">Неделя спортивного приключения в&nbsp;стиле пионерлагеря: бодрые зарядки, новые тренеры, шагательные тренировки и&nbsp;незабываемая атмосфера дружбы и&nbsp;бесконечного лета!</p>
@@ -317,7 +324,13 @@
     <h2 class="section__title">Знакомые, а&nbsp;также совсем новые хиты уже ждут вас!</h2>
     <p class="section__lead">Включите пластинку и&nbsp;послушайте, под что мы&nbsp;будем шагать в&nbsp;этой смене.</p>
 
-    <!-- TODO: заменить на реальные аудиодорожки для каждой программы -->
+    <!-- TODO: заменить на реальные аудиодорожки для каждой программы.
+         Сейчас все три пластинки играют один демо-трек assets/audio/track-1.mp3
+         (2,3 МБ, ~104 c). Раньше звук тянулся со стороннего файлообменника и
+         грузился по 5–15 c (это не CDN) — файл положен локально.
+         Когда появятся реальные дорожки: положить их в assets/audio/ и
+         поменять src у соответствующего <audio>. preload="none" НЕ снимать —
+         иначе 3 файла начнут качаться при загрузке страницы. -->
     <div class="records">
       <article class="record-card" data-track>
         <div class="record" aria-hidden="true"><span class="record__label">01</span></div>
@@ -329,7 +342,7 @@
           <svg class="record-play__icon record-play__icon--play" viewBox="0 0 24 24" width="22" height="22" fill="currentColor" aria-hidden="true"><path d="M8 5.2v13.6L19 12 8 5.2Z"/></svg>
           <svg class="record-play__icon record-play__icon--pause" viewBox="0 0 24 24" width="22" height="22" fill="currentColor" aria-hidden="true"><rect x="7" y="5" width="3.6" height="14" rx="1"/><rect x="13.4" y="5" width="3.6" height="14" rx="1"/></svg>
         </button>
-        <audio class="record-audio" preload="none" src="https://dl.dropboxusercontent.com/scl/fi/qn054xtpte4ta76vbkml3/.mp3?rlkey=atao11dn84b62jk6cpv3na5lw&amp;st=8c8ry8r6&amp;dl=0"></audio>
+        <audio class="record-audio" preload="none" src="assets/audio/track-1.mp3"></audio>
         <h3 class="record-card__title">«Шагай и&nbsp;Бодрей с&nbsp;Костей»</h3>
         <p class="record-card__author">Программа Кости</p>
       </article>
@@ -344,7 +357,7 @@
           <svg class="record-play__icon record-play__icon--play" viewBox="0 0 24 24" width="22" height="22" fill="currentColor" aria-hidden="true"><path d="M8 5.2v13.6L19 12 8 5.2Z"/></svg>
           <svg class="record-play__icon record-play__icon--pause" viewBox="0 0 24 24" width="22" height="22" fill="currentColor" aria-hidden="true"><rect x="7" y="5" width="3.6" height="14" rx="1"/><rect x="13.4" y="5" width="3.6" height="14" rx="1"/></svg>
         </button>
-        <audio class="record-audio" preload="none" src="https://dl.dropboxusercontent.com/scl/fi/qn054xtpte4ta76vbkml3/.mp3?rlkey=atao11dn84b62jk6cpv3na5lw&amp;st=8c8ry8r6&amp;dl=0"></audio>
+        <audio class="record-audio" preload="none" src="assets/audio/track-1.mp3"></audio>
         <h3 class="record-card__title">«Шагай и&nbsp;Веселей с&nbsp;Дашей»</h3>
         <p class="record-card__author">Программа Даши</p>
       </article>
@@ -359,7 +372,7 @@
           <svg class="record-play__icon record-play__icon--play" viewBox="0 0 24 24" width="22" height="22" fill="currentColor" aria-hidden="true"><path d="M8 5.2v13.6L19 12 8 5.2Z"/></svg>
           <svg class="record-play__icon record-play__icon--pause" viewBox="0 0 24 24" width="22" height="22" fill="currentColor" aria-hidden="true"><rect x="7" y="5" width="3.6" height="14" rx="1"/><rect x="13.4" y="5" width="3.6" height="14" rx="1"/></svg>
         </button>
-        <audio class="record-audio" preload="none" src="https://dl.dropboxusercontent.com/scl/fi/qn054xtpte4ta76vbkml3/.mp3?rlkey=atao11dn84b62jk6cpv3na5lw&amp;st=8c8ry8r6&amp;dl=0"></audio>
+        <audio class="record-audio" preload="none" src="assets/audio/track-1.mp3"></audio>
         <h3 class="record-card__title">«Шагай и&nbsp;стройней с&nbsp;Настей»</h3>
         <p class="record-card__author">Программа Насти</p>
       </article>
@@ -615,8 +628,10 @@
       </article>
 
       <!-- ПУТЁВКА № 3 — 1 год, featured -->
+      <!-- Декоративная картинка «костёр» убрана из карточки по просьбе
+           заказчика (спорила с ценой и бирками). Подробности — в styles.css,
+           рядом с местом, где жили её правила позиционирования. -->
       <article class="rate-card rate-card--featured">
-        <img class="rate-card__decor" src="assets/theme/el-3.webp" alt="" width="700" height="619" loading="lazy" aria-hidden="true" />
         <div class="rate-card__badges">
           <span class="rate-card__badge-top">Популярно</span>
           <span class="rate-card__badge-top rate-card__badge-top--limited">Лимитированный тариф</span>
@@ -789,6 +804,6 @@
 
 <button class="back-to-top" id="backToTop" type="button" aria-label="Наверх">↑</button>
 
-<script src="script.js?v=camp-D"></script>
+<script src="script.js?v=camp-E"></script>
 </body>
 </html>

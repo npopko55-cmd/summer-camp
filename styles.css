@@ -30,10 +30,17 @@
   --color-dark: #1f1300;
   --color-discount: #cf2c02;
 
-  /* Ретро = более прямоугольное. Пилюли (кнопки) — исключение, это бренд. */
-  --radius-sm: 4px;
-  --radius-md: 6px;
-  --radius-lg: 8px;
+  /* Ретро = более прямоугольное. Пилюли (кнопки) и круги — исключение, это бренд.
+     Заказчик: «ну должно одинаково быть» — на стыке красной карты и фото в hero
+     разъезжались и радиус, и оформление рамки. Раньше по странице ходило ШЕСТЬ
+     значений (1/2/3/4/6/8px). Теперь их ДВА и они привязаны к роли элемента:
+       --radius-card  — всё, что является самостоятельной поверхностью:
+                        карточки, панели, фото-рамки, плашки-баннеры;
+       --radius-inner — то, что лежит ВНУТРИ такой поверхности (фото в паспарту,
+                        подплашки состава, счётчик таймера, штамп).
+     Новые блоки верстать только этими двумя — иначе разнобой вернётся. */
+  --radius-card: 6px;
+  --radius-inner: 2px;
   --radius-pill: 999px;
 
   --shadow-sm: 0 2px 6px rgba(64, 40, 12, 0.10);
@@ -229,7 +236,7 @@ h1, h2, h3 { font-family: var(--font-h); font-weight: 600; margin: 0; line-heigh
 .topbar__timer { display: flex; align-items: center; gap: 4px; font-variant-numeric: tabular-nums; }
 .topbar__unit {
   display: inline-flex; flex-direction: column; align-items: center; line-height: 1;
-  background: rgba(255,255,255,.16); border-radius: 2px; padding: 4px 6px; min-width: 30px;
+  background: rgba(255,255,255,.16); border-radius: var(--radius-inner); padding: 4px 6px; min-width: 30px;
 }
 .topbar__unit b { font-family: var(--font-h); font-weight: 600; font-size: 16px; letter-spacing: .02em; }
 .topbar__unit i { font-style: normal; font-size: 9px; opacity: .85; margin-top: 2px; text-transform: uppercase; letter-spacing: .08em; }
@@ -278,7 +285,7 @@ h1, h2, h3 { font-family: var(--font-h); font-weight: 600; margin: 0; line-heigh
 @media (max-width: 959px) {
   .header__burger { display: flex; }
 }
-.header__burger span { width: 22px; height: 2px; background: var(--color-text); border-radius: 2px; display: block; }
+.header__burger span { width: 22px; height: 2px; background: var(--color-text); border-radius: var(--radius-inner); display: block; }
 .header__logo {
   display: inline-flex !important;
   align-items: center;
@@ -362,7 +369,7 @@ h1, h2, h3 { font-family: var(--font-h); font-weight: 600; margin: 0; line-heigh
   overflow: hidden;
   background: var(--color-primary);
   color: #fff;
-  border-radius: var(--radius-sm);
+  border-radius: var(--radius-card);
   border: 2px solid rgba(255,255,255,.5);
   box-shadow: inset 0 0 0 6px var(--color-primary), inset 0 0 0 7px rgba(255,255,255,.34);
   padding: 46px 40px 42px;
@@ -457,17 +464,53 @@ h1, h2, h3 { font-family: var(--font-h); font-weight: 600; margin: 0; line-heigh
   padding-bottom: 0.18em;
   white-space: nowrap;
 }
-/* right: .32em — запятая теперь внутри span, молния не должна заезжать под неё */
+/* ПОЧЕМУ width: 100%, а не пара left/right.
+   Было `left: 0; right: .32em; height: .22em` — и линия рисовалась короче
+   фразы втрое (замер: span 447px, svg 115px), обрываясь на «УХОДЯ|Т».
+   Причина не в вёрстке, а в CSS 2.1 §10.3.8: <svg> — ЗАМЕЩАЕМЫЙ элемент,
+   и у абсолютно спозиционированного замещаемого элемента `width: auto`
+   берётся из внутренней пропорции (viewBox 240×20 = 12:1 → 0.22em·12),
+   а не растягивается между left и right; набор становится переопределённым,
+   и right просто отбрасывается. Явная ширина снимает вопрос.
+   100% (а не 100% минус запятая) — чтобы ширина линии совпадала с шириной
+   фразы: концы polyline и так утоплены на ~1% с каждой стороны.
+   overflow: visible — круглые торцы штриха не срезает по краю viewBox. */
 .hero__title-boltline {
   position: absolute;
   left: 0;
-  right: 0.32em;
   bottom: 0;
+  width: 100%;
   height: 0.22em;
+  overflow: visible;
   pointer-events: none;
 }
+/* ≤480px фраза в строку уже не помещается: на 375px ей нужно 277px при
+   доступном 271px, и span переносится на две строки («УХОДЯТ» /
+   «КИЛОГРАММЫ,»). Растянутый SVG для этого случая не годится: он один на
+   весь бокс, а бокс при переносе шириной во всю строку (271px), тогда как
+   последнее слово — 190px. Линия уезжала на 80px в пустоту.
+   Поэтому на узких экранах молния рисуется не элементом, а ПЛИТКОЙ в фоне:
+   фон раскладывается для каждого строчного фрагмента отдельно и всегда
+   ровно по его ширине. Плитка — один период зигзага, начинается и
+   заканчивается на середине подъёма, поэтому стыки плиток не видны.
+   box-decoration-break: clone — чтобы нижний паддинг был у каждой строки. */
 @media (max-width: 480px) {
-  .hero__title-boltword { white-space: normal; }
+  .hero__title-boltword {
+    display: inline;
+    white-space: normal;
+    /* У строчного (не блочного) бокса вертикальный паддинг НЕ раздвигает
+       строки — он только опускает фон. С прежними 0.18em молния уходила
+       вниз и почти касалась заглавных следующей строки (замер: зазор 0.3px).
+       0.04em возвращает её вплотную к своему слову. */
+    padding-bottom: 0.04em;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='20' viewBox='0 0 24 20'%3E%3Cpolyline points='0,10 6,3.5 18,16.5 24,10' fill='none' stroke='%23FFB600' stroke-width='6' stroke-linejoin='round'/%3E%3C/svg%3E");
+    background-repeat: repeat-x;
+    background-position: left bottom;
+    background-size: auto 0.22em;
+    -webkit-box-decoration-break: clone;
+    box-decoration-break: clone;
+  }
+  .hero__title-boltline { display: none; }
 }
 
 .hero__lead {
@@ -588,13 +631,22 @@ h1, h2, h3 { font-family: var(--font-h); font-weight: 600; margin: 0; line-heigh
   justify-content: center;
   min-height: 0;
 }
+/* Оформление рамки. Заказчик прислал стык «красная карта + фото»: у карты
+   двойная рамка и почти прямой угол, у фото рамки не было вообще — только
+   мягкая тень. Пара читалась как недоделка. Теперь у фото своё паспарту
+   (бумажное поле 6px) + тонкая внешняя линовка 2px: тот же ритм «тонкая
+   линия → поле → кадр», что и у путёвки слева, и тот же --radius-card.
+   Рамка добавлена к border-box, а не внутрь: aspect-ratio считается по
+   border-box, поэтому пропорция кадра и вырезание правых ~110px исходника
+   (значок чат-виджета) сохраняются — проверено, обрезается 112 px. */
 .hero__image {
   position: relative;
   background-color: #e7cfa3;   /* тёплый охристый фон-фолбэк */
-  border-radius: var(--radius-sm);
+  border-radius: var(--radius-card);
+  border: 6px solid var(--color-paper);
   width: 100%;
   aspect-ratio: 1290 / 1416;
-  box-shadow: 0 20px 60px rgba(31,19,0,0.12);
+  box-shadow: 0 0 0 2px var(--color-line-strong), 0 18px 48px rgba(31,19,0,0.14);
   overflow: hidden;
 }
 .hero__image-photo {
@@ -624,7 +676,7 @@ h1, h2, h3 { font-family: var(--font-h); font-weight: 600; margin: 0; line-heigh
   color: #fff;
   border: 2px solid rgba(255,255,255,.42);
   box-shadow: inset 0 0 0 4px var(--color-primary), inset 0 0 0 5px rgba(255,255,255,.28);
-  border-radius: var(--radius-sm);
+  border-radius: var(--radius-card);
   padding: 24px 20px 22px;
   text-align: center;
 }
@@ -687,7 +739,7 @@ h1, h2, h3 { font-family: var(--font-h); font-weight: 600; margin: 0; line-heigh
   gap: 12px;
   background: var(--color-paper);
   border: 1px solid var(--color-line);
-  border-radius: var(--radius-lg);
+  border-radius: var(--radius-card);
   padding: 18px;
   transition: transform .2s, box-shadow .2s, border-color .2s;
 }
@@ -702,7 +754,10 @@ h1, h2, h3 { font-family: var(--font-h); font-weight: 600; margin: 0; line-heigh
   position: relative;
   width: 100%;
   aspect-ratio: 3 / 4;
-  border-radius: 2px;
+  /* Радиус общий с остальными поверхностями; сам кадр внутри белого поля
+     получается с прямым углом (6px радиуса − 7px рамки < 0) — так и надо,
+     это классическое паспарту. */
+  border-radius: var(--radius-card);
   border: 7px solid #fff;
   box-shadow: 0 6px 16px rgba(64,40,12,.16);
   transform: rotate(var(--tilt, -1.4deg));
@@ -772,7 +827,7 @@ h1, h2, h3 { font-family: var(--font-h); font-weight: 600; margin: 0; line-heigh
 .record-card {
   background: var(--color-paper);
   border: 1px solid var(--color-line);
-  border-radius: var(--radius-lg);
+  border-radius: var(--radius-card);
   padding: 32px 24px 28px;
   text-align: center;
   transition: transform .2s, box-shadow .2s;
@@ -859,10 +914,42 @@ h1, h2, h3 { font-family: var(--font-h); font-weight: 600; margin: 0; line-heigh
   .record-play:hover { background: var(--color-primary-hover); color: #1f1300; }
 }
 .record-play__icon { display: block; width: 22px; height: 22px; }
-.record-play__icon--play { margin-left: 3px; }   /* оптическая компенсация треугольника */
+/* Оптический центр треугольника.
+   Здесь стоял `margin-left: 3px` — «оптическая компенсация», но она была
+   ВТОРОЙ по счёту: сам path (M8 5.2 … L19 12) уже нарисован со смещением
+   вправо — у него bbox 8…19 в боксе 0…24, т.е. центр бокса треугольника уже
+   на +1.5 юнита правее центра. Маргин добавлял ещё +1.5px (при
+   justify-content: center маргин съедается наполовину), и в сумме кнопка
+   выглядела «прижатой» вправо: замер зазоров до края красного круга давал
+   22.8px слева против 17.1px справа. Компенсацию оставляем ОДНУ — ту, что
+   в самом path; зазоры становятся 21.3 / 18.6px, центр тяжести треугольника
+   практически совпадает с центром круга (−0.3px). Иконка паузы (две полосы
+   7…17 в боксе 0…24) симметрична и никаких сдвигов не требует. */
 .record-play__icon--pause,
 .record-card.is-playing .record-play__icon--play { display: none; }
 .record-card.is-playing .record-play__icon--pause { display: block; }
+
+/* ---- Состояние «дорожка грузится» ----
+   Ставится по клику и снимается по событию playing (а также на pause/error —
+   чтобы кнопка не залипла в загрузке навсегда). Логика — блок 11 в script.js.
+   Кольцо на currentColor: на красном фоне верхний сегмент белый, на жёлтом
+   hover — тёмный, читается в обоих состояниях. */
+.record-play.is-loading .record-play__icon { visibility: hidden; }
+.record-play.is-loading::after {
+  content: "";
+  position: absolute;
+  width: 22px;
+  height: 22px;
+  border: 2.5px solid rgba(255,255,255,.35);
+  border-top-color: currentColor;
+  border-radius: 50%;
+  animation: record-load-spin .8s linear infinite;
+}
+@keyframes record-load-spin { to { transform: rotate(360deg); } }
+@media (prefers-reduced-motion: reduce) {
+  /* без вращения кольцо всё равно остаётся видимой сменой состояния */
+  .record-play.is-loading::after { animation: none; }
+}
 .record-card__title {
   font-family: var(--font-h);
   font-weight: 600;
@@ -902,7 +989,7 @@ h1, h2, h3 { font-family: var(--font-h); font-weight: 600; margin: 0; line-heigh
   gap: 12px;
   background: var(--color-paper);
   border: 1px solid var(--color-line);
-  border-radius: var(--radius-md);
+  border-radius: var(--radius-card);
   padding: 14px 18px;
   font-size: 15px;
   font-weight: 500;
@@ -935,7 +1022,7 @@ h1, h2, h3 { font-family: var(--font-h); font-weight: 600; margin: 0; line-heigh
   position: relative;
   background: var(--color-paper);
   border: 1px solid var(--color-line);
-  border-radius: var(--radius-lg);
+  border-radius: var(--radius-card);
   padding: 30px 26px 26px;
   transition: transform .2s, box-shadow .2s;
 }
@@ -985,7 +1072,7 @@ h1, h2, h3 { font-family: var(--font-h); font-weight: 600; margin: 0; line-heigh
 .result-card {
   background: #fff;
   border: 1px solid var(--color-line);
-  border-radius: 2px;
+  border-radius: var(--radius-card);
   box-shadow: var(--shadow-sm);
   padding: 10px;
   transform: rotate(var(--tilt, -1.5deg));
@@ -1001,7 +1088,7 @@ h1, h2, h3 { font-family: var(--font-h); font-weight: 600; margin: 0; line-heigh
 .result-photo {
   width: 100%;
   aspect-ratio: 1 / 1;
-  border-radius: 1px;
+  border-radius: var(--radius-inner);
   background-color: var(--color-slot);
   background-size: cover;
   background-position: center;
@@ -1075,7 +1162,7 @@ h1, h2, h3 { font-family: var(--font-h); font-weight: 600; margin: 0; line-heigh
   counter-increment: putevka;
   background: var(--color-paper);
   border: 1px solid var(--color-line);
-  border-radius: var(--radius-md);
+  border-radius: var(--radius-card);
   /* 52px сверху = 38px полосы «ПУТЁВКА № N» + 14px воздуха до бирки статуса.
      Бирка теперь в потоке, а не абсолютом поверх полосы. */
   padding: 52px 22px 28px;
@@ -1095,7 +1182,7 @@ h1, h2, h3 { font-family: var(--font-h); font-weight: 600; margin: 0; line-heigh
   letter-spacing: .2em;
   text-transform: uppercase;
   /* Не overflow:hidden на карточке — иначе срежет badge-top (он снаружи) */
-  border-radius: var(--radius-md) var(--radius-md) 0 0;
+  border-radius: var(--radius-card) var(--radius-card) 0 0;
 }
 .rate-card .btn--block { margin-top: auto; }
 .rate-card--featured {
@@ -1105,27 +1192,11 @@ h1, h2, h3 { font-family: var(--font-h); font-weight: 600; margin: 0; line-heigh
 }
 /* На красной карте полоса выворачивается в бумажную */
 .rate-card--featured::before { background: var(--color-bg); color: var(--color-primary); }
-/* Костёр на «годовом» тарифе — как в прототипе. Абсолютом, чтобы не сдвигать
-   заголовок/цену относительно соседних карточек; pointer-events снят.
-   top: 150px — это зона цены: справа от «5 890 ₽» и от строки со старой ценой
-   всегда остаётся пустое поле. Выше (44px) костёр наезжал на бирки и заголовок. */
-.rate-card__decor {
-  position: absolute;
-  top: 150px;
-  right: 8px;
-  width: 72px;
-  height: 72px;
-  object-fit: contain;
-  opacity: .95;
-  pointer-events: none;
-  z-index: 1;
-}
-/* 901–1100px — самые узкие карточки (всё ещё 3 колонки): строка
-   «19 633 ₽ + Скидка 70%» дотягивается до правого края, костёр наехал бы
-   на неё. Ниже 900px колонка одна (карточка до 460px) — места снова хватает. */
-@media (min-width: 901px) and (max-width: 1100px) {
-  .rate-card__decor { display: none; }
-}
+/* Костёр (.rate-card__decor, assets/theme/el-3.webp) с «годового» тарифа убран
+   по просьбе заказчика — вместе с ним ушли правила позиционирования и
+   медиазапрос 901–1100px, который его прятал на узких карточках.
+   Больше .rate-card__decor в разметке нет; сам файл el-3.webp лежит в
+   assets/theme/ и при желании его можно поставить в другой блок. */
 /* Статусные бирки — В ПОТОКЕ, под полосой «ПУТЁВКА № N» (раньше absolute
    top:25px и наезжали на полосу). Ряд всегда есть у всех трёх карточек, и
    его min-height одинаков — иначе заголовок/цена/состав разъезжались бы по
@@ -1311,7 +1382,7 @@ h1, h2, h3 { font-family: var(--font-h); font-weight: 600; margin: 0; line-heigh
 .rate-card__features-key {
   background: var(--color-soft);
   border: 1px dashed var(--color-line-strong);
-  border-radius: var(--radius-sm);
+  border-radius: var(--radius-inner);
   padding: 10px 12px 10px 32px;
   margin-left: -2px;
 }
@@ -1334,7 +1405,7 @@ h1, h2, h3 { font-family: var(--font-h); font-weight: 600; margin: 0; line-heigh
   background: var(--color-cream);
   background-image: var(--ribbon-diag);
   border: 1.5px dashed var(--color-primary);
-  border-radius: var(--radius-sm);
+  border-radius: var(--radius-inner);
   font-size: 13px;
   line-height: 1.4;
 }
@@ -1429,7 +1500,7 @@ h1, h2, h3 { font-family: var(--font-h); font-weight: 600; margin: 0; line-heigh
   margin: 0;
   background: #fff;
   border: 1px solid var(--color-line);
-  border-radius: var(--radius-lg);
+  border-radius: var(--radius-card);
   box-shadow: var(--shadow-md);
   padding: 12px;
   transform: rotate(-1.2deg);
@@ -1437,7 +1508,7 @@ h1, h2, h3 { font-family: var(--font-h); font-weight: 600; margin: 0; line-heigh
 .fifteen__photo img {
   width: 100%;
   height: auto;
-  border-radius: var(--radius-md);
+  border-radius: var(--radius-inner);
   display: block;
 }
 .fifteen__list { display: flex; flex-direction: column; }
@@ -1487,7 +1558,7 @@ h1, h2, h3 { font-family: var(--font-h); font-weight: 600; margin: 0; line-heigh
   background-color: var(--color-cream);
   background-image: var(--ribbon-diag), var(--paper-grain);
   border: 2px solid rgba(206,44,1,0.3);
-  border-radius: var(--radius-lg);
+  border-radius: var(--radius-card);
   font-size: 16px;
   line-height: 1.5;
 }
@@ -1530,7 +1601,7 @@ h1, h2, h3 { font-family: var(--font-h); font-weight: 600; margin: 0; line-heigh
   gap: 60px;
   background: var(--color-primary);
   border: 2px solid rgba(255,255,255,.4);
-  border-radius: var(--radius-lg);
+  border-radius: var(--radius-card);
   padding: 60px 60px 40px;
   margin: 0 20px;
   max-width: calc(100% - 40px);
@@ -1631,6 +1702,11 @@ h1, h2, h3 { font-family: var(--font-h); font-weight: 600; margin: 0; line-heigh
 }
 
 /* ======================== A11Y / POLISH ====================== */
+/* border-radius здесь НЕ задаём. Раньше стояло 4px, и у `a:focus-visible`
+   (специфичность 0,1,1) она перебивала `.btn` (0,1,0): кнопки-пилюли на
+   фокусе с клавиатуры превращались в прямоугольники с углом 4px, да и в
+   аудит радиусов это добавляло седьмое значение. Обводка и без того
+   повторяет собственный border-radius элемента. */
 a:focus-visible,
 button:focus-visible,
 [role="button"]:focus-visible,
@@ -1638,7 +1714,6 @@ input:focus-visible,
 [tabindex]:focus-visible {
   outline: 3px solid #FFB600;
   outline-offset: 3px;
-  border-radius: 4px;
 }
 .btn:focus-visible,
 .rate-card__alt-link:focus-visible,
@@ -1735,7 +1810,7 @@ section[id],
   background: rgba(252,247,237,.42);
   border: 2.5px solid rgba(206,44,1,.6);
   box-shadow: inset 0 0 0 1.5px rgba(206,44,1,.24);
-  border-radius: 3px;
+  border-radius: var(--radius-inner);
   padding: 9px 14px 8px;
   transform: rotate(-12deg);
   white-space: nowrap;

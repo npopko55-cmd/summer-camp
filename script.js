@@ -284,7 +284,16 @@
    реальным состоянием звука и иконкой быть не может.
    Цель Метрики camp-music-play шлём только на фактический старт
    воспроизведения (атрибут data-metrika-goal-play), а не на каждый клик,
-   иначе пауза накручивала бы цель наравне с прослушиванием. */
+   иначе пауза накручивала бы цель наравне с прослушиванием.
+
+   Индикация загрузки. preload="none" — значит в момент клика файла ещё нет
+   ни байта, и между кликом и звуком есть пауза (на медленной мобильной сети
+   заметная). Раньше кнопка на это никак не реагировала, и человек жал ещё
+   раз. Теперь клик ставит .is-loading (кольцо-спиннер), а снимается класс:
+     • playing — звук реально пошёл (главный сценарий),
+     • pause   — пользователь передумал и нажал ещё раз,
+     • error / отклонённый промис play() — файл не доступен.
+   Последние два обязательны: без них кнопка залипнет в «загрузке» навсегда. */
 (function () {
   var cards = document.querySelectorAll('[data-track]');
   if (!cards.length) return;
@@ -307,6 +316,12 @@
     p.btn.setAttribute('aria-label', (playing ? 'Пауза — ' : 'Слушать ') + title);
   }
 
+  function setLoading(p, loading) {
+    p.btn.classList.toggle('is-loading', loading);
+    if (loading) p.btn.setAttribute('aria-busy', 'true');
+    else p.btn.removeAttribute('aria-busy');
+  }
+
   function reachGoal(goal) {
     if (!goal) return;
     try {
@@ -318,12 +333,15 @@
     p.btn.addEventListener('click', function () {
       if (p.audio.paused) {
         // Одновременно звучит только одна дорожка
-        players.forEach(function (other) { if (other !== p) other.audio.pause(); });
+        players.forEach(function (other) {
+          if (other !== p) { other.audio.pause(); setLoading(other, false); }
+        });
+        setLoading(p, true);
         var promise = p.audio.play();
         // Автоплей может быть отклонён (нет жеста, сеть) — не оставляем
         // карточку в «играющем» состоянии, если звука на самом деле нет
         if (promise && typeof promise.catch === 'function') {
-          promise.catch(function () { setState(p, false); });
+          promise.catch(function () { setLoading(p, false); setState(p, false); });
         }
       } else {
         p.audio.pause();
@@ -334,11 +352,14 @@
       setState(p, true);
       reachGoal(p.btn.getAttribute('data-metrika-goal-play'));
     });
-    p.audio.addEventListener('pause', function () { setState(p, false); });
+    // playing — звук пошёл по-настоящему (буфер набран): снимаем индикатор
+    p.audio.addEventListener('playing', function () { setLoading(p, false); });
+    p.audio.addEventListener('pause', function () { setLoading(p, false); setState(p, false); });
     p.audio.addEventListener('ended', function () {
+      setLoading(p, false);
       setState(p, false);
       try { p.audio.currentTime = 0; } catch (e) { /* silent */ }
     });
-    p.audio.addEventListener('error', function () { setState(p, false); });
+    p.audio.addEventListener('error', function () { setLoading(p, false); setState(p, false); });
   });
 })();
