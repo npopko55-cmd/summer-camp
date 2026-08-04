@@ -31,7 +31,7 @@
   <!-- Hero-фото: наши вожатые в настоящем пионерлагере (локальный ассет) -->
   <link rel="preload" as="image" href="assets/hero/hero-camp.webp" fetchpriority="high" />
 
-  <link rel="stylesheet" href="styles.css?v=camp-E" />
+  <link rel="stylesheet" href="styles.css?v=camp-F" />
 </head>
 <body>
 
@@ -222,10 +222,7 @@
 
 <!-- ============================================================ -->
 <!-- 2. ВОЖАТСКИЙ ОТРЯД — доска почёта, 9 человек                 -->
-<!-- Фото: assets/team/*.webp. Два слота без фото:                -->
-<!--   • Саша (начпрод) — бежевый плейсхолдер с подписью «фото»;   -->
-<!--     чтобы вставить фото, заменить div.squad-card__frame--empty -->
-<!--     на такой же блок с <img>, как у остальных.                -->
+<!-- Фото: assets/team/*.webp. Один слот без фото:                -->
 <!--   • Тайный специалист — красный слот с «?» ПО ЗАМЫСЛУ,        -->
 <!--     фото не нужно.                                            -->
 <!-- ============================================================ -->
@@ -270,9 +267,9 @@
       </article>
 
       <article class="squad-card">
-        <!-- Фото Саши пока нет. Вставить: заменить этот div на такой же
-             .squad-card__frame с <img class="squad-card__photo" src="assets/team/sasha.webp" …> -->
-        <div class="squad-card__frame squad-card__frame--empty" role="img" aria-label="Фото Саши — скоро"><span>фото</span></div>
+        <div class="squad-card__frame">
+          <img class="squad-card__photo" src="assets/team/sasha.webp" alt="Саша, начпрод смены" width="600" height="899" loading="lazy" />
+        </div>
         <h3 class="squad-card__name">Саша, <span class="squad-card__role">начпрод</span></h3>
         <p class="squad-card__text">Ваш главный помощник по&nbsp;борьбе с&nbsp;ленью и&nbsp;создатель самой тёплой и&nbsp;уютной атмосферы поддержки в&nbsp;чате</p>
       </article>
@@ -324,13 +321,10 @@
     <h2 class="section__title">Знакомые, а&nbsp;также совсем новые хиты уже ждут вас!</h2>
     <p class="section__lead">Включите пластинку и&nbsp;послушайте, под что мы&nbsp;будем шагать в&nbsp;этой смене.</p>
 
-    <!-- TODO: заменить на реальные аудиодорожки для каждой программы.
-         Сейчас все три пластинки играют один демо-трек assets/audio/track-1.mp3
-         (2,3 МБ, ~104 c). Раньше звук тянулся со стороннего файлообменника и
-         грузился по 5–15 c (это не CDN) — файл положен локально.
-         Когда появятся реальные дорожки: положить их в assets/audio/ и
-         поменять src у соответствующего <audio>. preload="none" НЕ снимать —
-         иначе 3 файла начнут качаться при загрузке страницы. -->
+    <!-- Дорожки: kostya.mp3 (Iowa — Улыбайся, припев), dasha.mp3 (ВИА Гра —
+         Я не поняла), nastya.mp3 (Т. Буланова — Ясный мой свет).
+         96 kbps, обложки и метаданные вырезаны. preload="none" НЕ снимать —
+         иначе три файла начнут качаться при загрузке страницы. -->
     <div class="records">
       <article class="record-card" data-track>
         <div class="record" aria-hidden="true"><span class="record__label">01</span></div>
@@ -342,7 +336,7 @@
           <svg class="record-play__icon record-play__icon--play" viewBox="0 0 24 24" width="22" height="22" fill="currentColor" aria-hidden="true"><path d="M8 5.2v13.6L19 12 8 5.2Z"/></svg>
           <svg class="record-play__icon record-play__icon--pause" viewBox="0 0 24 24" width="22" height="22" fill="currentColor" aria-hidden="true"><rect x="7" y="5" width="3.6" height="14" rx="1"/><rect x="13.4" y="5" width="3.6" height="14" rx="1"/></svg>
         </button>
-        <audio class="record-audio" preload="none" src="assets/audio/track-1.mp3"></audio>
+        <audio class="record-audio" preload="none" src="assets/audio/kostya.mp3"></audio>
         <h3 class="record-card__title">«Шагай и&nbsp;Бодрей с&nbsp;Костей»</h3>
         <p class="record-card__author">Программа Кости</p>
       </article>
@@ -357,7 +351,7 @@
           <svg class="record-play__icon record-play__icon--play" viewBox="0 0 24 24" width="22" height="22" fill="currentColor" aria-hidden="true"><path d="M8 5.2v13.6L19 12 8 5.2Z"/></svg>
           <svg class="record-play__icon record-play__icon--pause" viewBox="0 0 24 24" width="22" height="22" fill="currentColor" aria-hidden="true"><rect x="7" y="5" width="3.6" height="14" rx="1"/><rect x="13.4" y="5" width="3.6" height="14" rx="1"/></svg>
         </button>
-        <audio class="record-audio" preload="none" src="assets/audio/track-1.mp3"></audio>
+        <audio class="record-audio" preload="none" src="assets/audio/dasha.mp3"></audio>
         <h3 class="record-card__title">«Шагай и&nbsp;Веселей с&nbsp;Дашей»</h3>
         <p class="record-card__author">Программа Даши</p>
       </article>
@@ -372,7 +366,7 @@
           <svg class="record-play__icon record-play__icon--play" viewBox="0 0 24 24" width="22" height="22" fill="currentColor" aria-hidden="true"><path d="M8 5.2v13.6L19 12 8 5.2Z"/></svg>
           <svg class="record-play__icon record-play__icon--pause" viewBox="0 0 24 24" width="22" height="22" fill="currentColor" aria-hidden="true"><rect x="7" y="5" width="3.6" height="14" rx="1"/><rect x="13.4" y="5" width="3.6" height="14" rx="1"/></svg>
         </button>
-        <audio class="record-audio" preload="none" src="assets/audio/track-1.mp3"></audio>
+        <audio class="record-audio" preload="none" src="assets/audio/nastya.mp3"></audio>
         <h3 class="record-card__title">«Шагай и&nbsp;стройней с&nbsp;Настей»</h3>
         <p class="record-card__author">Программа Насти</p>
       </article>
@@ -804,6 +798,6 @@
 
 <button class="back-to-top" id="backToTop" type="button" aria-label="Наверх">↑</button>
 
-<script src="script.js?v=camp-E"></script>
+<script src="script.js?v=camp-F"></script>
 </body>
 </html>
