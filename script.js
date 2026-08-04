@@ -276,3 +276,69 @@
   tick();
   iv = setInterval(tick, 1000);
 })();
+
+/* ---------- 11. Музыкальный модуль: плеер на «пластинках» ----------
+   Состояние берём из СОБЫТИЙ audio (play/pause/ended), а не из клика:
+   тогда «останови остальные дорожки» сводится к audio.pause() — событие
+   pause само снимет .is-playing с чужой карточки, и рассинхрона между
+   реальным состоянием звука и иконкой быть не может.
+   Цель Метрики camp-music-play шлём только на фактический старт
+   воспроизведения (атрибут data-metrika-goal-play), а не на каждый клик,
+   иначе пауза накручивала бы цель наравне с прослушиванием. */
+(function () {
+  var cards = document.querySelectorAll('[data-track]');
+  if (!cards.length) return;
+
+  var METRIKA_ID = 94057307;
+  var players = [];
+
+  Array.prototype.forEach.call(cards, function (card) {
+    var audio = card.querySelector('audio');
+    var btn = card.querySelector('.record-play');
+    if (!audio || !btn) return;
+    players.push({ card: card, audio: audio, btn: btn });
+  });
+  if (!players.length) return;
+
+  function setState(p, playing) {
+    p.card.classList.toggle('is-playing', playing);
+    p.btn.setAttribute('aria-pressed', String(playing));
+    var title = p.btn.getAttribute('data-track-title') || '';
+    p.btn.setAttribute('aria-label', (playing ? 'Пауза — ' : 'Слушать ') + title);
+  }
+
+  function reachGoal(goal) {
+    if (!goal) return;
+    try {
+      if (typeof window.ym === 'function') window.ym(METRIKA_ID, 'reachGoal', goal);
+    } catch (e) { /* silent */ }
+  }
+
+  players.forEach(function (p) {
+    p.btn.addEventListener('click', function () {
+      if (p.audio.paused) {
+        // Одновременно звучит только одна дорожка
+        players.forEach(function (other) { if (other !== p) other.audio.pause(); });
+        var promise = p.audio.play();
+        // Автоплей может быть отклонён (нет жеста, сеть) — не оставляем
+        // карточку в «играющем» состоянии, если звука на самом деле нет
+        if (promise && typeof promise.catch === 'function') {
+          promise.catch(function () { setState(p, false); });
+        }
+      } else {
+        p.audio.pause();
+      }
+    });
+
+    p.audio.addEventListener('play', function () {
+      setState(p, true);
+      reachGoal(p.btn.getAttribute('data-metrika-goal-play'));
+    });
+    p.audio.addEventListener('pause', function () { setState(p, false); });
+    p.audio.addEventListener('ended', function () {
+      setState(p, false);
+      try { p.audio.currentTime = 0; } catch (e) { /* silent */ }
+    });
+    p.audio.addEventListener('error', function () { setState(p, false); });
+  });
+})();

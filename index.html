@@ -28,10 +28,10 @@
   <link rel="preload" as="font" type="font/woff2" crossorigin href="https://fonts.gstatic.com/s/oswald/v57/TK3IWkUHHAIjg75cFRf3bXL8LICs1_Fv40pKlN4NNSeSASz7FmlWHYjMdZwl.woff2" />
   <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Inter:wght@400;500;600&display=swap&subset=latin,cyrillic" rel="stylesheet" />
 
-  <!-- Hero-иллюстрация «пионерки» — тематическая картинка с CDN Тильды (работает и на GitHub Pages, и внутри Tilda) -->
-  <link rel="preload" as="image" href="https://static.tildacdn.com/tild3861-3863-4130-a636-343338326634/image_2025-08-05_19-.png" fetchpriority="high" />
+  <!-- Hero-фото: наши вожатые в настоящем пионерлагере (локальный ассет) -->
+  <link rel="preload" as="image" href="assets/hero/hero-camp.webp" fetchpriority="high" />
 
-  <link rel="stylesheet" href="styles.css?v=camp-C" />
+  <link rel="stylesheet" href="styles.css?v=camp-D" />
 </head>
 <body>
 
@@ -83,10 +83,10 @@
 <div class="overlay-nav" id="overlayNav" aria-hidden="true">
   <button class="overlay-nav__close" id="closeNavBtn" aria-label="Закрыть меню">×</button>
   <nav class="overlay-nav__list" aria-label="Меню">
-    <a href="#counselors">Новые вожатые</a>
-    <a href="#workouts">Тренировки</a>
+    <a href="#counselors">Вожатский отряд</a>
+    <a href="#workouts">Музыка смены</a>
     <a href="#inside">Что внутри</a>
-    <a href="#results">Результаты</a>
+    <a href="#results">Отзывы</a>
     <a href="#rates">Тарифы</a>
     <a href="#contacts">Контакты</a>
   </nav>
@@ -128,11 +128,12 @@
         </div>
 
         <h1 class="hero__title">
-          <!-- Запятая ВНУТРИ .hero__title-boltword намеренно: span — atomic
+          <!-- Жёлтая молния-подчёркивание — под «УХОДЯТ КИЛОГРАММЫ» (по прототипу).
+               Запятая ВНУТРИ .hero__title-boltword намеренно: span — atomic
                inline-block, и браузер разрешает перенос сразу после него.
                С запятой снаружи на 375px она отрывалась в начало следующей
                строки. Рендер текста при этом не меняется ни на символ. -->
-          Интенсив <span class="hero__title-boltword">«Летний лагерь»,<svg class="hero__title-boltline" viewBox="0 0 240 20" preserveAspectRatio="none" aria-hidden="true"><polyline points="2,14 38,4 58,14 96,4 116,14 154,4 174,14 212,4 238,12" fill="none" stroke="#FFB600" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/></svg></span> где уходят килограммы, а&nbsp;не&nbsp;детство!
+          Интенсив «Летний лагерь», где <span class="hero__title-boltword">уходят килограммы,<svg class="hero__title-boltline" viewBox="0 0 240 20" preserveAspectRatio="none" aria-hidden="true"><polyline points="2,14 38,4 58,14 96,4 116,14 154,4 174,14 212,4 238,12" fill="none" stroke="#FFB600" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/></svg></span> а&nbsp;не&nbsp;детство!
         </h1>
 
         <p class="hero__lead">Неделя спортивного приключения в&nbsp;стиле пионерлагеря: бодрые зарядки, новые тренеры, шагательные тренировки и&nbsp;незабываемая атмосфера дружбы и&nbsp;бесконечного лета!</p>
@@ -159,109 +160,145 @@
         </div>
       </div>
 
-      <!-- ПРАВАЯ КОЛОНКА. Вертикальная иллюстрация 1024x1536 (пионерки салютуют).
-           На десктопе слот тянется по высоте красной карты — aspect-ratio при этом
-           не применяется (width и height оба определены), кадр режется снизу,
-           поэтому object-position: center top — головы и салют всегда в кадре.
-           На ≤900px высота строки становится неопределённой, форму держит
-           aspect-ratio 3/4 (близко к пропорции исходника 2/3 — крой минимальный). -->
+      <!-- ПРАВАЯ КОЛОНКА. Фото 1400x1416 (почти квадрат): наши вожатые на дорожке
+           настоящего пионерлагеря. Кадр НЕ тянется по высоте красной карты —
+           у .hero__image жёстко задан aspect-ratio 1290/1416, и это не косметика:
+           в исходнике в правом нижнем углу запечён значок чат-виджета (артефакт
+           скриншота). При cover + object-position:left ровно эти правые ~110px
+           уходят за край кадра на ЛЮБОЙ ширине, а девушки (они заканчиваются на
+           x≈1240) остаются в кадре целиком. Меняешь фото — пересчитай ratio. -->
       <div class="hero__image-wrap">
         <div class="hero__image">
           <img class="hero__image-photo"
-               src="https://static.tildacdn.com/tild3861-3863-4130-a636-343338326634/image_2025-08-05_19-.png"
-               alt="Три вожатые в белых блузках, красных галстуках и пилотках салютуют"
-               width="1024" height="1536" fetchpriority="high" />
+               src="assets/hero/hero-camp.webp"
+               alt="Три вожатые в красных футболках «Шагай Дома» и пилотках на дорожке летнего лагеря"
+               width="1400" height="1416" fetchpriority="high" />
           <span class="stamp stamp--hero" aria-hidden="true">Смена 2026</span>
-          <div class="hero__image-badges">
-            <div class="hero__stat-tile">
-              <span class="hero__stat-icon" aria-hidden="true">
-                <!-- группа людей (три вожатых) -->
-                <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                  <circle cx="12" cy="7.6" r="3.2"/>
-                  <path d="M6.6 19.4v-1.2a5.4 5.4 0 0 1 10.8 0v1.2"/>
-                  <circle cx="4.6" cy="11.4" r="2.2"/>
-                  <path d="M2.2 19.4v-1a3.4 3.4 0 0 1 2.4-3.2"/>
-                  <circle cx="19.4" cy="11.4" r="2.2"/>
-                  <path d="M21.8 19.4v-1a3.4 3.4 0 0 0-2.4-3.2"/>
-                </svg>
-              </span>
-              <span>Три новых вожатых в&nbsp;смене</span>
-            </div>
-            <div class="hero__stat-tile">
-              <span class="hero__stat-icon" aria-hidden="true">
-                <!-- календарь -->
-                <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                  <rect x="3.2" y="5.2" width="17.6" height="15.4" rx="2.4"/>
-                  <path d="M3.2 10.4h17.6"/>
-                  <path d="M8.4 3v4.4M15.6 3v4.4"/>
-                  <path d="M8 15h.01M12 15h.01M16 15h.01"/>
-                </svg>
-              </span>
-              <span>Новая тренировка каждый день</span>
-            </div>
-            <div class="hero__stat-tile">
-              <span class="hero__stat-icon" aria-hidden="true">
-                <!-- часы -->
-                <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                  <circle cx="12" cy="12" r="8.6"/>
-                  <path d="M12 6.8V12l3.8 2.4"/>
-                </svg>
-              </span>
-              <span>Всего 15−25&nbsp;минут в&nbsp;день</span>
-            </div>
-          </div>
         </div>
       </div>
     </div>
+
+    <!-- Три обещания смены — красные карточки с иконкой сверху (по прототипу) -->
+    <ul class="hero__promises">
+      <li class="hero__promise">
+        <span class="hero__promise-icon" aria-hidden="true">
+          <!-- молния: тонус и сила -->
+          <svg viewBox="0 0 24 24" width="30" height="30" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="13 2 4.6 13.4 11.4 13.4 10.6 22 19.4 10.6 12.6 10.6 13 2"/>
+          </svg>
+        </span>
+        <span class="hero__promise-text">Прибавится тонус и&nbsp;сила настоящего пионера</span>
+      </li>
+      <li class="hero__promise">
+        <span class="hero__promise-icon" aria-hidden="true">
+          <!-- огонь: зажигательные дискотеки -->
+          <svg viewBox="0 0 24 24" width="30" height="30" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 21.6c3.8 0 6.8-2.7 6.8-6.2 0-4.8-4.9-6.8-4.1-12.3-3.7 1-5.3 4.5-5.3 7 0 1.3-.7 2-1.5 2-.9 0-1.4-.7-1.4-1.8-1.3 1.5-1.5 3.2-1.5 5.1 0 3.5 3.2 6.2 7 6.2Z"/>
+          </svg>
+        </span>
+        <span class="hero__promise-text">Лишние сантиметры уйдут под зажигательные ритмы наших дискотек</span>
+      </li>
+      <li class="hero__promise">
+        <span class="hero__promise-icon" aria-hidden="true">
+          <!-- академическая шапочка: диплом за победу над диваном -->
+          <svg viewBox="0 0 24 24" width="30" height="30" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 3.2 2.4 8 12 12.8 21.6 8 12 3.2Z"/>
+            <path d="M6.2 10.3v4.8c0 1.7 2.6 3.1 5.8 3.1s5.8-1.4 5.8-3.1v-4.8"/>
+            <path d="M21.6 8v6.3"/>
+          </svg>
+        </span>
+        <span class="hero__promise-text">Наградим красивым дипломом за&nbsp;победу над диваном и&nbsp;холодильником</span>
+      </li>
+    </ul>
   </div>
 </section>
 
 <!-- ============================================================ -->
-<!-- 2. НОВЫЕ ВОЖАТЫЕ — 3 карточки                                -->
-<!-- Фото пока нет: слоты-плейсхолдеры (бежевый фон + подпись).    -->
-<!-- Чтобы вставить фото — добавить в div.counselor-card__photo    -->
-<!-- style="background-image:url('assets/counselors/ИМЯ.webp')"    -->
-<!-- и убрать <span>фото</span>.                                   -->
+<!-- 2. ВОЖАТСКИЙ ОТРЯД — доска почёта, 9 человек                 -->
+<!-- Фото: assets/team/*.webp. Два слота без фото:                -->
+<!--   • Саша (начпрод) — бежевый плейсхолдер с подписью «фото»;   -->
+<!--     чтобы вставить фото, заменить div.squad-card__frame--empty -->
+<!--     на такой же блок с <img>, как у остальных.                -->
+<!--   • Тайный специалист — красный слот с «?» ПО ЗАМЫСЛУ,        -->
+<!--     фото не нужно.                                            -->
 <!-- ============================================================ -->
 <section class="section counselors" id="counselors">
   <div class="container">
-    <img class="tie-mark" src="https://static.tildacdn.com/tild3964-3537-4665-a637-323334363363/61161_2-Photoroom.png" alt="" width="400" height="400" loading="lazy" />
-    <h2 class="section__title">Новые вожатые!</h2>
-    <p class="section__lead">В&nbsp;этой смене вас встречает обновлённая команда&nbsp;— и&nbsp;у&nbsp;каждого своя программа тренировок.</p>
+    <img class="theme-mark theme-mark--lg" src="assets/theme/el-2.webp" alt="" width="700" height="731" loading="lazy" aria-hidden="true" />
+    <h2 class="section__title">Наш вожатский отряд!</h2>
+    <p class="section__lead">Эти люди сделают вашу смену самой незабываемой!</p>
 
-    <div class="counselors__grid">
+    <div class="squad">
 
-      <article class="counselor-card">
-        <!-- TODO: фото Кости — style="background-image:url('assets/counselors/kostya.webp')" -->
-        <div class="counselor-card__photo" role="img" aria-label="Фото вожатого Кости — скоро"><span>фото</span></div>
-        <div class="counselor-card__body">
-          <h3 class="counselor-card__name">Костя</h3>
-          <p class="counselor-card__role">Новый вожатый</p>
-          <p class="counselor-card__text">Крутит самые большие и&nbsp;весёлые хороводы в&nbsp;лагере. Способен буквально вскружить голову.</p>
-          <p class="counselor-card__program"><span class="counselor-card__program-label">Его программа</span>«Шагай и&nbsp;Бодрей с&nbsp;Костей»</p>
+      <article class="squad-card">
+        <div class="squad-card__frame">
+          <img class="squad-card__photo" src="assets/team/kostya.webp" alt="Костя, новый вожатый смены" width="600" height="902" loading="lazy" />
         </div>
+        <h3 class="squad-card__name">Костя, <span class="squad-card__role">новый вожатый</span></h3>
+        <p class="squad-card__text">Крутит самые большие и&nbsp;весёлые хороводы в&nbsp;лагере. Способен буквально вскружить голову</p>
       </article>
 
-      <article class="counselor-card">
-        <!-- TODO: фото Даши — style="background-image:url('assets/counselors/dasha.webp')" -->
-        <div class="counselor-card__photo" role="img" aria-label="Фото вожатой Даши — скоро"><span>фото</span></div>
-        <div class="counselor-card__body">
-          <h3 class="counselor-card__name">Даша</h3>
-          <p class="counselor-card__role">Новая вожатая</p>
-          <p class="counselor-card__text">Покажет секретные шагательные движения, с&nbsp;помощью которых откроется магический портал в&nbsp;стройную жизнь.</p>
-          <p class="counselor-card__program"><span class="counselor-card__program-label">Её программа</span>«Шагай и&nbsp;Веселей с&nbsp;Дашей»</p>
+      <article class="squad-card">
+        <div class="squad-card__frame">
+          <img class="squad-card__photo" src="assets/team/dasha.webp" alt="Даша, новая вожатая смены" width="600" height="707" loading="lazy" />
         </div>
+        <h3 class="squad-card__name">Даша, <span class="squad-card__role">новая вожатая</span></h3>
+        <p class="squad-card__text">Покажет секретные шагательные движения, с&nbsp;помощью которых откроется магический портал в&nbsp;стройную жизнь</p>
       </article>
 
-      <article class="counselor-card">
-        <!-- TODO: фото Насти — style="background-image:url('assets/counselors/nastya.webp')" -->
-        <div class="counselor-card__photo" role="img" aria-label="Фото вожатой Насти — скоро"><span>фото</span></div>
-        <div class="counselor-card__body">
-          <h3 class="counselor-card__name">Настя</h3>
-          <p class="counselor-card__role">Вожатая смены</p>
-          <p class="counselor-card__text">Откроет для&nbsp;вас мир творчества, радости и&nbsp;уединения с&nbsp;собой.</p>
-          <p class="counselor-card__program"><span class="counselor-card__program-label">Её программа</span>«Шагай и&nbsp;стройней с&nbsp;Настей»</p>
+      <article class="squad-card">
+        <div class="squad-card__frame">
+          <img class="squad-card__photo" src="assets/team/masha.webp" alt="Маша, главная зажигалочка лагеря" width="600" height="669" loading="lazy" />
         </div>
+        <h3 class="squad-card__name">Маша, <span class="squad-card__role">главная зажигалочка</span></h3>
+        <p class="squad-card__text">Отвечает за&nbsp;главный лагерный огонь&nbsp;— зажигательные дискотеки, на&nbsp;которых тают килограммы</p>
+      </article>
+
+      <article class="squad-card">
+        <div class="squad-card__frame">
+          <img class="squad-card__photo" src="assets/team/nastya.webp" alt="Настя, вожатая смены" width="600" height="699" loading="lazy" />
+        </div>
+        <h3 class="squad-card__name">Настя, <span class="squad-card__role">вожатая</span></h3>
+        <p class="squad-card__text">Знает миллион кричалок и&nbsp;игр. Её&nbsp;улыбка заряжает лучше любого энергетика</p>
+      </article>
+
+      <article class="squad-card">
+        <!-- Фото Саши пока нет. Вставить: заменить этот div на такой же
+             .squad-card__frame с <img class="squad-card__photo" src="assets/team/sasha.webp" …> -->
+        <div class="squad-card__frame squad-card__frame--empty" role="img" aria-label="Фото Саши — скоро"><span>фото</span></div>
+        <h3 class="squad-card__name">Саша, <span class="squad-card__role">начпрод</span></h3>
+        <p class="squad-card__text">Ваш главный помощник по&nbsp;борьбе с&nbsp;ленью и&nbsp;создатель самой тёплой и&nbsp;уютной атмосферы поддержки в&nbsp;чате</p>
+      </article>
+
+      <article class="squad-card">
+        <div class="squad-card__frame">
+          <img class="squad-card__photo" src="assets/team/dima.webp" alt="Дима, физрук лагеря" width="600" height="800" loading="lazy" />
+        </div>
+        <h3 class="squad-card__name">Дима, <span class="squad-card__role">физрук</span></h3>
+        <p class="squad-card__text">Ответственный за&nbsp;бодрое утро. Его зарядка работает лучше крепкого кофе! Беспощаден к&nbsp;сачкам!</p>
+      </article>
+
+      <article class="squad-card">
+        <!-- Красный слот с «?» — так задумано, фото не нужно -->
+        <div class="squad-card__frame squad-card__frame--secret" role="img" aria-label="Тайный специалист — личность пока не раскрыта"><span aria-hidden="true">?</span></div>
+        <h3 class="squad-card__name">Тайный <span class="squad-card__role">специалист</span></h3>
+        <p class="squad-card__text">Откроет для&nbsp;вас мир творчества, радости и&nbsp;уединения с&nbsp;собой</p>
+      </article>
+
+      <article class="squad-card">
+        <div class="squad-card__frame">
+          <img class="squad-card__photo" src="assets/team/galina.webp" alt="Галина, директор лагерной столовой" width="600" height="578" loading="lazy" />
+        </div>
+        <h3 class="squad-card__name">Галина, <span class="squad-card__role">директор столовой</span></h3>
+        <p class="squad-card__text">Благодаря Галине, первые в&nbsp;мировой истории лагерная столовая получила звезду Мишлен. Только лучшие рецепты, от&nbsp;которых калории уходят в&nbsp;минус</p>
+      </article>
+
+      <article class="squad-card">
+        <div class="squad-card__frame">
+          <img class="squad-card__photo" src="assets/team/lida.webp" alt="Лида, заместитель начпрода" width="600" height="823" loading="lazy" />
+        </div>
+        <h3 class="squad-card__name">Лида, <span class="squad-card__role">зам. начпрода</span></h3>
+        <p class="squad-card__text">Вы&nbsp;— у&nbsp;неё на&nbsp;карандаше! Нужно же&nbsp;понимать, кому дарить подарки и&nbsp;похвальные овации!</p>
       </article>
 
     </div>
@@ -269,36 +306,63 @@
 </section>
 
 <!-- ============================================================ -->
-<!-- 3. ТРЕНИРОВКИ — «пластинки» с программами вожатых             -->
+<!-- 3. МУЗЫКАЛЬНЫЙ МОДУЛЬ — пластинки с рабочим плеером           -->
+<!-- Каждая карточка: <button.record-play> + <audio>. При play      -->
+<!-- пластинка вращается (класс .is-playing), остальные дорожки     -->
+<!-- ставятся на паузу. Логика — блок 11 в script.js.               -->
 <!-- ============================================================ -->
 <section class="section workouts" id="workouts">
   <div class="container">
+    <img class="theme-mark" src="assets/theme/el-7.webp" alt="" width="700" height="700" loading="lazy" aria-hidden="true" />
     <h2 class="section__title">Знакомые, а&nbsp;также совсем новые хиты уже ждут вас!</h2>
+    <p class="section__lead">Включите пластинку и&nbsp;послушайте, под что мы&nbsp;будем шагать в&nbsp;этой смене.</p>
 
+    <!-- TODO: заменить на реальные аудиодорожки для каждой программы -->
     <div class="records">
-      <article class="record-card">
+      <article class="record-card" data-track>
         <div class="record" aria-hidden="true"><span class="record__label">01</span></div>
+        <button class="record-play" type="button"
+                aria-pressed="false"
+                aria-label="Слушать «Шагай и Бодрей с Костей»"
+                data-track-title="«Шагай и Бодрей с Костей»"
+                data-metrika-goal-play="camp-music-play">
+          <svg class="record-play__icon record-play__icon--play" viewBox="0 0 24 24" width="22" height="22" fill="currentColor" aria-hidden="true"><path d="M8 5.2v13.6L19 12 8 5.2Z"/></svg>
+          <svg class="record-play__icon record-play__icon--pause" viewBox="0 0 24 24" width="22" height="22" fill="currentColor" aria-hidden="true"><rect x="7" y="5" width="3.6" height="14" rx="1"/><rect x="13.4" y="5" width="3.6" height="14" rx="1"/></svg>
+        </button>
+        <audio class="record-audio" preload="none" src="https://dl.dropboxusercontent.com/scl/fi/qn054xtpte4ta76vbkml3/.mp3?rlkey=atao11dn84b62jk6cpv3na5lw&amp;st=8c8ry8r6&amp;dl=0"></audio>
         <h3 class="record-card__title">«Шагай и&nbsp;Бодрей с&nbsp;Костей»</h3>
         <p class="record-card__author">Программа Кости</p>
       </article>
 
-      <article class="record-card">
+      <article class="record-card" data-track>
         <div class="record" aria-hidden="true"><span class="record__label">02</span></div>
+        <button class="record-play" type="button"
+                aria-pressed="false"
+                aria-label="Слушать «Шагай и Веселей с Дашей»"
+                data-track-title="«Шагай и Веселей с Дашей»"
+                data-metrika-goal-play="camp-music-play">
+          <svg class="record-play__icon record-play__icon--play" viewBox="0 0 24 24" width="22" height="22" fill="currentColor" aria-hidden="true"><path d="M8 5.2v13.6L19 12 8 5.2Z"/></svg>
+          <svg class="record-play__icon record-play__icon--pause" viewBox="0 0 24 24" width="22" height="22" fill="currentColor" aria-hidden="true"><rect x="7" y="5" width="3.6" height="14" rx="1"/><rect x="13.4" y="5" width="3.6" height="14" rx="1"/></svg>
+        </button>
+        <audio class="record-audio" preload="none" src="https://dl.dropboxusercontent.com/scl/fi/qn054xtpte4ta76vbkml3/.mp3?rlkey=atao11dn84b62jk6cpv3na5lw&amp;st=8c8ry8r6&amp;dl=0"></audio>
         <h3 class="record-card__title">«Шагай и&nbsp;Веселей с&nbsp;Дашей»</h3>
         <p class="record-card__author">Программа Даши</p>
       </article>
 
-      <article class="record-card">
+      <article class="record-card" data-track>
         <div class="record" aria-hidden="true"><span class="record__label">03</span></div>
+        <button class="record-play" type="button"
+                aria-pressed="false"
+                aria-label="Слушать «Шагай и стройней с Настей»"
+                data-track-title="«Шагай и стройней с Настей»"
+                data-metrika-goal-play="camp-music-play">
+          <svg class="record-play__icon record-play__icon--play" viewBox="0 0 24 24" width="22" height="22" fill="currentColor" aria-hidden="true"><path d="M8 5.2v13.6L19 12 8 5.2Z"/></svg>
+          <svg class="record-play__icon record-play__icon--pause" viewBox="0 0 24 24" width="22" height="22" fill="currentColor" aria-hidden="true"><rect x="7" y="5" width="3.6" height="14" rx="1"/><rect x="13.4" y="5" width="3.6" height="14" rx="1"/></svg>
+        </button>
+        <audio class="record-audio" preload="none" src="https://dl.dropboxusercontent.com/scl/fi/qn054xtpte4ta76vbkml3/.mp3?rlkey=atao11dn84b62jk6cpv3na5lw&amp;st=8c8ry8r6&amp;dl=0"></audio>
         <h3 class="record-card__title">«Шагай и&nbsp;стройней с&nbsp;Настей»</h3>
         <p class="record-card__author">Программа Насти</p>
       </article>
-    </div>
-
-    <div class="workouts__note">
-      <img class="tie-mark tie-mark--sm" src="https://static.tildacdn.com/tild3964-3537-4665-a637-323334363363/61161_2-Photoroom.png" alt="" width="400" height="400" loading="lazy" />
-      <h3>Тренировки с&nbsp;новыми вожатыми</h3>
-      <p>Новая тренировка каждый день! Дай себе возможность стать активной и&nbsp;радующейся этой жизни.</p>
     </div>
   </div>
 </section>
@@ -308,6 +372,7 @@
 <!-- ============================================================ -->
 <section class="section inside" id="inside">
   <div class="container">
+    <img class="theme-mark" src="assets/theme/el-4.webp" alt="" width="700" height="700" loading="lazy" aria-hidden="true" />
     <h2 class="section__title">Что вас ждёт в&nbsp;лагере</h2>
     <p class="section__lead">Виртуальная смена: заниматься можно из&nbsp;дома, дачи или отпуска&nbsp;— лагерь всегда в&nbsp;телефоне.</p>
 
@@ -431,35 +496,39 @@
 </section>
 
 <!-- ============================================================ -->
-<!-- 5. РЕЗУЛЬТАТЫ УЧАСТНИЦ                                        -->
-<!-- Фото пока нет: 4 слота-плейсхолдера. Чтобы вставить фото —    -->
-<!-- добавить в div.result-photo style="background-image:url(...)" -->
-<!-- и убрать <span>фото</span>.                                   -->
+<!-- 5. ФОТООТЗЫВЫ УЧАСТНИЦ — 4 КВАДРАТНЫХ фрейма (1:1)            -->
+<!--                                                               -->
+<!-- КАК ВСТАВИТЬ ФОТО (одна правка на карточку):                   -->
+<!--   было: <div class="result-photo" role="img" aria-label="…">   -->
+<!--            <span>фото</span></div>                             -->
+<!--   стало: <div class="result-photo"                             -->
+<!--            style="background-image:url('assets/reviews/sasha.webp')">  -->
+<!--          </div>                                                -->
+<!-- Т.е. добавить style с путём и УДАЛИТЬ <span>фото</span> вместе  -->
+<!-- с role/aria-label. Фото класть в assets/reviews/, кадрировать   -->
+<!-- КВАДРАТОМ (1:1) — фрейм квадратный, лишнее обрежется по центру. -->
 <!-- ============================================================ -->
 <section class="section results" id="results">
   <div class="container">
+    <img class="theme-mark" src="assets/theme/el-5.webp" alt="" width="700" height="700" loading="lazy" aria-hidden="true" />
     <h2 class="section__title">Они шагали с&nbsp;нами всего от&nbsp;20&nbsp;минут в&nbsp;день, и&nbsp;добились результата. У&nbsp;вас тоже получится!</h2>
 
     <div class="results__grid">
       <figure class="result-card">
-        <!-- TODO: фото Саши — style="background-image:url('assets/results/sasha.webp')" -->
-        <div class="result-photo" role="img" aria-label="Фото участницы Саши — скоро"><span>фото</span></div>
+        <div class="result-photo" role="img" aria-label="Фотоотзыв Саши — скоро"><span>фото</span></div>
         <figcaption class="result-card__name">Саша</figcaption>
       </figure>
       <figure class="result-card">
-        <!-- TODO: фото Марины — style="background-image:url('assets/results/marina.webp')" -->
-        <div class="result-photo" role="img" aria-label="Фото участницы Марины — скоро"><span>фото</span></div>
+        <div class="result-photo" role="img" aria-label="Фотоотзыв Марины — скоро"><span>фото</span></div>
         <figcaption class="result-card__name">Марина</figcaption>
       </figure>
       <figure class="result-card">
-        <!-- TODO: фото Иры — style="background-image:url('assets/results/ira.webp')" -->
-        <div class="result-photo" role="img" aria-label="Фото участницы Иры — скоро"><span>фото</span></div>
-        <figcaption class="result-card__name">Ира</figcaption>
+        <div class="result-photo" role="img" aria-label="Фотоотзыв Лиды — скоро"><span>фото</span></div>
+        <figcaption class="result-card__name">Лида</figcaption>
       </figure>
       <figure class="result-card">
-        <!-- TODO: фото Лиды — style="background-image:url('assets/results/lida.webp')" -->
-        <div class="result-photo" role="img" aria-label="Фото участницы Лиды — скоро"><span>фото</span></div>
-        <figcaption class="result-card__name">Лида</figcaption>
+        <div class="result-photo" role="img" aria-label="Фотоотзыв Иры — скоро"><span>фото</span></div>
+        <figcaption class="result-card__name">Ира</figcaption>
       </figure>
     </div>
   </div>
@@ -470,6 +539,7 @@
 <!-- ============================================================ -->
 <section class="rates-banner">
   <div class="container">
+    <img class="theme-mark" src="assets/theme/el-6.webp" alt="" width="700" height="844" loading="lazy" aria-hidden="true" />
     <h2>Записывайтесь в&nbsp;летнюю смену и&nbsp;получите <span class="accent">полный доступ ко&nbsp;всему клубу Шагай&nbsp;Дома!</span></h2>
     <span class="stamp stamp--approved" aria-hidden="true">Утверждено</span>
   </div>
@@ -477,66 +547,105 @@
 
 <section class="section rates" id="rates">
   <div class="container">
+    <!-- цифры рассрочки расчётные, подтвердить у команды -->
     <div class="rates__grid">
 
-      <!-- 3 месяца -->
+      <!-- ПУТЁВКА № 1 — 2 месяца -->
       <article class="rate-card">
-        <span class="rate-card__badge-top">Старт</span>
-        <h3 class="rate-card__title">Лагерь + клуб на&nbsp;2&nbsp;месяца</h3>
+        <div class="rate-card__badges">
+          <span class="rate-card__badge-top">Старт</span>
+        </div>
+        <h3 class="rate-card__title">Интенсив + клуб 2&nbsp;месяца</h3>
         <div class="rate-card__price">
+          <span class="rate-card__price-row">
+            <s class="rate-card__old">9&nbsp;633&nbsp;₽</s>
+            <span class="rate-card__discount">Скидка 70%</span>
+          </span>
           <span class="rate-card__new">2&nbsp;890&nbsp;₽</span>
-          <!-- TODO: рассрочка N платежей по X ₽ + зачёркнутая старая цена -->
-          <span class="rate-card__hint">Полный доступ на&nbsp;2&nbsp;месяца</span>
+          <span class="rate-card__permonth">1&nbsp;445 руб в&nbsp;месяц</span>
         </div>
         <ul class="rate-card__features">
-          <li class="rate-card__features-hero"><strong>Интенсив «Летний лагерь»</strong></li>
-          <li><strong>400+</strong> тренировок</li>
-          <li>Новое меню + более 160&nbsp;тематических рецептов. Полное собрание!</li>
+          <li class="rate-card__features-hero"><strong>Участие в&nbsp;интенсиве «Летний лагерь». Старт 12&nbsp;августа</strong></li>
+          <li class="rate-card__features-key"><strong>Готовая система похудения на&nbsp;шагах</strong></li>
+          <li>25&nbsp;программ и&nbsp;<strong>400+</strong> шагательных тренировок</li>
+          <li><strong>Новое меню + более 160&nbsp;тематических рецептов. Полное собрание!</strong></li>
           <li>Доступ ко&nbsp;всем активностям лагеря, новым тренировкам и&nbsp;зарядкам!</li>
-          <li>Вебинары специалистов про здоровье и&nbsp;заботу о&nbsp;себе</li>
+          <li>30&nbsp;тренировок для здоровой спины и&nbsp;растяжек</li>
+          <li>Чат поддержки с&nbsp;интерактивными играми между командами</li>
+          <li>Участие в&nbsp;творческом онлайн мастер-классе: Создадим нечто прекрасное!</li>
+          <li><strong>Вебинары специалистов про здоровье и&nbsp;заботу о&nbsp;себе</strong></li>
+          <li class="rate-card__features-club"><strong>Доступ к&nbsp;клубу ШАГАЙ ДОМА на&nbsp;2&nbsp;месяца</strong></li>
         </ul>
-        <a href="https://walk-walk.ru/summer_camp2/tarif_1" class="btn btn--primary btn--block" data-metrika-goal="camp-rate-2m-click">Еду в летний лагерь!</a>
+        <p class="rate-card__gift"><span class="rate-card__gift-emoji" aria-hidden="true">🎁</span> <strong>В&nbsp;подарок</strong> — «Бесплатное пополнение шагательных тренировок и&nbsp;программ»</p>
+        <a href="https://walk-walk.ru/summer_camp2/tarif_1" class="btn btn--primary btn--block" data-metrika-goal="camp-rate-2m-click">Оформить абонемент</a>
         <a href="https://my.walk-walk.ru/summer_camp2" class="rate-card__alt-link" target="_blank" rel="noopener" data-metrika-goal="camp-have-subscription-2m">У меня уже есть абонемент</a>
+        <p class="rate-card__installment">Доступна рассрочка 6&nbsp;платежей по&nbsp;482&nbsp;₽</p>
       </article>
 
-      <!-- 6 месяцев — featured -->
-      <article class="rate-card rate-card--featured">
-        <span class="rate-card__badge-top">Хит продаж</span>
-        <h3 class="rate-card__title">Лагерь + клуб на&nbsp;6&nbsp;месяцев</h3>
-        <div class="rate-card__price">
-          <span class="rate-card__new">4&nbsp;790&nbsp;₽</span>
-          <!-- TODO: рассрочка N платежей по X ₽ + зачёркнутая старая цена -->
-          <span class="rate-card__hint">Полный доступ на&nbsp;6&nbsp;месяцев</span>
-        </div>
-        <ul class="rate-card__features">
-          <li class="rate-card__features-hero"><strong>Интенсив «Летний лагерь»</strong></li>
-          <li><strong>400+</strong> тренировок</li>
-          <li>Новое меню + более 160&nbsp;тематических рецептов. Полное собрание!</li>
-          <li>Доступ ко&nbsp;всем активностям лагеря, новым тренировкам и&nbsp;зарядкам!</li>
-          <li>Вебинары специалистов про здоровье и&nbsp;заботу о&nbsp;себе</li>
-        </ul>
-        <a href="https://walk-walk.ru/summer_camp2/tarif_2" class="btn btn--white btn--block" data-metrika-goal="camp-rate-6m-click">Еду в летний лагерь!</a>
-        <a href="https://my.walk-walk.ru/summer_camp2" class="rate-card__alt-link rate-card__alt-link--on-red" target="_blank" rel="noopener" data-metrika-goal="camp-have-subscription-6m">У меня уже есть абонемент</a>
-      </article>
-
-      <!-- 1 год -->
+      <!-- ПУТЁВКА № 2 — 6 месяцев -->
       <article class="rate-card">
-        <span class="rate-card__badge-top">По максимуму</span>
-        <h3 class="rate-card__title">Лагерь + клуб на&nbsp;1&nbsp;год</h3>
+        <div class="rate-card__badges">
+          <span class="rate-card__badge-top">Хит продаж</span>
+        </div>
+        <h3 class="rate-card__title">Интенсив + клуб 6&nbsp;месяцев</h3>
         <div class="rate-card__price">
-          <span class="rate-card__new">5&nbsp;890&nbsp;₽</span>
-          <!-- TODO: рассрочка N платежей по X ₽ + зачёркнутая старая цена -->
-          <span class="rate-card__hint">Полный доступ на&nbsp;12&nbsp;месяцев</span>
+          <span class="rate-card__price-row">
+            <s class="rate-card__old">15&nbsp;967&nbsp;₽</s>
+            <span class="rate-card__discount">Скидка 70%</span>
+          </span>
+          <span class="rate-card__new">4&nbsp;790&nbsp;₽</span>
+          <span class="rate-card__permonth">798 руб в&nbsp;месяц</span>
         </div>
         <ul class="rate-card__features">
-          <li class="rate-card__features-hero"><strong>Интенсив «Летний лагерь»</strong></li>
-          <li><strong>400+</strong> тренировок</li>
-          <li>Новое меню + более 160&nbsp;тематических рецептов. Полное собрание!</li>
+          <li class="rate-card__features-hero"><strong>Участие в&nbsp;интенсиве «Летний лагерь». Старт 12&nbsp;августа</strong></li>
+          <li class="rate-card__features-key"><strong>Готовая система похудения на&nbsp;шагах</strong></li>
+          <li>25&nbsp;программ и&nbsp;<strong>400+</strong> шагательных тренировок</li>
+          <li><strong>Новое меню + более 160&nbsp;тематических рецептов. Полное собрание!</strong></li>
           <li>Доступ ко&nbsp;всем активностям лагеря, новым тренировкам и&nbsp;зарядкам!</li>
-          <li>Вебинары специалистов про здоровье и&nbsp;заботу о&nbsp;себе</li>
+          <li>30&nbsp;тренировок для здоровой спины и&nbsp;растяжек</li>
+          <li>Чат поддержки с&nbsp;интерактивными играми между командами</li>
+          <li>Участие в&nbsp;творческом онлайн мастер-классе: Создадим нечто прекрасное!</li>
+          <li><strong>Вебинары специалистов про здоровье и&nbsp;заботу о&nbsp;себе</strong></li>
+          <li class="rate-card__features-club"><strong>Доступ к&nbsp;клубу ШАГАЙ ДОМА на&nbsp;6&nbsp;месяцев</strong></li>
         </ul>
-        <a href="https://walk-walk.ru/summer_camp2/tarif_3" class="btn btn--primary btn--block" data-metrika-goal="camp-rate-1y-click">Еду в летний лагерь!</a>
-        <a href="https://my.walk-walk.ru/summer_camp2" class="rate-card__alt-link" target="_blank" rel="noopener" data-metrika-goal="camp-have-subscription-1y">У меня уже есть абонемент</a>
+        <p class="rate-card__gift"><span class="rate-card__gift-emoji" aria-hidden="true">🎁</span> <strong>В&nbsp;подарок</strong> — «Бесплатное пополнение шагательных тренировок и&nbsp;программ»</p>
+        <a href="https://walk-walk.ru/summer_camp2/tarif_2" class="btn btn--primary btn--block" data-metrika-goal="camp-rate-6m-click">Оформить абонемент</a>
+        <a href="https://my.walk-walk.ru/summer_camp2" class="rate-card__alt-link" target="_blank" rel="noopener" data-metrika-goal="camp-have-subscription-6m">У меня уже есть абонемент</a>
+        <p class="rate-card__installment">Доступна рассрочка 6&nbsp;платежей по&nbsp;798&nbsp;₽</p>
+      </article>
+
+      <!-- ПУТЁВКА № 3 — 1 год, featured -->
+      <article class="rate-card rate-card--featured">
+        <img class="rate-card__decor" src="assets/theme/el-3.webp" alt="" width="700" height="619" loading="lazy" aria-hidden="true" />
+        <div class="rate-card__badges">
+          <span class="rate-card__badge-top">Популярно</span>
+          <span class="rate-card__badge-top rate-card__badge-top--limited">Лимитированный тариф</span>
+        </div>
+        <h3 class="rate-card__title">Интенсив + клуб 1&nbsp;год</h3>
+        <div class="rate-card__price">
+          <span class="rate-card__price-row">
+            <s class="rate-card__old">19&nbsp;633&nbsp;₽</s>
+            <span class="rate-card__discount">Скидка 70%</span>
+          </span>
+          <span class="rate-card__new">5&nbsp;890&nbsp;₽</span>
+          <span class="rate-card__permonth">491 руб в&nbsp;месяц</span>
+        </div>
+        <ul class="rate-card__features">
+          <li class="rate-card__features-hero"><strong>Участие в&nbsp;интенсиве «Летний лагерь». Старт 12&nbsp;августа</strong></li>
+          <li class="rate-card__features-key"><strong>Готовая система похудения на&nbsp;шагах</strong></li>
+          <li>25&nbsp;программ и&nbsp;<strong>400+</strong> шагательных тренировок</li>
+          <li><strong>Новое меню + более 160&nbsp;тематических рецептов. Полное собрание!</strong></li>
+          <li>Доступ ко&nbsp;всем активностям лагеря, новым тренировкам и&nbsp;зарядкам!</li>
+          <li>30&nbsp;тренировок для здоровой спины и&nbsp;растяжек</li>
+          <li>Чат поддержки с&nbsp;интерактивными играми между командами</li>
+          <li>Участие в&nbsp;творческом онлайн мастер-классе: Создадим нечто прекрасное!</li>
+          <li><strong>Вебинары специалистов про здоровье и&nbsp;заботу о&nbsp;себе</strong></li>
+          <li class="rate-card__features-club"><strong>Доступ к&nbsp;клубу ШАГАЙ ДОМА на&nbsp;1&nbsp;год</strong></li>
+        </ul>
+        <p class="rate-card__gift"><span class="rate-card__gift-emoji" aria-hidden="true">🎁</span> <strong>В&nbsp;подарок</strong> — «Бесплатное пополнение шагательных тренировок и&nbsp;программ»</p>
+        <a href="https://walk-walk.ru/summer_camp2/tarif_3" class="btn btn--white btn--block" data-metrika-goal="camp-rate-1y-click">Оформить абонемент</a>
+        <a href="https://my.walk-walk.ru/summer_camp2" class="rate-card__alt-link rate-card__alt-link--on-red" target="_blank" rel="noopener" data-metrika-goal="camp-have-subscription-1y">У меня уже есть абонемент</a>
+        <p class="rate-card__installment">Доступна рассрочка 6&nbsp;платежей по&nbsp;982&nbsp;₽</p>
       </article>
 
     </div>
@@ -545,26 +654,68 @@
 </section>
 
 <!-- ============================================================ -->
-<!-- 7. ФИНАЛЬНЫЙ CTA                                              -->
+<!-- 7. ВСЕГО ОТ 15 МИНУТ В ДЕНЬ — фото + 3 пункта + финальный CTA  -->
 <!-- ============================================================ -->
-<section class="finale">
+<section class="section fifteen" id="fifteen">
   <div class="container">
-    <div class="finale__card">
-      <img class="tie-mark tie-mark--on-red" src="https://static.tildacdn.com/tild3964-3537-4665-a637-323334363363/61161_2-Photoroom.png" alt="" width="400" height="400" loading="lazy" />
-      <h2 class="finale__title">Готова провести это лето ярко и&nbsp;в&nbsp;отличной форме?</h2>
-      <p class="finale__lead">Записывайся в&nbsp;лагерь, присоединяйся к&nbsp;нашей летней команде!</p>
+    <h2 class="section__title">Всего <span class="accent">от&nbsp;15&nbsp;минут</span> в&nbsp;день!</h2>
+    <p class="section__lead">Без привязки к&nbsp;определённому времени. Наш лагерь круглосуточный, занимайся когда удобно!</p>
 
-      <ul class="finale__list">
-        <li>Онлайн, старт 12&nbsp;августа</li>
-        <li>Нужен только смартфон и&nbsp;носочки</li>
-        <li>В&nbsp;любое время</li>
-        <li>Без боли и&nbsp;преодоления</li>
+    <div class="fifteen__grid">
+      <figure class="fifteen__photo">
+        <img src="assets/theme/el-9.webp" alt="Участницы лагеря у&nbsp;жёлтого автобуса на поляне с палатками" width="700" height="658" loading="lazy" />
+      </figure>
+
+      <ul class="fifteen__list">
+        <li class="fifteen__item">
+          <span class="fifteen__icon" aria-hidden="true">
+            <!-- горн -->
+            <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M4 13.6h3.2L15 19V5L7.2 10.4H4a1 1 0 0 0-1 1v1.2a1 1 0 0 0 1 1Z"/>
+              <path d="M18.2 9.2a4.2 4.2 0 0 1 0 5.6"/>
+              <path d="M20.8 6.8a7.6 7.6 0 0 1 0 10.4"/>
+            </svg>
+          </span>
+          <div class="fifteen__body">
+            <h3>Утренний горн</h3>
+            <p>Новая бодрящая зарядка с&nbsp;Димой. Свежий подход, чтобы утро зазвучало по-новому!</p>
+          </div>
+        </li>
+        <li class="fifteen__item">
+          <span class="fifteen__icon" aria-hidden="true">
+            <!-- гантель -->
+            <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M3 9v6"/><path d="M6.6 4.8v14.4"/><path d="M17.4 4.8v14.4"/><path d="M21 9v6"/><path d="M6.6 12h10.8"/>
+            </svg>
+          </span>
+          <div class="fifteen__body">
+            <h3>Тренировки с&nbsp;новыми тренерами</h3>
+            <p>Новая тренировка каждый день! Дай себе возможность стать активной и&nbsp;радующейся этой жизни</p>
+          </div>
+        </li>
+        <li class="fifteen__item">
+          <span class="fifteen__icon" aria-hidden="true">
+            <!-- сердце -->
+            <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 19.8L4.6 12.4A4.7 4.7 0 0 1 4.6 5.8 4.7 4.7 0 0 1 11.2 5.8L12 6.6 12.8 5.8A4.7 4.7 0 0 1 19.4 5.8 4.7 4.7 0 0 1 19.4 12.4Z"/>
+            </svg>
+          </span>
+          <div class="fifteen__body">
+            <h3>Комната отдыха</h3>
+            <p>Приятные задания, чтобы полюбить себя ещё сильнее. Массаж лица для летней свежести, чтобы восстановить силы и&nbsp;напитаться энергией</p>
+          </div>
+        </li>
       </ul>
-
-      <p class="finale__cta-wrap">
-        <a href="#rates" class="btn btn--white btn--lg" data-metrika-goal="camp-result-cta">Еду в летний лагерь!</a>
-      </p>
     </div>
+
+    <p class="fifteen__more">
+      <img class="theme-mark theme-mark--inline" src="assets/theme/el-8.webp" alt="" width="700" height="572" loading="lazy" aria-hidden="true" />
+      <span><strong>А&nbsp;ещё?</strong> Раздел «Радиола», Интерактивные игры, Кинотеатр… у&nbsp;нас для вас много сюрпризов, будет весело!</span>
+    </p>
+
+    <p class="fifteen__cta">
+      <a href="#rates" class="btn btn--primary btn--lg" data-metrika-goal="camp-result-cta">Еду в летний лагерь!</a>
+    </p>
   </div>
 </section>
 
@@ -638,6 +789,6 @@
 
 <button class="back-to-top" id="backToTop" type="button" aria-label="Наверх">↑</button>
 
-<script src="script.js?v=camp-C"></script>
+<script src="script.js?v=camp-D"></script>
 </body>
 </html>

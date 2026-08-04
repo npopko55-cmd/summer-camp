@@ -20,7 +20,7 @@ from pathlib import Path
 BASE = Path(__file__).parent
 # TODO: подтвердить имя репозитория GitHub Pages для этого лендинга
 CDN = "https://npopko55-cmd.github.io/summer-camp"
-VER = "camp-C"
+VER = "camp-D"
 
 html = (BASE / "index.html").read_text(encoding="utf-8")
 body = re.search(r"<body[^>]*>(.*?)</body>", html, re.DOTALL).group(1)
@@ -38,16 +38,16 @@ def pos(patt):
         raise SystemExit(f"Не нашёл: {patt}")
     return m.start()
 
-# Порядок секций (как в прототипе Miro):
-# hero → вожатые → тренировки → что внутри → результаты → тарифы → финальный CTA → помощь
-p_workouts = pos(r'<section[^>]*id="workouts"')
-p_results  = pos(r'<section[^>]*id="results"')
-p_finale   = pos(r'<section[^>]*class="[^"]*\bfinale\b')
+# Порядок секций (по прототипу Miro):
+# hero(+мини-пункты) → вожатский отряд → музыка → что внутри → отзывы → тарифы → 15 минут → помощь
+p_work   = pos(r'<section[^>]*id="workouts"')
+p_res    = pos(r'<section[^>]*id="results"')
+p_fifteen= pos(r'<section[^>]*id="fifteen"')
 
-part_a  = body[:p_workouts]           # топбар+шапка+меню+hero+вожатые
-part_b1 = body[p_workouts:p_results]  # тренировки + что внутри
-part_b2 = body[p_results:p_finale]    # результаты + баннер тарифов + тарифы
-tail    = body[p_finale:]             # финальный CTA + помощь + футер + sticky + script
+part_a  = body[:p_work]              # топбар+шапка+меню+hero+мини-пункты+вожатский отряд
+part_b1 = body[p_work:p_res]         # музыка + что вас ждёт в лагере
+part_b2 = body[p_res:p_fifteen]      # отзывы + баннер тарифов + тарифы
+tail    = body[p_fifteen:]           # 15 минут + помощь + футер + sticky + script
 
 # 3. Анти-mojibake: не-ASCII → &#NNNN;
 def to_entities(text):
