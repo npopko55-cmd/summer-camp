@@ -24,11 +24,10 @@
   --  assets/team/nastya.webp
   --  assets/team/sasha.webp
   --  assets/theme/el-2.webp
-  --  assets/theme/el-4.webp
   --  assets/theme/el-5.webp
   --  assets/theme/el-6.webp
   --  assets/theme/el-7.webp
   --  assets/theme/el-8.webp
   --  assets/theme/el-9.webp
 
-всего 30, уже есть ссылок: 0
+всего 29, уже есть ссылок: 0

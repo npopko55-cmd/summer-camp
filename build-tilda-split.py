@@ -22,9 +22,18 @@ from pathlib import Path
 BASE = Path(__file__).parent
 # TODO: подтвердить имя репозитория GitHub Pages для этого лендинга
 CDN = "https://npopko55-cmd.github.io/summer-camp"
-VER = "camp-O"
+VER = "camp-P"
 
 html = (BASE / "index.html").read_text(encoding="utf-8")
+
+# Подключение шрифтов НЕ дублируем руками, а забираем из index.html.
+# Раньше строка была зашита здесь: при переходе на ретро сайт переехал на
+# Oswald, а сборщик продолжал тянуть Unbounded — на Тильде заголовки молча
+# падали на запасной Arial Narrow, хотя локально всё выглядело правильно.
+_m = re.search(r'<link[^>]+fonts\.googleapis\.com/css2[^>]*>', html)
+if not _m:
+    raise SystemExit("В index.html не найдено подключение Google Fonts")
+FONT_LINK = _m.group(0)
 body = re.search(r"<body[^>]*>(.*?)</body>", html, re.DOTALL).group(1)
 
 # 1. Комментарии прочь, assets → CDN
@@ -87,7 +96,7 @@ HERO_IMG = f"{CDN}/assets/hero/hero-camp2-700.webp"
 HEAD_HINTS = f"""<link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link rel="preconnect" href="https://npopko55-cmd.github.io" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;600&family=Inter:wght@400;500;600&display=swap&subset=latin,cyrillic" rel="stylesheet" />
+{FONT_LINK}
 <link rel="preload" as="image" href="{HERO_IMG}" fetchpriority="high"
       imagesrcset="{CDN}/assets/hero/hero-camp2-700.webp 700w, {CDN}/assets/hero/hero-camp2-900.webp 900w, {CDN}/assets/hero/hero-camp2-1100.webp 1100w"
       imagesizes="(max-width: 900px) 85vw, 38vw" />

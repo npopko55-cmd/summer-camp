@@ -114,9 +114,11 @@ def split_css(text, limit):
     return parts
 
 
-HEAD = """<link rel="preconnect" href="https://fonts.googleapis.com" />
+FONT_LINK = re.search(r'<link[^>]+fonts\.googleapis\.com/css2[^>]*>', html).group(0)
+
+HEAD = f"""<link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Inter:wght@400;500;600&display=swap&subset=latin,cyrillic" rel="stylesheet" />
+{FONT_LINK}
 """
 
 files = []
