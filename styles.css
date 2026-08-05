@@ -723,15 +723,196 @@ h1, h2, h3 { font-family: var(--font-h); font-weight: 600; margin: 0; line-heigh
   .hero__promise-text { font-size: 16px; }
 }
 
+/* ============ ДЛЯ КОГО / ЧТО ТАКОЕ ЛАГЕРЬ — пары «путёвка + лист» ======
+   Две секции одной конструкции: красная половина (та же отрывная путёвка,
+   что и в hero — перфорация слева, штамп под углом) и бумажный лист со
+   списком. Во второй секции порядок зеркальный (--mirror), чтобы красное
+   не выстраивалось в колонку по одной стороне экрана. */
+.duo {
+  display: grid;
+  grid-template-columns: 1fr minmax(0, 1.15fr);
+  gap: 22px;
+  align-items: stretch;
+  margin-top: 36px;
+}
+.duo--mirror { grid-template-columns: minmax(0, 1.15fr) 1fr; }
+.duo__card {
+  position: relative;
+  border-radius: var(--radius-card);
+  padding: 34px 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  overflow: hidden;
+}
+.duo__card--red {
+  background: var(--color-primary);
+  color: #fff;
+  border: 1px solid var(--color-primary);
+  box-shadow: inset 0 0 0 1px rgba(255,255,255,.28);
+}
+/* перфорация — как у путёвки в hero, тем же шагом 20px */
+.duo__card--red::before {
+  content: "";
+  position: absolute;
+  left: 0; top: 0; bottom: 0;
+  width: 13px;
+  z-index: 2;
+  pointer-events: none;
+  background-image: radial-gradient(circle at 0 50%, var(--color-bg) 0 5.5px, rgba(244,234,217,0) 6px);
+  background-size: 13px 20px;
+  background-repeat: repeat-y;
+}
+.duo__card--red > * { position: relative; z-index: 1; }
+.duo__card--paper {
+  background: var(--color-paper);
+  border: 1px solid var(--color-line);
+  box-shadow: var(--shadow-sm);
+}
+.duo__slogan {
+  font-family: var(--font-h);
+  font-weight: 700;
+  font-size: clamp(24px, 2.7vw, 38px);
+  line-height: 1.14;          /* Oswald капсом липнет при меньшем */
+  letter-spacing: .01em;
+  text-transform: uppercase;
+  margin: 0;
+  max-width: 15ch;
+}
+/* штамп в углу — тот же приём, что «СМЕНА 2026» на фото hero */
+.duo__stamp {
+  position: absolute;
+  top: 18px; right: 16px;
+  z-index: 2;
+  font-family: var(--font-m);
+  font-size: 11px;
+  font-weight: 700;
+  line-height: 1.25;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  text-align: center;
+  color: rgba(255,255,255,.92);
+  border: 2px solid rgba(255,255,255,.55);
+  border-radius: 3px;
+  padding: 6px 10px;
+  transform: rotate(-8deg);
+}
+.duo__lead {
+  font-family: var(--font-h);
+  font-weight: 600;
+  font-size: clamp(17px, 1.5vw, 20px);
+  line-height: 1.3;
+  text-transform: uppercase;
+  letter-spacing: .015em;
+  margin: 0 0 20px;
+}
+.duo__note {
+  margin: 22px 0 0;
+  padding: 16px 18px;
+  background: var(--color-cream);
+  border-left: 4px double var(--color-primary);
+  border-radius: var(--radius-inner);
+  font-size: 15px;
+  line-height: 1.5;
+  color: var(--color-muted);
+}
+.duo__note strong { color: var(--color-text); }
+/* Пункты со звездой-маркером — тот же знак, что в составе тарифов, чтобы
+   списки по всей странице читались как один язык. */
+.checklist { list-style: none; margin: 0; padding: 0; display: grid; gap: 14px; }
+.checklist li {
+  position: relative;
+  padding-left: 30px;
+  font-size: 16px;
+  line-height: 1.45;
+}
+.checklist li::before {
+  content: "★";
+  position: absolute;
+  left: 0; top: -1px;
+  color: var(--color-primary);
+  font-size: 15px;
+  line-height: 1.6;
+}
+@media (max-width: 900px) {
+  .duo, .duo--mirror { grid-template-columns: minmax(0, 1fr); gap: 16px; }
+  /* на узком красная половина всегда сверху — она задаёт настроение блока */
+  .duo--mirror .duo__card--red { order: -1; }
+  .duo__card { padding: 26px 22px; }
+  .duo__slogan { max-width: none; }
+}
+@media (max-width: 480px) {
+  .duo__card { padding: 22px 18px; }
+  .duo__stamp { top: 12px; right: 10px; font-size: 10px; padding: 5px 8px; }
+  .checklist li { font-size: 15px; padding-left: 26px; }
+}
+
 /* ================= ВОЖАТСКИЙ ОТРЯД — ДОСКА ПОЧЁТА ============== */
 /* 9 человек. Сетка 3 → 2 → 1. Простая надёжная сетка, без карусели:
    на мобиле горизонтальный скролл в секции — источник ложных «свайпов». */
 .counselors { background-color: var(--color-cream); background-image: var(--paper-grain); }
+/* КАРУСЕЛЬ. Отряд из девяти человек сеткой 3x3 занимал почти три экрана и
+   отодвигал тарифы вниз. Лентой он читается за один взгляд, а карточка стала
+   вдвое у́же — фото мельче, но лицо и подпись остаются разборчивыми.
+   Прокрутка нативная (scroll-snap), стрелки лишь доводят её кнопками:
+   на телефоне свайп работает и без JS. */
+.squad-carousel {
+  position: relative;
+  margin-top: 36px;
+}
 .squad {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 22px;
+  grid-auto-flow: column;
+  grid-auto-columns: 208px;
+  gap: 16px;
   align-items: stretch;
+  overflow-x: auto;
+  /* НИ scroll-snap, НИ scroll-behavior: smooth здесь быть не должно.
+     Вместе с программным scrollTo({behavior:'smooth'}) из script.js они
+     дают две конкурирующие анимации: snap возвращает ленту на точку
+     привязки, следующий шаг считается от неверной позиции — лента
+     залипает на второй карточке и дальше не листается (проверено).
+     Плавность задаёт только JS, на своё усмотрение. */
+  /* 6px снизу — чтобы тень карточки не срезалась краем скролл-контейнера */
+  padding: 4px 4px 6px;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+.squad::-webkit-scrollbar { display: none; }
+.squad:focus-visible { outline: 2px solid var(--color-primary); outline-offset: 3px; }
+.squad-nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 3;
+  width: 40px; height: 40px;
+  display: flex; align-items: center; justify-content: center;
+  background: var(--color-primary);
+  color: #fff;
+  border: none;
+  border-radius: var(--radius-pill);
+  box-shadow: var(--shadow-md);
+  cursor: pointer;
+  transition: background .2s, opacity .2s;
+}
+.squad-nav--prev { left: -18px; }
+.squad-nav--next { right: -18px; }
+@media (hover: hover) { .squad-nav:hover { background: var(--color-accent-dark); } }
+/* Доехали до края — кнопка гаснет, но остаётся в потоке: если её убирать
+   совсем, лента дёргается по ширине. */
+.squad-nav[disabled] { opacity: .3; cursor: default; }
+/* Карточка в ленте: у́же, поэтому паддинг и кегль подписи уменьшены. */
+.squad-carousel .squad-card { padding: 12px; gap: 8px; }
+.squad-carousel .squad-card__name { font-size: 13px; }
+.squad-carousel .squad-card__text { font-size: 13px; line-height: 1.4; }
+@media (max-width: 1240px) {
+  /* стрелки заходят внутрь ленты, иначе вылезают за контейнер */
+  .squad-nav--prev { left: -6px; }
+  .squad-nav--next { right: -6px; }
+}
+@media (max-width: 700px) {
+  .squad { grid-auto-columns: 168px; gap: 12px; }
+  .squad-nav { display: none; }   /* на телефоне свайп удобнее кнопок */
 }
 .squad-card {
   display: flex;
@@ -801,12 +982,12 @@ h1, h2, h3 { font-family: var(--font-h); font-weight: 600; margin: 0; line-heigh
 }
 .squad-card__role { font-weight: 500; }
 .squad-card__text { margin: 0; font-size: 15px; line-height: 1.5; color: var(--color-text); }
-@media (max-width: 900px) {
-  .squad { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; }
-}
+/* Правил .squad для узких экранов здесь больше нет: остались от сетки 3x3
+   и перебивали карусель — задавали grid-template-columns, из-за чего треки
+   считались по шаблону, а не по grid-auto-columns, и карточки схлопывались
+   в 26px. Адаптив ленты живёт выше, в её собственном медиа-запросе. */
 @media (max-width: 620px) {
   .counselors { padding: 56px 0; }
-  .squad { grid-template-columns: minmax(0, 1fr); max-width: 420px; margin-left: auto; margin-right: auto; }
 }
 
 /* ======================== ТРЕНИРОВКИ — «ПЛАСТИНКИ» ============= */

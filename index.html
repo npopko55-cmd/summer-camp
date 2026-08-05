@@ -33,7 +33,7 @@
         imagesrcset="assets/hero/hero-camp2-700.webp 700w, assets/hero/hero-camp2-900.webp 900w, assets/hero/hero-camp2-1100.webp 1100w"
         imagesizes="(max-width: 900px) 85vw, 38vw" />
 
-  <link rel="stylesheet" href="styles.css?v=camp-L" />
+  <link rel="stylesheet" href="styles.css?v=camp-N" />
 </head>
 <body>
 
@@ -85,9 +85,10 @@
 <div class="overlay-nav" id="overlayNav" aria-hidden="true">
   <button class="overlay-nav__close" id="closeNavBtn" aria-label="Закрыть меню">×</button>
   <nav class="overlay-nav__list" aria-label="Меню">
+    <a href="#forwhom">Для кого</a>
+    <a href="#whatis">Что это</a>
     <a href="#counselors">Вожатский отряд</a>
     <a href="#workouts">Музыка смены</a>
-    <a href="#inside">Что внутри</a>
     <a href="#results">Отзывы</a>
     <a href="#rates">Тарифы</a>
     <a href="#contacts">Контакты</a>
@@ -225,7 +226,68 @@
 </section>
 
 <!-- ============================================================ -->
-<!-- 2. ВОЖАТСКИЙ ОТРЯД — доска почёта, 9 человек                 -->
+<!-- 2. ДЛЯ КОГО ЭТОТ ИНТЕНСИВ — путёвка слева, чек-лист справа   -->
+<!-- ============================================================ -->
+<section class="section forwhom" id="forwhom">
+  <div class="container">
+    <img class="theme-mark" src="assets/theme/el-6.webp" alt="" width="700" height="700" loading="lazy" aria-hidden="true" />
+    <h2 class="section__title">Для кого этот интенсив?</h2>
+
+    <div class="duo">
+      <!-- Красная половина — та же путёвка, что и в hero: перфорация слева,
+           канцелярская подпись в углу. Ритм узнаётся с первого экрана. -->
+      <div class="duo__card duo__card--red">
+        <span class="duo__stamp" aria-hidden="true">Отряд<br />ждёт</span>
+        <p class="duo__slogan">Лето&nbsp;— это маленькая жизнь! Проживём её&nbsp;на&nbsp;все сто?</p>
+      </div>
+
+      <div class="duo__card duo__card--paper">
+        <p class="duo__lead">Вам хочется:</p>
+        <ul class="checklist">
+          <li>Не&nbsp;просто тренироваться, а&nbsp;делать это весело и&nbsp;с&nbsp;азартом?</li>
+          <li>Влезть в&nbsp;те&nbsp;самые джинсы или любимое летнее платье?</li>
+          <li>Почувствовать прилив энергии и&nbsp;лёгкость, как в&nbsp;молодости?</li>
+          <li>Отдохнуть душой, перезагрузиться и&nbsp;сбросить не&nbsp;только вес, но&nbsp;и&nbsp;груз забот?</li>
+          <li>Услышать знакомые хиты и&nbsp;научиться под них двигаться?</li>
+          <li>Обрести новых друзей и&nbsp;соревноваться за&nbsp;призы?</li>
+        </ul>
+        <p class="duo__note">Если вы&nbsp;кивнули хотя&nbsp;бы дважды&nbsp;— добро пожаловать в&nbsp;наш отряд! Мы&nbsp;объявляем старт самого <strong>незабываемого</strong> интенсива!</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- 3. ЧТО ТАКОЕ «ЛЕТНИЙ ЛАГЕРЬ» — зеркально: список слева       -->
+<!-- ============================================================ -->
+<section class="section whatis" id="whatis">
+  <div class="container">
+    <img class="theme-mark" src="assets/theme/el-8.webp" alt="" width="700" height="700" loading="lazy" aria-hidden="true" />
+    <h2 class="section__title">Что такое «Летний лагерь»?</h2>
+
+    <div class="duo duo--mirror">
+      <div class="duo__card duo__card--paper">
+        <p class="duo__lead">Забудьте слово «тренировка»! Мы&nbsp;отправляемся в&nbsp;виртуальный спортивный лагерь, где вас ждут:</p>
+        <ul class="checklist">
+          <li><strong>Зажигательные ДИСКОТЕКИ</strong> вместо скучных упражнений</li>
+          <li><strong>Настоящие лагерные ИГРЫ</strong> и&nbsp;творческие активности</li>
+          <li><strong>Душевные посиделки у&nbsp;«костра»</strong> с&nbsp;нашими экспертами</li>
+          <li><strong>Особое «лагерное» МЕНЮ</strong>&nbsp;— худеть будем вкусно и&nbsp;сытно!</li>
+          <li><strong>Атмосфера дружбы и&nbsp;поддержки</strong>, по&nbsp;которой мы&nbsp;все так скучали!</li>
+        </ul>
+        <p class="duo__note"><strong>Ценность:</strong> вы&nbsp;не&nbsp;просто занимаетесь спортом. Вы&nbsp;получаете полноценный отдых, новые впечатления и&nbsp;стройную фигуру в&nbsp;одной путёвке!</p>
+      </div>
+
+      <div class="duo__card duo__card--red">
+        <span class="duo__stamp" aria-hidden="true">Смена<br />2026</span>
+        <p class="duo__slogan">Это ваш билет в&nbsp;атмосферу беззаботности и&nbsp;лёгкого тела!</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- 4. ВОЖАТСКИЙ ОТРЯД — доска почёта, 9 человек                 -->
 <!-- Фото: assets/team/*.webp. Один слот без фото:                -->
 <!--   • Тайный специалист — красный слот с «?» ПО ЗАМЫСЛУ,        -->
 <!--     фото не нужно.                                            -->
@@ -236,7 +298,11 @@
     <h2 class="section__title">Наш вожатский отряд!</h2>
     <p class="section__lead">Эти люди сделают вашу смену самой незабываемой!</p>
 
-    <div class="squad">
+    <div class="squad-carousel">
+      <button class="squad-nav squad-nav--prev" type="button" aria-label="Предыдущие вожатые" aria-controls="squadTrack">
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5 8 12l7 7"/></svg>
+      </button>
+      <div class="squad" id="squadTrack" tabindex="0" role="group" aria-label="Вожатский отряд, прокручивается вбок">
 
       <article class="squad-card">
         <div class="squad-card__frame">
@@ -309,7 +375,11 @@
         <p class="squad-card__text">Вы&nbsp;— у&nbsp;неё на&nbsp;карандаше! Нужно же&nbsp;понимать, кому дарить подарки и&nbsp;похвальные овации!</p>
       </article>
 
-    </div>
+      </div>
+      <button class="squad-nav squad-nav--next" type="button" aria-label="Следующие вожатые" aria-controls="squadTrack">
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 5 7 7-7 7"/></svg>
+      </button>
+</div>
   </div>
 </section>
 
@@ -381,130 +451,6 @@
 <!-- ============================================================ -->
 <!-- 4. ЧТО ВНУТРИ — условия + 6 карточек программы лагеря         -->
 <!-- ============================================================ -->
-<section class="section inside" id="inside">
-  <div class="container">
-    <img class="theme-mark" src="assets/theme/el-4.webp" alt="" width="700" height="700" loading="lazy" aria-hidden="true" />
-    <h2 class="section__title">Что вас ждёт в&nbsp;лагере</h2>
-    <p class="section__lead">Виртуальная смена: заниматься можно из&nbsp;дома, дачи или отпуска&nbsp;— лагерь всегда в&nbsp;телефоне.</p>
-
-    <ul class="conditions">
-      <li class="conditions__item">
-        <span class="conditions__icon" aria-hidden="true">
-          <!-- глобус -->
-          <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-            <circle cx="12" cy="12" r="8.6"/>
-            <path d="M3.4 12h17.2"/>
-            <path d="M12 3.4a10 10 0 0 1 0 17.2"/>
-            <path d="M12 3.4a10 10 0 0 0 0 17.2"/>
-          </svg>
-        </span>
-        <span>Любой город, без привязки к&nbsp;часовому поясу</span>
-      </li>
-      <li class="conditions__item">
-        <span class="conditions__icon" aria-hidden="true">
-          <!-- часы -->
-          <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-            <circle cx="12" cy="12" r="8.6"/>
-            <path d="M12 6.8V12l3.8 2.4"/>
-          </svg>
-        </span>
-        <span>Всего 15−25&nbsp;минут в&nbsp;день</span>
-      </li>
-      <li class="conditions__item">
-        <span class="conditions__icon" aria-hidden="true">
-          <!-- смартфон -->
-          <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-            <rect x="6.6" y="3" width="10.8" height="18" rx="2.6"/>
-            <path d="M10.4 6h3.2"/>
-            <path d="M12 18.2h.01"/>
-          </svg>
-        </span>
-        <span>Нужен только смартфон и&nbsp;кроссовки (или&nbsp;носочки)</span>
-      </li>
-    </ul>
-
-    <div class="inside__grid">
-      <article class="inside-card">
-        <span class="inside-card__icon" aria-hidden="true">
-          <!-- гантель -->
-          <svg viewBox="0 0 24 24" width="32" height="32" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M3 9v6"/>
-            <path d="M6.6 4.8v14.4"/>
-            <path d="M17.4 4.8v14.4"/>
-            <path d="M21 9v6"/>
-            <path d="M6.6 12h10.8"/>
-          </svg>
-        </span>
-        <h3>Спортивный зал и&nbsp;дискотека</h3>
-        <p>Бодрящие утренние зарядки и&nbsp;шагательные дискотеки под летние хиты.</p>
-      </article>
-
-      <article class="inside-card">
-        <span class="inside-card__icon" aria-hidden="true">
-          <!-- сердце -->
-          <svg viewBox="0 0 24 24" width="32" height="32" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M12 19.8L4.6 12.4A4.7 4.7 0 0 1 4.6 5.8 4.7 4.7 0 0 1 11.2 5.8L12 6.6 12.8 5.8A4.7 4.7 0 0 1 19.4 5.8 4.7 4.7 0 0 1 19.4 12.4Z"/>
-          </svg>
-        </span>
-        <h3>Забота о&nbsp;себе</h3>
-        <p>Уроки фейс-йоги, творческий вебинар и&nbsp;задания «Для себя любимой».</p>
-      </article>
-
-      <article class="inside-card">
-        <span class="inside-card__icon" aria-hidden="true">
-          <!-- вилка и ложка -->
-          <svg viewBox="0 0 24 24" width="32" height="32" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M8 3.2v17.6"/>
-            <path d="M5 3.2v4.8h6V3.2"/>
-            <ellipse cx="16" cy="7" rx="3" ry="3.8"/>
-            <path d="M16 10.8v10"/>
-          </svg>
-        </span>
-        <h3>Столовая</h3>
-        <p>Вкусное летнее меню и&nbsp;160+ тематических рецептов&nbsp;— просто и&nbsp;без диет.</p>
-      </article>
-
-      <article class="inside-card">
-        <span class="inside-card__icon" aria-hidden="true">
-          <!-- раскрытая книга -->
-          <svg viewBox="0 0 24 24" width="32" height="32" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M3 4.6h5.2c2.1 0 3.8 1.3 3.8 2.8v12.4c0-1.5-1.7-2.8-3.8-2.8H3Z"/>
-            <path d="M21 4.6h-5.2c-2.1 0-3.8 1.3-3.8 2.8v12.4c0-1.5 1.7-2.8 3.8-2.8H21Z"/>
-          </svg>
-        </span>
-        <h3>Кинозал и&nbsp;библиотека</h3>
-        <p>Уютные вечера за&nbsp;фильмами и&nbsp;историями у&nbsp;костра.</p>
-      </article>
-
-      <article class="inside-card">
-        <span class="inside-card__icon" aria-hidden="true">
-          <!-- облачко сообщения -->
-          <svg viewBox="0 0 24 24" width="32" height="32" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M20.8 15.2a2.4 2.4 0 0 1-2.4 2.4H7.6l-4 3.4V5.4a2.4 2.4 0 0 1 2.4-2.4h12.4a2.4 2.4 0 0 1 2.4 2.4Z"/>
-            <path d="M8 10.2h.01M12 10.2h.01M16 10.2h.01"/>
-          </svg>
-        </span>
-        <h3>Отрядный чат</h3>
-        <p>Место силы и&nbsp;поддержки: знакомства, общение и&nbsp;розыгрыши призов.</p>
-      </article>
-
-      <article class="inside-card">
-        <span class="inside-card__icon" aria-hidden="true">
-          <!-- подарок -->
-          <svg viewBox="0 0 24 24" width="32" height="32" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-            <rect x="3" y="7.4" width="18" height="4.8" rx="1"/>
-            <path d="M4.8 12.2v6.8a2 2 0 0 0 2 2h10.4a2 2 0 0 0 2-2v-6.8"/>
-            <path d="M12 7.4v13.6"/>
-            <path d="M12 7.4H7.6a2.2 2.2 0 0 1 0-4.4c3.4 0 4.4 4.4 4.4 4.4Z"/>
-            <path d="M12 7.4h4.4a2.2 2.2 0 0 0 0-4.4C13 3 12 7.4 12 7.4Z"/>
-          </svg>
-        </span>
-        <h3>Секретные бонусы</h3>
-        <p>Сюрпризы, о&nbsp;которых мы&nbsp;пока молчим. Узнаете уже в&nbsp;смене!</p>
-      </article>
-    </div>
-  </div>
-</section>
 
 <!-- ============================================================ -->
 <!-- 5. ФОТООТЗЫВЫ УЧАСТНИЦ — 4 КВАДРАТНЫХ фрейма (1:1)            -->
@@ -861,6 +807,6 @@
 
 <button class="back-to-top" id="backToTop" type="button" aria-label="Наверх">↑</button>
 
-<script src="script.js?v=camp-L"></script>
+<script src="script.js?v=camp-N"></script>
 </body>
 </html>

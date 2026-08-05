@@ -9,11 +9,12 @@ assets/ → абсолютные URL на CDN (сейчас страница х�
 локальных ассетов нет — правила ниже оставлены на будущее, когда появятся фото).
 
 Блоки:
-- Блок 1: head-хинты + топбар + шапка + меню + hero + «Новые вожатые»
-- Блок 2: тренировки-«пластинки» + «Что вас ждёт в лагере»
-- Блок 3: отзывы участниц (10 карточек, поэтому отдельным блоком)
-- Блок 4: баннер тарифов + тарифы
-- Блок 5: финальный CTA + помощь + футер + sticky-cta + back-to-top + <script>
+- Блок 1: head-хинты + топбар + шапка + меню + hero + «Для кого» + «Что это»
+- Блок 2: вожатский отряд (карусель)
+- Блок 3: музыкальные пластинки
+- Блок 4: отзывы участниц
+- Блок 5: баннер тарифов + тарифы
+- Блок 6: «15 минут» + помощь + футер + sticky-cta + back-to-top + <script>
 """
 import re
 from pathlib import Path
@@ -21,7 +22,7 @@ from pathlib import Path
 BASE = Path(__file__).parent
 # TODO: подтвердить имя репозитория GitHub Pages для этого лендинга
 CDN = "https://npopko55-cmd.github.io/summer-camp"
-VER = "camp-L"
+VER = "camp-N"
 
 html = (BASE / "index.html").read_text(encoding="utf-8")
 body = re.search(r"<body[^>]*>(.*?)</body>", html, re.DOTALL).group(1)
@@ -61,13 +62,15 @@ def pos(patt):
 
 # Порядок секций (по прототипу Miro):
 # hero(+мини-пункты) → вожатский отряд → музыка → что внутри → отзывы → тарифы → 15 минут → помощь
+p_couns  = pos(r'<section[^>]*id="counselors"')
 p_work   = pos(r'<section[^>]*id="workouts"')
 p_res    = pos(r'<section[^>]*id="results"')
 p_banner = pos(r'<section[^>]*class="rates-banner"')
 p_fifteen= pos(r'<section[^>]*id="fifteen"')
 
-part_a  = body[:p_work]              # топбар+шапка+меню+hero+мини-пункты+вожатский отряд
-part_b1 = body[p_work:p_res]         # музыка + что вас ждёт в лагере
+part_a  = body[:p_couns]             # топбар+шапка+меню+hero+«Для кого»+«Что это»
+part_b0 = body[p_couns:p_work]       # вожатский отряд (карусель)
+part_b1 = body[p_work:p_res]         # музыкальные пластинки
 part_b2 = body[p_res:p_banner]       # отзывы участниц
 part_b3 = body[p_banner:p_fifteen]   # баннер тарифов + тарифы
 tail    = body[p_fifteen:]           # 15 минут + помощь + футер + sticky + script
@@ -76,7 +79,8 @@ tail    = body[p_fifteen:]           # 15 минут + помощь + футер
 def to_entities(text):
     return "".join(c if ord(c) < 128 else f"&#{ord(c)};" for c in text)
 
-part_a, part_b1, part_b2, part_b3, tail = map(to_entities, (part_a, part_b1, part_b2, part_b3, tail))
+part_a, part_b0, part_b1, part_b2, part_b3, tail = map(
+    to_entities, (part_a, part_b0, part_b1, part_b2, part_b3, tail))
 
 # 4. Head-хинты (шрифты те же: Unbounded + Inter; hero-картинка — с CDN Тильды)
 HERO_IMG = f"{CDN}/assets/hero/hero-camp2-700.webp"
@@ -92,16 +96,18 @@ HEAD_HINTS = f"""<link rel="preconnect" href="https://fonts.googleapis.com" />
 TAIL_SCRIPT = f'\n<script src="{CDN}/script.js?v={VER}"></script>\n'
 
 block1 = HEAD_HINTS + "\n" + part_a + "\n"
-block2 = part_b1
-block3 = part_b2
-block4 = part_b3
-block5 = tail + TAIL_SCRIPT
+block2 = part_b0
+block3 = part_b1
+block4 = part_b2
+block5 = part_b3
+block6 = tail + TAIL_SCRIPT
 
 (BASE / "tilda-block-1.html").write_text(block1, encoding="utf-8")
 (BASE / "tilda-block-2.html").write_text(block2, encoding="utf-8")
 (BASE / "tilda-block-3.html").write_text(block3, encoding="utf-8")
 (BASE / "tilda-block-4.html").write_text(block4, encoding="utf-8")
 (BASE / "tilda-block-5.html").write_text(block5, encoding="utf-8")
+(BASE / "tilda-block-6.html").write_text(block6, encoding="utf-8")
 
 def sz(s):
     n = len(s)
@@ -109,9 +115,10 @@ def sz(s):
     return f"{n:,} chars ({n/1024:.1f} KB)  {ok}"
 
 print("Готово")
-print(f"  tilda-block-1.html: {sz(block1)}  — топбар+шапка+меню+hero+вожатые")
-print(f"  tilda-block-2.html: {sz(block2)}  — тренировки+что внутри")
-print(f"  tilda-block-3.html: {sz(block3)}  — отзывы участниц")
-print(f"  tilda-block-4.html: {sz(block4)}  — баннер тарифов+тарифы")
-print(f"  tilda-block-5.html: {sz(block5)}  — финальный CTA+помощь+футер+sticky+script")
+print(f"  tilda-block-1.html: {sz(block1)}  — топбар+шапка+меню+hero+для кого+что это")
+print(f"  tilda-block-2.html: {sz(block2)}  — вожатский отряд (карусель)")
+print(f"  tilda-block-3.html: {sz(block3)}  — музыкальные пластинки")
+print(f"  tilda-block-4.html: {sz(block4)}  — отзывы участниц")
+print(f"  tilda-block-5.html: {sz(block5)}  — баннер тарифов+тарифы")
+print(f"  tilda-block-6.html: {sz(block6)}  — 15 минут+помощь+футер+sticky+script")
 print(f"  Лимит T123: 30 000 chars / блок. CSS/JS — с {CDN}")

@@ -363,3 +363,96 @@
     p.audio.addEventListener('error', function () { setLoading(p, false); setState(p, false); });
   });
 })();
+
+/* ---------- Вожатский отряд: стрелки карусели ----------
+   Прокрутка нативная (overflow-x), поэтому свайп и колесо работают даже
+   если этот код не выполнился. Кнопки доводят ленту на «экран» карточек.
+
+   Плавность анимируем сами, а НЕ через scrollTo({behavior:'smooth'}):
+   в части движков (и при включённом «уменьшить движение») smooth
+   игнорируется молча — прокрутка не происходит вообще, и кнопки выглядят
+   сломанными. Проверено: scrollTo с 'auto' работает, с 'smooth' — нет.
+
+   Позицию считаем абсолютную, а не через scrollBy: при scrollBy каждый
+   следующий шаг отсчитывается от текущего scrollLeft, и если предыдущая
+   анимация ещё идёт, шаги накапливают ошибку и лента застревает.
+
+   Шаг — от реальной ширины карточки: на 700px она уже (168 вместо 208),
+   константа промахивалась бы мимо границы. */
+(function () {
+  var track = document.getElementById('squadTrack');
+  if (!track) return;
+  var prev = document.querySelector('.squad-nav--prev');
+  var next = document.querySelector('.squad-nav--next');
+  if (!prev || !next) return;
+
+  var anim = null;
+  var reduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  function unit() {
+    var card = track.querySelector('.squad-card');
+    if (!card) return 0;
+    var gap = parseFloat(getComputedStyle(track).columnGap) || 16;
+    return card.getBoundingClientRect().width + gap;
+  }
+
+  function maxScroll() {
+    return Math.max(0, track.scrollWidth - track.clientWidth);
+  }
+
+  function animateTo(target) {
+    if (anim) cancelAnimationFrame(anim);
+    // Мгновенно, без анимации, если анимировать нечем или незачем:
+    // document.hidden — вкладка в фоне, requestAnimationFrame там не тикает,
+    // и лента просто не сдвинулась бы (ловил это на скрытой вкладке).
+    if (reduced || !window.requestAnimationFrame || document.hidden) {
+      track.scrollLeft = target;
+      sync();
+      return;
+    }
+    var from = track.scrollLeft;
+    var delta = target - from;
+    if (!delta) return;
+    var dur = 320;
+    var t0 = null;
+    // Если кадры перестали приходить (вкладку свернули посреди анимации),
+    // доводим позицию по таймеру — иначе лента застынет на полпути.
+    var guard = setTimeout(function () {
+      if (anim) { cancelAnimationFrame(anim); anim = null; track.scrollLeft = target; sync(); }
+    }, dur + 260);
+    function frame(ts) {
+      if (t0 === null) t0 = ts;
+      var p = Math.min(1, (ts - t0) / dur);
+      // ease-out: быстро стартует, мягко останавливается
+      track.scrollLeft = from + delta * (1 - Math.pow(1 - p, 3));
+      if (p < 1) {
+        anim = requestAnimationFrame(frame);
+      } else {
+        anim = null;
+        clearTimeout(guard);
+        sync();
+      }
+    }
+    anim = requestAnimationFrame(frame);
+  }
+
+  function go(dir) {
+    var one = unit();
+    if (!one) return;
+    var perScreen = Math.max(1, Math.floor(track.clientWidth / one));
+    var current = Math.round(track.scrollLeft / one);
+    animateTo(Math.min(maxScroll(), Math.max(0, (current + dir * perScreen) * one)));
+  }
+
+  function sync() {
+    // 2px допуска: на ретине scrollLeft дробный, точного равенства не бывает
+    prev.disabled = track.scrollLeft <= 2;
+    next.disabled = track.scrollLeft >= maxScroll() - 2;
+  }
+
+  prev.addEventListener('click', function () { go(-1); });
+  next.addEventListener('click', function () { go(1); });
+  track.addEventListener('scroll', sync, { passive: true });
+  window.addEventListener('resize', sync);
+  sync();
+})();
