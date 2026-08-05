@@ -1,0 +1,34 @@
+Загрузить в Тильду и вписать ссылки в tilda-assets.json:
+
+  --  assets/audio/dasha.mp3
+  --  assets/audio/kostya.mp3
+  --  assets/audio/nastya.mp3
+  --  assets/hero/hero-camp2-1100.webp
+  --  assets/hero/hero-camp2-700.webp
+  --  assets/hero/hero-camp2-900.webp
+  --  assets/reviews/anon1-scales.webp
+  --  assets/reviews/anon2-scales.webp
+  --  assets/reviews/nadezhda-scales.webp
+  --  assets/reviews/natalya-scales.webp
+  --  assets/reviews/natalya1-scales.webp
+  --  assets/reviews/svetlana-body.webp
+  --  assets/reviews/svetlana-scales.webp
+  --  assets/reviews/zenta-body.webp
+  --  assets/reviews/zenta-scales.webp
+  --  assets/team/dasha.webp
+  --  assets/team/dima.webp
+  --  assets/team/galina.webp
+  --  assets/team/kostya.webp
+  --  assets/team/lida.webp
+  --  assets/team/masha.webp
+  --  assets/team/nastya.webp
+  --  assets/team/sasha.webp
+  --  assets/theme/el-2.webp
+  --  assets/theme/el-4.webp
+  --  assets/theme/el-5.webp
+  --  assets/theme/el-6.webp
+  --  assets/theme/el-7.webp
+  --  assets/theme/el-8.webp
+  --  assets/theme/el-9.webp
+
+всего 30, уже есть ссылок: 0
