@@ -10,10 +10,10 @@ assets/ → абсолютные URL на CDN (сейчас страница х�
 
 Блоки:
 - Блок 1: head-хинты + топбар + шапка + меню + hero + «Для кого» + «Что это»
-- Блок 2: вожатский отряд (карусель)
-- Блок 3: музыкальные пластинки
-- Блок 4: отзывы участниц
-- Блок 5: баннер тарифов + тарифы
+- Блок 2: музыкальные пластинки
+- Блок 3: отзывы участниц
+- Блок 4: баннер тарифов + тарифы
+- Блок 5: вожатский отряд (карусель) — по просьбе заказчика стоит ПОСЛЕ тарифов
 - Блок 6: «15 минут» + помощь + футер + sticky-cta + back-to-top + <script>
 """
 import re
@@ -22,7 +22,7 @@ from pathlib import Path
 BASE = Path(__file__).parent
 # TODO: подтвердить имя репозитория GitHub Pages для этого лендинга
 CDN = "https://npopko55-cmd.github.io/summer-camp"
-VER = "camp-N"
+VER = "camp-O"
 
 html = (BASE / "index.html").read_text(encoding="utf-8")
 body = re.search(r"<body[^>]*>(.*?)</body>", html, re.DOTALL).group(1)
@@ -62,17 +62,17 @@ def pos(patt):
 
 # Порядок секций (по прототипу Miro):
 # hero(+мини-пункты) → вожатский отряд → музыка → что внутри → отзывы → тарифы → 15 минут → помощь
-p_couns  = pos(r'<section[^>]*id="counselors"')
 p_work   = pos(r'<section[^>]*id="workouts"')
 p_res    = pos(r'<section[^>]*id="results"')
 p_banner = pos(r'<section[^>]*class="rates-banner"')
+p_couns  = pos(r'<section[^>]*id="counselors"')   # теперь ПОСЛЕ тарифов
 p_fifteen= pos(r'<section[^>]*id="fifteen"')
 
-part_a  = body[:p_couns]             # топбар+шапка+меню+hero+«Для кого»+«Что это»
-part_b0 = body[p_couns:p_work]       # вожатский отряд (карусель)
-part_b1 = body[p_work:p_res]         # музыкальные пластинки
-part_b2 = body[p_res:p_banner]       # отзывы участниц
-part_b3 = body[p_banner:p_fifteen]   # баннер тарифов + тарифы
+part_a  = body[:p_work]              # топбар+шапка+меню+hero+«Для кого»+«Что это»
+part_b0 = body[p_work:p_res]         # музыкальные пластинки
+part_b1 = body[p_res:p_banner]       # отзывы участниц
+part_b2 = body[p_banner:p_couns]     # баннер тарифов + тарифы
+part_b3 = body[p_couns:p_fifteen]    # вожатский отряд (карусель)
 tail    = body[p_fifteen:]           # 15 минут + помощь + футер + sticky + script
 
 # 3. Анти-mojibake: не-ASCII → &#NNNN;
@@ -116,9 +116,9 @@ def sz(s):
 
 print("Готово")
 print(f"  tilda-block-1.html: {sz(block1)}  — топбар+шапка+меню+hero+для кого+что это")
-print(f"  tilda-block-2.html: {sz(block2)}  — вожатский отряд (карусель)")
-print(f"  tilda-block-3.html: {sz(block3)}  — музыкальные пластинки")
-print(f"  tilda-block-4.html: {sz(block4)}  — отзывы участниц")
-print(f"  tilda-block-5.html: {sz(block5)}  — баннер тарифов+тарифы")
+print(f"  tilda-block-2.html: {sz(block2)}  — музыкальные пластинки")
+print(f"  tilda-block-3.html: {sz(block3)}  — отзывы участниц")
+print(f"  tilda-block-4.html: {sz(block4)}  — баннер тарифов+тарифы")
+print(f"  tilda-block-5.html: {sz(block5)}  — вожатский отряд (карусель)")
 print(f"  tilda-block-6.html: {sz(block6)}  — 15 минут+помощь+футер+sticky+script")
 print(f"  Лимит T123: 30 000 chars / блок. CSS/JS — с {CDN}")
