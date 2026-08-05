@@ -22,7 +22,7 @@ from pathlib import Path
 BASE = Path(__file__).parent
 # TODO: подтвердить имя репозитория GitHub Pages для этого лендинга
 CDN = "https://npopko55-cmd.github.io/summer-camp"
-VER = "camp-P"
+VER = "camp-Q"
 
 html = (BASE / "index.html").read_text(encoding="utf-8")
 

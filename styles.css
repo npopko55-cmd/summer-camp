@@ -106,6 +106,20 @@ figure { margin: 0; }
    заголовков свободнее). Body остаётся Inter — капс на абзацах нечитаем. */
 h1, h2, h3 { font-family: var(--font-h); font-weight: 600; margin: 0; line-height: 1.12; letter-spacing: .01em; }
 .section { padding: 80px 0; }
+/* Бумажный фон продублирован на секциях, а не только на body. На своём
+   хостинге хватало body, но в Тильде каждый блок T123 сидит в собственной
+   обёртке .t-rec с белым фоном — и секции без своего фона выглядели белыми
+   заплатками посреди кремовой страницы. Те, у кого фон свой (.counselors,
+   .results, .rates-banner, .help, .header, .footer), в список не входят. */
+.hero,
+.forwhom,
+.whatis,
+.workouts,
+.rates,
+.fifteen {
+  background-color: var(--color-bg);
+  background-image: var(--paper-grain);
+}
 .section__title {
   font-size: clamp(28px, 4vw, 46px);
   font-weight: 700;
@@ -1679,7 +1693,10 @@ h1, h2, h3 { font-family: var(--font-h); font-weight: 600; margin: 0; line-heigh
 /* ================ ВСЕГО ОТ 15 МИНУТ В ДЕНЬ ==================== */
 /* Фото слева, три пункта с разделителями справа, под ними строка
    «А ещё?» и финальный CTA по центру. На ≤900px — фото сверху. */
-.fifteen { padding-top: 8px; }
+/* Было 8px: секция вплотную примыкала к тарифам, и отступ давал сосед.
+   В Тильде блоки самостоятельные, соседского отступа нет — заголовок
+   упирался в верхний край блока. Держим свой. */
+.fifteen { padding-top: 64px; }
 .fifteen__grid {
   display: grid;
   grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
