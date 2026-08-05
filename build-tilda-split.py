@@ -11,8 +11,9 @@ assets/ → абсолютные URL на CDN (сейчас страница х�
 Блоки:
 - Блок 1: head-хинты + топбар + шапка + меню + hero + «Новые вожатые»
 - Блок 2: тренировки-«пластинки» + «Что вас ждёт в лагере»
-- Блок 3: результаты участниц + баннер тарифов + тарифы
-- Блок 4: финальный CTA + помощь + футер + sticky-cta + back-to-top + <script>
+- Блок 3: отзывы участниц (10 карточек, поэтому отдельным блоком)
+- Блок 4: баннер тарифов + тарифы
+- Блок 5: финальный CTA + помощь + футер + sticky-cta + back-to-top + <script>
 """
 import re
 from pathlib import Path
@@ -20,7 +21,7 @@ from pathlib import Path
 BASE = Path(__file__).parent
 # TODO: подтвердить имя репозитория GitHub Pages для этого лендинга
 CDN = "https://npopko55-cmd.github.io/summer-camp"
-VER = "camp-G"
+VER = "camp-H"
 
 html = (BASE / "index.html").read_text(encoding="utf-8")
 body = re.search(r"<body[^>]*>(.*?)</body>", html, re.DOTALL).group(1)
@@ -42,18 +43,20 @@ def pos(patt):
 # hero(+мини-пункты) → вожатский отряд → музыка → что внутри → отзывы → тарифы → 15 минут → помощь
 p_work   = pos(r'<section[^>]*id="workouts"')
 p_res    = pos(r'<section[^>]*id="results"')
+p_banner = pos(r'<section[^>]*class="rates-banner"')
 p_fifteen= pos(r'<section[^>]*id="fifteen"')
 
 part_a  = body[:p_work]              # топбар+шапка+меню+hero+мини-пункты+вожатский отряд
 part_b1 = body[p_work:p_res]         # музыка + что вас ждёт в лагере
-part_b2 = body[p_res:p_fifteen]      # отзывы + баннер тарифов + тарифы
+part_b2 = body[p_res:p_banner]       # отзывы участниц
+part_b3 = body[p_banner:p_fifteen]   # баннер тарифов + тарифы
 tail    = body[p_fifteen:]           # 15 минут + помощь + футер + sticky + script
 
 # 3. Анти-mojibake: не-ASCII → &#NNNN;
 def to_entities(text):
     return "".join(c if ord(c) < 128 else f"&#{ord(c)};" for c in text)
 
-part_a, part_b1, part_b2, tail = map(to_entities, (part_a, part_b1, part_b2, tail))
+part_a, part_b1, part_b2, part_b3, tail = map(to_entities, (part_a, part_b1, part_b2, part_b3, tail))
 
 # 4. Head-хинты (шрифты те же: Unbounded + Inter; hero-картинка — с CDN Тильды)
 HERO_IMG = "https://static.tildacdn.com/tild3861-3863-4130-a636-343338326634/image_2025-08-05_19-.png"
@@ -69,12 +72,14 @@ TAIL_SCRIPT = f'\n<script src="{CDN}/script.js?v={VER}"></script>\n'
 block1 = HEAD_HINTS + "\n" + part_a + "\n"
 block2 = part_b1
 block3 = part_b2
-block4 = tail + TAIL_SCRIPT
+block4 = part_b3
+block5 = tail + TAIL_SCRIPT
 
 (BASE / "tilda-block-1.html").write_text(block1, encoding="utf-8")
 (BASE / "tilda-block-2.html").write_text(block2, encoding="utf-8")
 (BASE / "tilda-block-3.html").write_text(block3, encoding="utf-8")
 (BASE / "tilda-block-4.html").write_text(block4, encoding="utf-8")
+(BASE / "tilda-block-5.html").write_text(block5, encoding="utf-8")
 
 def sz(s):
     n = len(s)
@@ -84,6 +89,7 @@ def sz(s):
 print("Готово")
 print(f"  tilda-block-1.html: {sz(block1)}  — топбар+шапка+меню+hero+вожатые")
 print(f"  tilda-block-2.html: {sz(block2)}  — тренировки+что внутри")
-print(f"  tilda-block-3.html: {sz(block3)}  — результаты+баннер+тарифы")
-print(f"  tilda-block-4.html: {sz(block4)}  — финальный CTA+помощь+футер+sticky+script")
+print(f"  tilda-block-3.html: {sz(block3)}  — отзывы участниц")
+print(f"  tilda-block-4.html: {sz(block4)}  — баннер тарифов+тарифы")
+print(f"  tilda-block-5.html: {sz(block5)}  — финальный CTA+помощь+футер+sticky+script")
 print(f"  Лимит T123: 30 000 chars / блок. CSS/JS — с {CDN}")

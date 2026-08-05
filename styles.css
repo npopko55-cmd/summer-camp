@@ -1053,66 +1053,84 @@ h1, h2, h3 { font-family: var(--font-h); font-weight: 600; margin: 0; line-heigh
   line-height: 1.16;
 }
 .results__grid {
-  display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 18px;
+  columns: 3;
+  column-gap: 18px;
   margin-top: 36px;
 }
-/* ФОТОКАРТОЧКИ результатов: белые поля + попеременный наклон ±1.5°.
-   Вылет от поворота ~5px на десктопе и ~3px на 375px — целиком уходит
-   в gap сетки (12–18px) и паддинг контейнера (24px). */
+/* КАРТОЧКИ-ОТЧЁТЫ: белые поля + попеременный наклон ±0.8°.
+   Высота у карточек разная (у кого фото, у кого только текст), поэтому
+   masonry на CSS columns. break-inside: avoid — чтобы карточка не рвалась
+   между колонками; наклон меньше, чем у фото 4-в-ряд, иначе на длинных
+   текстовых карточках косина читается как брак вёрстки. */
 .result-card {
+  break-inside: avoid;
   background: #fff;
   border: 1px solid var(--color-line);
   border-radius: var(--radius-card);
   box-shadow: var(--shadow-sm);
-  padding: 10px;
-  transform: rotate(var(--tilt, -1.5deg));
+  padding: 10px 10px 4px;
+  margin-bottom: 18px;
+  transform: rotate(var(--tilt, -0.8deg));
   transition: transform .2s, box-shadow .2s;
 }
-.result-card:nth-child(even) { --tilt: 1.5deg; }
+.result-card:nth-child(even) { --tilt: 0.8deg; }
 @media (hover: hover) {
-  .result-card:hover { transform: rotate(var(--tilt, -1.5deg)) translateY(-4px); box-shadow: var(--shadow-md); }
+  .result-card:hover { transform: rotate(var(--tilt, -0.8deg)) translateY(-4px); box-shadow: var(--shadow-md); }
 }
-/* Слот под фотоотзыв — КВАДРАТ 1:1 (заказчик пришлёт квадратные скриншоты).
-   Вставка одной правкой:
-   style="background-image:url('assets/reviews/ИМЯ.webp')" + убрать <span>. */
+/* Карточка без фото — на кремовой бумаге с двойной линовкой слева,
+   чтобы ряд из одних цитат не читался как пустые слоты. */
+.result-card--quote {
+  background: var(--color-cream);
+  border-left: 4px double var(--color-primary);
+  padding: 16px 16px 6px;
+}
+.result-card__photos {
+  display: grid;
+  gap: 6px;
+}
+.result-card__photos--2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 .result-photo {
   width: 100%;
-  aspect-ratio: 1 / 1;
+  height: auto;
+  display: block;
   border-radius: var(--radius-inner);
   background-color: var(--color-slot);
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  display: flex;
-  align-items: center;
-  justify-content: center;
 }
-.result-photo span {
+/* Текст отзыва — дословно из отрядного чата */
+.result-card__text {
+  margin: 12px 4px 0;
+  font-size: 15px;
+  line-height: 1.5;
+  color: var(--color-text);
+}
+.result-card--quote .result-card__text { margin-left: 0; margin-right: 0; }
+.result-card__points {
+  margin: 10px 4px 0;
   font-family: var(--font-m);
-  font-size: 12px;
+  font-size: 13px;
   font-weight: 700;
-  letter-spacing: .18em;
-  text-transform: uppercase;
-  color: var(--color-slot-ink);
+  letter-spacing: .06em;
+  text-align: center;
+  color: var(--color-muted);
 }
-/* Подпись под фото — канцелярская моноширинная в капсе, без «рукописи» */
+/* Подпись — канцелярская моноширинная в капсе, со звездой-маркером */
 .result-card__name {
   font-family: var(--font-m);
   font-weight: 700;
   font-size: 13px;
   letter-spacing: .2em;
   text-transform: uppercase;
-  text-align: center;
-  padding: 12px 4px 6px;
+  text-align: right;
+  padding: 10px 4px 8px;
+  color: var(--color-primary);
 }
-@media (max-width: 900px) { .results__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
-/* 4 → 2 → 1: на мобиле квадрат в две колонки даёт ~157px — для фотоотзыва
-   (там будет текст на скриншоте) это нечитаемо, поэтому одна колонка. */
-@media (max-width: 560px) {
+.result-card__name::before { content: "★ "; }
+@media (max-width: 1140px) { .results__grid { columns: 2; } }
+@media (max-width: 700px) {
   .results { padding: 56px 0; }
-  .results__grid { grid-template-columns: minmax(0, 1fr); gap: 16px; max-width: 360px; margin-left: auto; margin-right: auto; }
+  .results__grid { columns: 1; column-gap: 0; max-width: 420px; margin-left: auto; margin-right: auto; }
+  .result-card { margin-bottom: 16px; }
+  .result-card__text { font-size: 15px; }
 }
 
 /* ======================== RATES BANNER ======================== */

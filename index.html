@@ -31,7 +31,7 @@
   <!-- Hero-фото: наши вожатые в настоящем лагере (локальный ассет) -->
   <link rel="preload" as="image" href="assets/hero/hero-camp.webp" fetchpriority="high" />
 
-  <link rel="stylesheet" href="styles.css?v=camp-G" />
+  <link rel="stylesheet" href="styles.css?v=camp-H" />
 </head>
 <body>
 
@@ -519,24 +519,83 @@
   <div class="container">
     <img class="theme-mark" src="assets/theme/el-5.webp" alt="" width="700" height="700" loading="lazy" aria-hidden="true" />
     <h2 class="section__title">Они шагали с&nbsp;нами всего от&nbsp;20&nbsp;минут в&nbsp;день, и&nbsp;добились результата. У&nbsp;вас тоже получится!</h2>
+    <p class="section__lead">Отчёты участниц прошлой смены — как они их&nbsp;прислали в&nbsp;отрядный чат.</p>
 
+    <!-- Отзывы участниц весенней смены. Фото и тексты — из отрядного чата,
+         тексты приведены дословно. Карточки разной высоты, поэтому
+         masonry на CSS columns (break-inside: avoid на карточке). -->
     <div class="results__grid">
+
       <figure class="result-card">
-        <div class="result-photo" role="img" aria-label="Фотоотзыв Саши — скоро"><span>фото</span></div>
-        <figcaption class="result-card__name">Саша</figcaption>
+        <div class="result-card__photos result-card__photos--2">
+          <img class="result-photo" src="assets/reviews/svetlana-body.webp" alt="Светлана: до и после недели лагеря" width="900" height="900" loading="lazy" />
+          <img class="result-photo" src="assets/reviews/svetlana-scales.webp" alt="Весы Светланы: 62,1 и 60,6 кг" width="800" height="800" loading="lazy" />
+        </div>
+        <blockquote class="result-card__text">Вот моё «до» и&nbsp;«после» недели весеннего лагеря. Просто супер! Много положительных эмоций, много нового в&nbsp;меню. В&nbsp;теле чувствуется лёгкость и&nbsp;много энергии! 🔥 Спасибо большое за&nbsp;замечательные тренировки и&nbsp;рекомендации по&nbsp;меню!!! 💖</blockquote>
+        <figcaption class="result-card__name">Светлана</figcaption>
       </figure>
+
       <figure class="result-card">
-        <div class="result-photo" role="img" aria-label="Фотоотзыв Марины — скоро"><span>фото</span></div>
-        <figcaption class="result-card__name">Марина</figcaption>
+        <div class="result-card__photos result-card__photos--2">
+          <img class="result-photo" src="assets/reviews/zenta-body.webp" alt="Зента: до и после недели лагеря" width="900" height="900" loading="lazy" />
+          <img class="result-photo" src="assets/reviews/zenta-scales.webp" alt="Весы Зенты: 79,7 и 78,6 кг" width="800" height="800" loading="lazy" />
+        </div>
+        <blockquote class="result-card__text">Что в&nbsp;первый, что во&nbsp;второй раз фотографировала уже после завтрака)) на&nbsp;сегодняшнем фото с&nbsp;красным лицом. Только сделала табату с&nbsp;Настей)) очень мне полюбились именно такие тренировки)) утром ещё фейс-фитнес сделала)) Чувствую себя более привлекательной, красивой, активной. Прекрасно себя чувствую. Останавливаться совершенно не&nbsp;хочу. Хочу двигаться только вперёд!!</blockquote>
+        <figcaption class="result-card__name">Зента</figcaption>
       </figure>
+
       <figure class="result-card">
-        <div class="result-photo" role="img" aria-label="Фотоотзыв Лиды — скоро"><span>фото</span></div>
-        <figcaption class="result-card__name">Лида</figcaption>
+        <div class="result-card__photos">
+          <img class="result-photo" src="assets/reviews/nadezhda-scales.webp" alt="Весы Надежды: 87,5 и 85,9 кг" width="900" height="676" loading="lazy" />
+        </div>
+        <blockquote class="result-card__text">Вот мой результат) Минусом 1,6 на&nbsp;весах. Плюсом&nbsp;— энергия, позитив (спасибо вам, организаторы, спасибо всем участницам, что делились, подбадривали, заряжали!) и&nbsp;понимание, что в&nbsp;себя нужно обязательно вкладываться&nbsp;— давать отдых, новые эмоции положительные, исполнять отложенные (пусть малюсенькие) мечты&nbsp;— и&nbsp;тогда будут силы, будет энергия и&nbsp;новые мечты 😍</blockquote>
+        <figcaption class="result-card__name">Надежда</figcaption>
       </figure>
+
       <figure class="result-card">
-        <div class="result-photo" role="img" aria-label="Фотоотзыв Иры — скоро"><span>фото</span></div>
-        <figcaption class="result-card__name">Ира</figcaption>
+        <div class="result-card__photos">
+          <img class="result-photo" src="assets/reviews/natalya-scales.webp" alt="Весы Натальи: 75,10 и 74,20 кг" width="700" height="934" loading="lazy" />
+        </div>
+        <blockquote class="result-card__text">Первый раз пошла в&nbsp;Лагерь. И&nbsp;не&nbsp;пожалела ❤️ Всё очень понравилось, появилась энергия, уверенность в&nbsp;своих силах. Спасибо большое организаторам. ❤️ И&nbsp;всем участникам за&nbsp;вдохновение, мотивацию и&nbsp;поддержку 💋</blockquote>
+        <figcaption class="result-card__name">Наталья</figcaption>
       </figure>
+
+      <figure class="result-card result-card--quote">
+        <blockquote class="result-card__text">Моя точка&nbsp;А: 82.5. Моя точка&nbsp;Б: 81.6.<br />Всего 900&nbsp;гр, казалось&nbsp;бы. И&nbsp;не&nbsp;буду врать, что появилась какая-то там лёгкость или ещё что-то волшебное. Это точно не&nbsp;в&nbsp;моём случае. НО. <strong>Очень, прям вот очень изменилась самооценка.</strong> Я&nbsp;смотрю на&nbsp;себя в&nbsp;зеркало не&nbsp;как на&nbsp;«ну видимо никогда в&nbsp;жизни не&nbsp;похудею», а&nbsp;как на&nbsp;«уже 900&nbsp;гр. А&nbsp;вот если каждую неделю по&nbsp;900&nbsp;гр будет уходить, то&nbsp;к&nbsp;лету обязательно куплю то&nbsp;короткое платье» 😄<br />Благодарю за&nbsp;смену ❤️ Дальше только больше!</blockquote>
+        <figcaption class="result-card__name">Анна</figcaption>
+      </figure>
+
+      <figure class="result-card">
+        <div class="result-card__photos">
+          <img class="result-photo" src="assets/reviews/anon1-scales.webp" alt="Весы участницы: 101,2 и 99,5 кг" width="800" height="528" loading="lazy" />
+        </div>
+        <blockquote class="result-card__text">Есть результаты, и&nbsp;это радует. Вес почти &minus;2&nbsp;кг, небольшие уменьшения в&nbsp;объёмах. Начало положено, и&nbsp;я&nbsp;не&nbsp;собираюсь останавливаться на&nbsp;достигнутом. Буду придерживаться рекомендаций в&nbsp;будущем. Спасибо всем за&nbsp;приятную атмосферу, поддержку и&nbsp;море позитива! 🥰</blockquote>
+      </figure>
+
+      <figure class="result-card result-card--quote">
+        <blockquote class="result-card__text">Минус 1,200) Настроение&nbsp;— Весна!!! Хочется больше делать для&nbsp;себя приятностей). Появилась бодрость! А&nbsp;после творческого мастер-класса решила купить картину по&nbsp;номерам и&nbsp;в&nbsp;выходные рисовать, очень переключает. Класс!!!</blockquote>
+        <figcaption class="result-card__name">Наталия</figcaption>
+      </figure>
+
+      <figure class="result-card">
+        <div class="result-card__photos">
+          <img class="result-photo" src="assets/reviews/anon2-scales.webp" alt="Весы участницы: 83,9 и 80,5 кг" width="760" height="771" loading="lazy" />
+        </div>
+        <blockquote class="result-card__text">Мой вес. Я&nbsp;сама в&nbsp;шоке. Специально не&nbsp;взвешивалась, решила только в&nbsp;конце марафона. Но&nbsp;я&nbsp;оказалась в&nbsp;гостях у&nbsp;бабушки в&nbsp;деревне. Бабушка сама в&nbsp;шоке 🤯 от&nbsp;моего результата.</blockquote>
+      </figure>
+
+      <figure class="result-card result-card--quote">
+        <blockquote class="result-card__text">За&nbsp;неделю ушло 1.2&nbsp;кг. Как всегда получила большое удовольствие от&nbsp;лагерной смены, с&nbsp;нетерпением буду ждать следующую и, конечно&nbsp;же, продолжать шагать с&nbsp;«Шагай Дома». Всем организаторам большое спасибо ❤️</blockquote>
+      </figure>
+
+      <figure class="result-card">
+        <div class="result-card__photos">
+          <img class="result-photo" src="assets/reviews/natalya1-scales.webp" alt="Весы участницы: 99,00 и 96,50 кг" width="900" height="465" loading="lazy" />
+        </div>
+        <p class="result-card__points">Точка&nbsp;А&nbsp;— 99,00 · Точка&nbsp;Б&nbsp;— 96,50</p>
+        <figcaption class="result-card__name">Наталья</figcaption>
+      </figure>
+
     </div>
   </div>
 </section>
@@ -798,6 +857,6 @@
 
 <button class="back-to-top" id="backToTop" type="button" aria-label="Наверх">↑</button>
 
-<script src="script.js?v=camp-G"></script>
+<script src="script.js?v=camp-H"></script>
 </body>
 </html>
